@@ -1,0 +1,16 @@
+div.leaflet-control-search {
+  width: calc(25vw + 10px);
+  a {
+    &.search-button {
+      display: none;
+    }
+    &.search-cancel {
+      right: 2px;
+    }
+  }
+  input.search-input {
+    margin: 4px 4px 4px 4px;
+    padding: 0px 2px 0px 2px;
+    width: 25vw;
+  }
+}

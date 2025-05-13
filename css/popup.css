@@ -1,0 +1,124 @@
+div.leaflet-popup-content-wrapper {
+  border: 1px solid black;
+  div.leaflet-popup-content {
+    div {
+      display: flex;
+      flex-direction: column;
+      span,
+      div,
+      h4 {
+        align-self: center;
+        text-wrap: nowrap;
+      }
+      div {
+        &#detailed {
+          align-self: flex-end;
+          background-image: url("../resources/info.png");
+          background-repeat: no-repeat;
+          background-size: cover;
+          width: 24px;
+          height: 24px;
+          &:hover span.explanation {
+            opacity: 1;
+            visibility: visible;
+          }
+          span.explanation {
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 4px;
+            opacity: 0;
+            height: fit-content;
+            padding: 10px;
+            transition: opacity 0.5s;
+            visibility: hidden;
+            width: fit-content;
+            z-index: 10;
+            span {
+              text-wrap: nowrap;
+            }
+          }
+        }
+        &.score-bar {
+          display: flex;
+          flex-direction: row;
+          margin: 20px 0px;
+          div {
+            width: 40px;
+            height: 10px;
+            &.class-1 {
+              #value-pointer {
+                bottom: 15px;
+                display: grid;
+                grid-template-columns: 24px;
+                grid-template-rows: 24px 24px;
+                justify-items: center;
+                position: relative;
+                right: 12px;
+                #pointer {
+                  background-image: url("../resources/value-pointer.png");
+                  transform: rotate(90deg);
+                  width: 24px;
+                  height: 24px;
+                }
+              }
+            }
+          }
+          &#timed {
+            .class-1 {
+              background-color: #fef0d9;
+            }
+            .class-2 {
+              background-color: #fdd49e;
+            }
+            .class-3 {
+              background-color: #fdbb84;
+            }
+            .class-4 {
+              background-color: #fc8d59;
+            }
+            .class-5 {
+              background-color: #e34a33;
+            }
+            .class-6 {
+              background-color: #b30000;
+            }
+          }
+          &#change {
+            .class-1 {
+              background-color: #4575b4;
+            }
+            .class-2 {
+              background-color: #91bfdb;
+            }
+            .class-3 {
+              background-color: #ffffb2;
+            }
+            .class-4 {
+              background-color: #fecc5c;
+            }
+            .class-5 {
+              background-color: #fd8d3c;
+            }
+            .class-6 {
+              background-color: #f03b20;
+            }
+            .class-7 {
+              background-color: #bd0026;
+            }
+          }
+          &#hotspot-change {
+            .class-1 {
+              background-color: #e0f3f8;
+            }
+            .class-2 {
+              background-color: #fee090;
+            }
+            .class-3 {
+              background-color: #d73027;
+            }
+          }
+        }
+      }
+    }
+  }
+}
