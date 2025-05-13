@@ -1,0 +1,51 @@
+<div id="interface">
+  <div id="layer-control">
+      <div id="risk-control">
+        {% for risk in risks %}
+          <button id={{ risk }} title={{ risk }}></button>
+        {% endfor %}
+      </div>
+      <div id="time-control">
+        {% for time in times %}
+          <button id={{ time }} title={{ time }}></button>
+        {% endfor %}
+      </div>
+  </div>
+  <div id="metadata">
+      <button id="methods" title="Methodik"></button>
+      <button id="sources" title="Quellen"></button>
+      <button id="imprint" title="Impressum"></button>
+  </div>
+  {% for risk in risks %}
+    {% for time in times %}
+        <div id='legend' class='{{ risk }}-{{ time }}'>
+          <span id="title">{{ risk }} {{ time }}</span>
+          {% if risk == 'HotSpots' and time == 'Veränderung' %}
+            {% set value_classification = value_classifications["hotspots-change"] %}
+            {% set colors = colormaps["HOTSPOT_CHANGE_LAYER_COLORMAP"] %}
+          {% elif risk == 'HotSpots' %}
+            {% set value_classification = value_classifications["risk"] %}
+            {% set colors = colormaps["RISK_LAYER_COLORMAP"] %}
+          {% elif time == 'Veränderung' %}
+            {% set value_classification = value_classifications["change"] %}
+            {% set colors = colormaps["CHANGE_LAYER_COLORMAP"] %}
+          {% else %}
+            {% set value_classification = value_classifications["risk"] %}
+            {% set colors = colormaps["RISK_LAYER_COLORMAP"] %}
+          {% endif %}
+          <div class="legend-classes">
+              <div id="text">
+                {% for class_name, _ in value_classification.items() %}
+                  <span class='class-{{ loop.index0 }}'>{{ class_name }}</span>
+                {% endfor %}
+              </div>
+              <div id='symbol'>
+                {% for color in colors %}
+                  <div class='class-{{ loop.index0 }} symbol' style='background-color: {{ color }};'></div>
+                {% endfor %}
+              </div>
+          </div>
+        </div>
+    {% endfor %}
+  {% endfor %}
+</div>
