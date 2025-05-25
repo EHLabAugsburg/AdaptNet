@@ -39,10 +39,12 @@ class MapBuilder:
         self.__map._id = "adaptNet"
 
     def __add_external_file_dependencies(self) -> None:
-        for script_file in Path("js").iterdir():
-            with open(f"js\\{script_file.name}", "r") as script:
-                script_code = folium.Element(script.read())
-                self.__map.get_root().script.add_child(script_code)
+        self.__map.add_js_link("styleManager", "js\\styleManager.js")
+        self.__map.add_js_link("contentHandler", "js\\contentHandler.js")
+        self.__map.add_js_link("legendBuilder", "js\\legendBuilder.js")
+        with open("js\\main.js", "r", encoding="utf-8") as script:
+            script_code = folium.Element(script.read())
+            self.__map.get_root().script.add_child(script_code)
         for stylesheet in Path("css").iterdir():
             self.__map.add_css_link(
                 f"{stylesheet.name}",
