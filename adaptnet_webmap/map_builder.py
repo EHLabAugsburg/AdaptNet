@@ -6,7 +6,7 @@ import folium.plugins
 import folium.raster_layers
 import jinja2
 
-from adaptnet_webmap import styles, utilities
+from adaptnet_webmap import utilities
 from adaptnet_webmap.data_processor import DataProcessor
 from adaptnet_webmap.map_layer_creator import MapLayerCreator
 
@@ -67,13 +67,6 @@ class MapBuilder:
         Add the custom user-interface to the map.
         """
         self.__add_external_file_dependencies()
-        layer_registry = folium.LayerControl()  # acts as registry in js
-        # modify variable names to make instances javascript-accessible via
-        # variable names: folium internally uses protected members to derive
-        # variable names in js translation
-        layer_registry._name = "registry"
-        layer_registry._id = "risk"
-        layer_registry.add_to(self.__map)
 
         with open(
             "templates\\interface.html",
@@ -81,20 +74,13 @@ class MapBuilder:
         ) as interface_template:
             template = jinja2.Template(interface_template.read())
         control_pane_html = template.render(
-            risks=utilities.RISKS,
-            times=utilities.TIMES,
-            value_classifications=utilities.VALUE_CLASSIFICATION,
-            colormaps=styles.COLORMAPS,
+            risks=utilities.RISKS, times=utilities.TIMES
         )
         self.__map.get_root().html.add_child(folium.Element(control_pane_html))
 
         search_bar = folium.plugins.Search(
             geom_type="Line",
-            layer=[
-                layer
-                for layer in self.__map_layers
-                if layer.layer_name == "counties"
-            ][0],
+            layer=self.__map_layers[1],
             position="topright",
             placeholder="Kreis suchen...",
             search_label=utilities.COUNTY_NAME_PROPERTY,

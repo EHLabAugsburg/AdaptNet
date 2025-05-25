@@ -29,7 +29,7 @@ div#interface {
           padding-top: 5px;
         }
         button.current {
-          border: 2px solid darkblue;
+          border: 2px solid black;
         }
         &#risk-control {
           button {

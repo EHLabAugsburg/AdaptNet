@@ -27,21 +27,6 @@ class DataProcessor:
         self.__attribute_tables: list[pandas.DataFrame] = []
 
     @property
-    def county_boundaries_geo_json(self) -> dict | None:
-        """
-        Get a GeoJson object from the geodata that represents the
-        county-boundaries.
-
-        Returns
-        -------
-        dict | None
-            The county GeoJson-Object as a dictionary if exists, else None.
-        """
-        for geo_json in self.__geo_json:
-            if geo_json.get("totalFeatures") == DataProcessor.__COUNTY_AMOUNT:
-                return self.__get_polygon_boundaries(geo_json)
-
-    @property
     def county_geo_json(self) -> dict | None:
         """
         Select a GeoJson object from the geodata that represents the counties.
@@ -134,6 +119,30 @@ class DataProcessor:
                 }
             )
 
+    def __remove_properties_from_geojson(
+        self,
+        geo_json: dict,
+        properties_to_preserve: list[str],
+    ) -> None:
+        """
+        Remove properties from every feature in the provided GeoJson.
+
+        Parameters
+        ----------
+        geo_json: dict
+            The GeoJson to modify.
+        properties_to_preserve: list[str]
+            An optional list of properties that should not get removed because
+            of further usage.
+        """
+        for _, feature in enumerate(geo_json["features"]):
+            cleaned_up_properties = {
+                property_name: value
+                for property_name, value in feature["properties"].items()
+                if property_name in properties_to_preserve
+            }
+            feature["properties"] = cleaned_up_properties
+
     def __join_attribute_tables_with_features(self) -> None:
         """
         Join the features from county-GeoJson with the attribute-tables values
@@ -204,6 +213,14 @@ class DataProcessor:
         Process the geodata and attribute tables by joining them and computing
         further values from features resulting properties.
         """
+        for geo_json in self.__geo_json:
+            self.__remove_properties_from_geojson(
+                geo_json,
+                [
+                    utilities.COUNTY_NAME_PROPERTY,
+                    self.__COUNTY_KEY_PROPERTY,
+                ],
+            )
         self.__get_attribute_tables()
         self.__join_attribute_tables_with_features()
         self.__add_symbolizing_values_to_geo_json()
