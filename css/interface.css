@@ -43,10 +43,10 @@ div#interface {
               background-image: url("../resources/allergens.png");
             }
             &#Waldbrand {
-              background-image: url("../resources/forest-fire.png");
+              background-image: url("../resources/forest_fire.png");
             }
             &#Luftqualität {
-              background-image: url("../resources/air-quality.png");
+              background-image: url("../resources/air_quality.png");
             }
             &#Vektoren {
               background-image: url("../resources/vectors.png");
@@ -58,13 +58,13 @@ div#interface {
         }
         &#time-control {
           button {
-            &#Gegenwart {
+            &#today {
               background-image: url("../resources/today.png");
             }
-            &#Zukunft {
+            &#future {
               background-image: url("../resources/future.png");
             }
-            &#Veränderung {
+            &#changed {
               background-image: url("../resources/change.png");
             }
           }
