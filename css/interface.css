@@ -74,13 +74,15 @@ div#interface {
     &#legend {
       background-color: white;
       border: 2px solid black;
-      display: none;
       grid-column: 1;
       grid-row: 2;
       margin: 5px 0px 0px 5px;
       padding: 5px;
       height: fit-content;
       width: fit-content;
+      &.inactive {
+        display: none;
+      }
       span#title {
         font-weight: bold;
       }
