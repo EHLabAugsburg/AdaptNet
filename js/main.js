@@ -45,5 +45,8 @@ function updateDisplayedLayer(risk, time) {
   geo_json_counties.eachLayer(function (county) {
     styleManager.style(county);
     county.bindPopup(contentHandler.getPopupContent(county));
+    county.bindTooltip(contentHandler.getTooltipContent(county), {
+      sticky: true,
+    });
   });
 }

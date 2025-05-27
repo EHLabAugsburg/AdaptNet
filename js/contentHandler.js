@@ -475,4 +475,23 @@ class ContentHandler {
     popupContentHtml += this._getDetailedInformationAsHtml(county);
     return popupContentHtml;
   }
+  /**
+   * Get a html-parsed string which displays the feature-specific tooltip.
+   * @param {*} county The feature to compute the tooltip for.
+   * @returns A html-parsed string representing the tooltip for the provided county.
+   */
+  getTooltipContent(county) {
+    const symbolizingValue =
+      county.feature.properties[`${this._risk} ${this._time}`];
+    var tooltipContentHtml = `<span class="tooltip-title">${
+      county.feature.properties[ContentHandler._COUNTY_NAME_PROPERTY_NAME]
+    }</span><br><span class="value" style="color: ${StyleManager.getHexColor(
+      symbolizingValue,
+      this._risk,
+      this._time
+    )}">${
+      symbolizingValue > 0 && this._time == "Veränderung" ? "+" : ""
+    }${Number(symbolizingValue).toFixed(1)}</span>`;
+    return tooltipContentHtml;
+  }
 }

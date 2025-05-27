@@ -1,0 +1,17 @@
+div.leaflet-tooltip {
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: opacity 0.5s;
+  span {
+    font-weight: bold;
+    text-align: center;
+    &.value {
+      font-size: large;
+      text-shadow: 1px 1px black, -1px -1px black, 1px -1px black,
+        -1px 1px black;
+    }
+  }
+}
