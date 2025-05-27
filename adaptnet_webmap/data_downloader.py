@@ -5,8 +5,8 @@ import aiohttp
 
 class DataDownloader:
 
-    TEMPLATE_RESOURCE_URL = "https://sgx.geodatenzentrum.de/wfs_vg2500?service=wfs&version=2.0.0&request=GetFeature&TYPENAMES=ADMINISTRATIVE_KEY&SRSName=urn:ogc:def:crs:EPSG::4326&outputformat=JSON"  # noqa
     __ADMINISTRATIVE_KEYS = {"counties": "vg2500_krs", "states": "vg2500_lan"}
+    TEMPLATE_RESOURCE_URL = "https://sgx.geodatenzentrum.de/wfs_vg2500?service=wfs&version=2.0.0&request=GetFeature&TYPENAMES=ADMINISTRATIVE_KEY&SRSName=urn:ogc:def:crs:EPSG::4326&outputformat=JSON"  # noqa
 
     async def __fetch_all_resources(self) -> list[asyncio.Future]:
         """

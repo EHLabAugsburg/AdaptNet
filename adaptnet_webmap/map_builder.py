@@ -13,6 +13,8 @@ from adaptnet_webmap.map_layer_creator import MapLayerCreator
 
 class MapBuilder:
 
+    __TIMES = ["Gegenwart", "Zukunft", "Veränderung"]
+
     def __init__(self, attribute_table_source_path: Path):
         self.__map_layers = MapLayerCreator(
             DataProcessor(attribute_table_source_path)
@@ -67,17 +69,16 @@ class MapBuilder:
         Add the custom user-interface to the map.
         """
         self.__add_external_file_dependencies()
-
         with open(
             "templates\\interface.html",
             encoding="utf-8",
         ) as interface_template:
             template = jinja2.Template(interface_template.read())
         control_pane_html = template.render(
-            risks=utilities.RISKS, times=utilities.TIMES
+            risks=utilities.RISKS,
+            times=MapBuilder.__TIMES,
         )
         self.__map.get_root().html.add_child(folium.Element(control_pane_html))
-
         search_bar = folium.plugins.Search(
             geom_type="Line",
             layer=self.__map_layers[1],

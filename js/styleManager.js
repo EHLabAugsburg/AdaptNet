@@ -2,7 +2,7 @@
  * Class for managing the correct feature's appearance.
  */
 class StyleManager {
-  static STYLES = {
+  static _STYLES = {
     hotspotsChanged: { "#d73027": 2, "#fee090": 1, "#e0f3f8": 0 },
     changed: {
       "#bd0026": 40,
@@ -38,43 +38,38 @@ class StyleManager {
         : "Veränderung";
   }
   /**
+   * Get the color-code for the provided value with regards to the displayed layer.
+   * @param {*} value The feature's property value.
+   * @param {*} risk The risk of the layer to display.
+   * @param {*} time The time of the layer to display.
+   * @returns
+   */
+  static getHexColor(value, risk, time) {
+    const colormap =
+      time == "Veränderung" && risk == "HotSpots"
+        ? StyleManager._STYLES.hotspotsChanged
+        : time == "Veränderung"
+        ? StyleManager._STYLES.changed
+        : StyleManager._STYLES.timed;
+    for (const [color, upperBound] of Object.entries(colormap)) {
+      if (upperBound <= value) {
+        return color;
+      }
+    }
+  }
+
+  /**
    * Style the provided feature regarding the current dislayed layer.
    * @param {*} county The feature to apply the style to.
    */
   style(county) {
-    if (this._time == "Veränderung" && this._risk == "HotSpots") {
-      var symbolizingValue =
-        county.feature.properties[`${this._risk} ${this._time}`];
-      for (const [color, upperBound] of Object.entries(
-        StyleManager.STYLES.hotspotsChanged
-      )) {
-        if (upperBound <= symbolizingValue) {
-          county.setStyle({ fillColor: color, fillOpacity: 1 });
-          break;
-        }
-      }
-    } else if (this._time == "Veränderung") {
-      var symbolizingValue =
-        county.feature.properties[`${this._risk} ${this._time}`];
-      for (const [color, upperBound] of Object.entries(
-        StyleManager.STYLES.changed
-      )) {
-        if (upperBound <= symbolizingValue) {
-          county.setStyle({ fillColor: color, fillOpacity: 1 });
-          break;
-        }
-      }
-    } else {
-      var symbolizingValue =
-        county.feature.properties[`${this._risk} ${this._time}`];
-      for (const [color, upperBound] of Object.entries(
-        StyleManager.STYLES.timed
-      )) {
-        if (upperBound <= symbolizingValue) {
-          county.setStyle({ fillColor: color, fillOpacity: 1 });
-          break;
-        }
-      }
-    }
+    county.setStyle({
+      fillColor: StyleManager.getHexColor(
+        county.feature.properties[`${this._risk} ${this._time}`],
+        this._risk,
+        this._time
+      ),
+      fillOpacity: 1,
+    });
   }
 }

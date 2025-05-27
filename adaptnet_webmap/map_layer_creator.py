@@ -1,6 +1,5 @@
 import folium
 
-from adaptnet_webmap import utilities
 from adaptnet_webmap.data_processor import DataProcessor
 
 
@@ -20,7 +19,6 @@ class MapLayerCreator:
             folium.FeatureGroup-instances. Each layer contains a
             folium.GeoJson-instance for every feature.
         """
-
         self.__data_processor.process_data()
         states_base_layer = folium.GeoJson(
             data=self.__data_processor.state_boundaries_geo_json,
@@ -40,10 +38,6 @@ class MapLayerCreator:
                 "weight": 1,
                 "fillOpacity": 0,
             },
-            tooltip=folium.GeoJsonTooltip(  # TODO: define custom tooltip
-                fields=[utilities.COUNTY_NAME_PROPERTY],
-                labels=False,
-            ),
             zoom_on_click=True,
             overlay=True,
             control=False,

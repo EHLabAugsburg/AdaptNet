@@ -2,7 +2,7 @@
  * Class for dynamic legend adjustements and document insertion.
  */
 class LegendBuilder {
-  static COLORMAPS = {
+  static _COLORMAPS = {
     timed: {
       "geringes Risiko": "#FEF0D9",
       "niedriges Risiko": "#FDD49E",
@@ -26,7 +26,7 @@ class LegendBuilder {
       "stark zunehmend": "#d73027",
     },
   };
-  static LEGEND_HTML_ID = "legend";
+  static _LEGEND_HTML_ID = "legend";
 
   /**
    *
@@ -42,7 +42,7 @@ class LegendBuilder {
         ? "Zukunft"
         : "Veränderung";
     this._htmlLegendElement = document.getElementById(
-      LegendBuilder.LEGEND_HTML_ID
+      LegendBuilder._LEGEND_HTML_ID
     );
     for (const elementClass of this._htmlLegendElement.classList) {
       this._htmlLegendElement.classList.remove(elementClass);
@@ -61,10 +61,10 @@ class LegendBuilder {
     if (this._time == "Veränderung") {
       colormap =
         this._risk == "HotSpots"
-          ? LegendBuilder.COLORMAPS.hotspotsChanged
-          : LegendBuilder.COLORMAPS.changed;
+          ? LegendBuilder._COLORMAPS.hotspotsChanged
+          : LegendBuilder._COLORMAPS.changed;
     } else {
-      colormap = LegendBuilder.COLORMAPS.timed;
+      colormap = LegendBuilder._COLORMAPS.timed;
     }
     for (const [className, classColor] of Object.entries(colormap)) {
       htmlLegendInnerHtml += `<span class='class-${i}'>${className}</span>`;

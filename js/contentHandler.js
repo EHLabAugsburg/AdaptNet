@@ -1,9 +1,9 @@
 /**
- * Class to ensure the dynamically display of correct information in popups.
+ * Class to ensure the dynamically display of correct information in popups and tooltips.
  */
 class ContentHandler {
-  static COUNTY_NAME_PROPERTY_NAME = "gen";
-  static POPUP_CONTENT_INFO = {
+  static _COUNTY_NAME_PROPERTY_NAME = "gen";
+  static _POPUP_CONTENT_INFO = {
     Luftqualität: {
       Gegenwart: {
         headers: {
@@ -359,7 +359,7 @@ class ContentHandler {
       }
       for (const riskPropertyName of riskPropertiesToDisplay) {
         for (const [riskClass, upperBound] of Object.entries(
-          ContentHandler.POPUP_CONTENT_INFO.Zeitpunkt.headers
+          ContentHandler._POPUP_CONTENT_INFO.Zeitpunkt.headers
         )) {
           if (county.feature.properties[riskPropertyName] <= upperBound) {
             detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${riskPropertyName}:</b> ${riskClass}</span><br>`;
@@ -372,7 +372,7 @@ class ContentHandler {
       var riskScoreFuture = county.feature.properties[`${this._risk} Zukunft`];
       for (const riskScore of [riskScoreToday, riskScoreFuture]) {
         for (const [riskClass, upperBound] of Object.entries(
-          ContentHandler.POPUP_CONTENT_INFO.Zeitpunkt.headers
+          ContentHandler._POPUP_CONTENT_INFO.Zeitpunkt.headers
         )) {
           if (riskScore <= upperBound) {
             detailedHtml += `<span class='${this._risk}-${
@@ -386,7 +386,7 @@ class ContentHandler {
       }
     } else {
       for (const [riskName, riskClasses] of Object.entries(
-        ContentHandler.POPUP_CONTENT_INFO[this._risk][this._time].headers
+        ContentHandler._POPUP_CONTENT_INFO[this._risk][this._time].headers
       )) {
         let detailedRiskValue =
           county.feature.properties[`${this._risk} ${this._time} ${riskName}`];
@@ -410,13 +410,13 @@ class ContentHandler {
    */
   getPopupContent(county) {
     var popupContentHtml = `<h4>${
-      county.feature.properties[ContentHandler.COUNTY_NAME_PROPERTY_NAME]
+      county.feature.properties[ContentHandler._COUNTY_NAME_PROPERTY_NAME]
     }</h4>`;
     var countyClassName;
     var classMap =
       this._time == "Veränderung"
-        ? ContentHandler.POPUP_CONTENT_INFO.Veränderung.headers
-        : ContentHandler.POPUP_CONTENT_INFO.Zeitpunkt.headers;
+        ? ContentHandler._POPUP_CONTENT_INFO.Veränderung.headers
+        : ContentHandler._POPUP_CONTENT_INFO.Zeitpunkt.headers;
     for (const [className, upperBound] of Object.entries(classMap)) {
       if (
         county.feature.properties[`${this._risk} ${this._time}`] <= upperBound

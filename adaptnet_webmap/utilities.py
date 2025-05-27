@@ -313,25 +313,3 @@ LAYER_METADATA = {
 }
 
 RISKS = [risk for risk in LAYER_METADATA] + ["HotSpots"]
-TIMES = ["Gegenwart", "Zukunft", "Veränderung"]
-
-VALUE_CLASSIFICATION = {  # mapping of class descriptions and their upper bounds
-    "risk": {
-        "geringes Risiko": 20,
-        "niedriges Risiko": 40,
-        "mittleres Risiko": 60,
-        "hohes Risiko": 80,
-        "kritisches Risiko": 100,
-        "extremes Risiko": 1000,
-    },
-    "change": {
-        "abnehmend": -10,
-        "leicht abnehmend": 0,
-        "leicht zunehmend": 10,
-        "zunehmend": 20,
-        "stark zunehmend": 30,
-        "kritisch zunehmend": 40,
-        "extrem zunehmend": 100,
-    },
-    "hotspots-change": {"stagnierend": 0, "zunehmend": 1, "stark zunehmend": 2},
-}

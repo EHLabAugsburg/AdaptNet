@@ -19,6 +19,32 @@ class DataProcessor:
     __COUNTY_AMOUNT = 400
     __COUNTY_KEY_PROPERTY = "ags"
     __RISKS_AMOUNT = 6
+    __VALUE_CLASSIFICATION = (
+        {  # mapping of class descriptions and their upper bounds
+            "risk": {
+                "geringes Risiko": 20,
+                "niedriges Risiko": 40,
+                "mittleres Risiko": 60,
+                "hohes Risiko": 80,
+                "kritisches Risiko": 100,
+                "extremes Risiko": 1000,
+            },
+            "change": {
+                "abnehmend": -10,
+                "leicht abnehmend": 0,
+                "leicht zunehmend": 10,
+                "zunehmend": 20,
+                "stark zunehmend": 30,
+                "kritisch zunehmend": 40,
+                "extrem zunehmend": 100,
+            },
+            "hotspots-change": {
+                "stagnierend": 0,
+                "zunehmend": 1,
+                "stark zunehmend": 2,
+            },
+        }
+    )
 
     def __init__(self, attribute_table_path: Path):
         self.__data_downloader = DataDownloader()
@@ -93,7 +119,7 @@ class DataProcessor:
             )
             # define hotspots-change using class-difference
             current_class, future_class = None, None
-            for class_name, upper_bound in utilities.VALUE_CLASSIFICATION[
+            for class_name, upper_bound in DataProcessor.__VALUE_CLASSIFICATION[
                 "risk"
             ].items():
                 if (
@@ -111,9 +137,9 @@ class DataProcessor:
             feature["properties"].update(
                 {
                     "HotSpots Veränderung": list(
-                        utilities.VALUE_CLASSIFICATION["risk"]
+                        DataProcessor.__VALUE_CLASSIFICATION["risk"]
                     ).index(future_class)
-                    - list(utilities.VALUE_CLASSIFICATION["risk"]).index(
+                    - list(DataProcessor.__VALUE_CLASSIFICATION["risk"]).index(
                         current_class
                     )
                 }
