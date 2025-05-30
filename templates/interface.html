@@ -1,11 +1,13 @@
 <div id="interface">
   <div id="layer-control">
       <div id="risk-control">
+        Choose a hazard/Wählen Sie eine Gefahr:<br>
         {% for risk in risks %}
           <button id={{ risk }} title={{ risk }}></button>
         {% endfor %}
       </div>
       <div id="time-control">
+        Choose a time period/Wählen Sie einen Zeitraum:<br>
         {% for time in times %}
           <button id={% if time == "Gegenwart" %} "today" {% elif time == "Zukunft" %} "future" {% else %} "changed" {% endif %}  title={{ time }}></button>
         {% endfor %}
