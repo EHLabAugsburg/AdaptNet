@@ -32,6 +32,24 @@ document.querySelectorAll("#time-control button").forEach((button) => {
   });
 });
 
+document
+  .getElementById("imprint")
+  .addEventListener("click", (element) =>
+    ContentHandler.showSubpage(
+      document.getElementById("interface"),
+      element.target
+    )
+  );
+
+document
+  .getElementById("methods")
+  .addEventListener("click", (element) =>
+    ContentHandler.showSubpage(
+      document.getElementById("interface"),
+      element.target
+    )
+  );
+
 /**
  * Update the map ui with the current user's selected layer and it's information to display.
  * @param {*} risk the risk of the layer to display

@@ -1,8 +1,24 @@
 /**
- * Class to ensure the dynamically display of correct information in popups and tooltips.
+ * Class to ensure the dynamically display of correct information in popups, tooltips and subpages.
  */
 class ContentHandler {
   static _COUNTY_NAME_PROPERTY_NAME = "gen";
+  static _IMPRINT = `
+  <div id="imprint-content" class="subpage">
+    <b>Impressum:</b> <br />
+    Regional Climate Change and Health<br />
+    Faculty of Medicine<br />
+    University of Augsburg<br />
+    Gutenbergstr. 7<br />
+    86356 Neusäß<br />
+    Contact: <a href="mailto:ehs@med.uni-augsburg.de"> ehs@med.uni-augsburg.de </a><br />
+    <button></button>
+  </div>`;
+  static _METHODS = `
+  <div id="methods-content" class="subpage">
+    Will be available after publication.<br />
+    <button></button>
+  </div>`;
   static _POPUP_CONTENT_INFO = {
     Luftqualität: {
       Gegenwart: {
@@ -401,6 +417,52 @@ class ContentHandler {
       }
     }
     return (detailedHtml += "</div></div>");
+  }
+
+  /**
+   * Remove the subpage HTML-Element from DOM and update the interface-appearance.
+   * @param {*} subpageHtmlContainer The parent-node of the subpage HTML-element.
+   */
+  static closeCurrentSubpage(subpageHtmlContainer) {
+    for (const button of document.querySelectorAll("#metadata button")) {
+      button.classList.remove("current");
+    }
+    for (const subpage of document.querySelectorAll(".subpage")) {
+      subpageHtmlContainer.removeChild(subpage);
+    }
+  }
+
+  /**
+   * Get the HTML-Element for the imprint subpage.
+   * @returns The HTML-parsed string representing the imprint-subpage.
+   */
+  static getImprint() {
+    return ContentHandler._IMPRINT;
+  }
+
+  /**
+   * Get the HTML-Element for the methods subpage.
+   * @returns The HTML-parsed string representing the methods-subpage.
+   */
+  static getMethods() {
+    return ContentHandler._METHODS;
+  }
+
+  /**
+   * Show the corresponding subpage to the clicked button.
+   * @param {*} subpageHtmlContainer The parent-node of the subpage HTML-element. Latter gets inserted here.
+   * @param {*} clickedButton The button that was clicked and led to subpage request.
+   */
+  static showSubpage(subpageHtmlContainer, clickedButton) {
+    ContentHandler.closeCurrentSubpage(subpageHtmlContainer);
+    var subPageHtml =
+      clickedButton.id == "imprint"
+        ? ContentHandler.getImprint()
+        : ContentHandler.getMethods();
+    subpageHtmlContainer.insertAdjacentHTML("afterbegin", subPageHtml);
+    clickedButton.classList.add("current");
+    document.querySelector(".subpage button").onclick = () =>
+      ContentHandler.closeCurrentSubpage(subpageHtmlContainer);
   }
 
   /**
