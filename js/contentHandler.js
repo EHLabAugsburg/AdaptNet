@@ -361,7 +361,7 @@ class ContentHandler {
    * @param {*} county The feature to compute the detailed information for.
    * @returns A html-parsed string with the detailed information.
    */
-  _getDetailedInformationAsHtml(county) {
+  _getDetailedPopupInformation(county) {
     var detailedHtml = '</div><div id="detailed">';
     detailedHtml += `<div id="${this._risk}-${this._time}" class="explanation">`;
     if (this._risk == "HotSpots" && this._time != "Veränderung") {
@@ -534,7 +534,7 @@ class ContentHandler {
         popupContentHtml += `<div class="class-${i}"></div>`;
       }
     }
-    popupContentHtml += this._getDetailedInformationAsHtml(county);
+    popupContentHtml += this._getDetailedPopupInformation(county);
     return popupContentHtml;
   }
   /**
