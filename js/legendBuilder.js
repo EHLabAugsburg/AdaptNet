@@ -47,6 +47,7 @@ class LegendBuilder {
     for (const elementClass of this._htmlLegendElement.classList) {
       this._htmlLegendElement.classList.remove(elementClass);
     }
+    this._htmlLegendElement.style.visibility = "visible";
   }
 
   /**
