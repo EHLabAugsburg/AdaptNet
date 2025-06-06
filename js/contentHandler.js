@@ -349,7 +349,7 @@ class ContentHandler {
   constructor(risk, time) {
     this._risk = risk;
     this._time =
-      time == "today"
+      time == "current"
         ? "Gegenwart"
         : time == "future"
         ? "Zukunft"

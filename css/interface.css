@@ -63,13 +63,13 @@ div#interface {
         }
         &#time-control {
           button {
-            &#today {
+            &#current {
               background-image: url("../resources/today.png");
             }
             &#future {
               background-image: url("../resources/future.png");
             }
-            &#changed {
+            &#change {
               background-image: url("../resources/change.png");
             }
           }
