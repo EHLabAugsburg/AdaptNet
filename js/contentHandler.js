@@ -3,23 +3,7 @@
  */
 class ContentHandler {
   static _COUNTY_NAME_PROPERTY_NAME = "gen";
-  static _IMPRINT = `
-  <div id="imprint-content" class="subpage">
-    <b>Impressum:</b> <br />
-    Regional Climate Change and Health<br />
-    Faculty of Medicine<br />
-    University of Augsburg<br />
-    Gutenbergstr. 7<br />
-    86356 Neusäß<br />
-    Contact: <a href="mailto:ehs@med.uni-augsburg.de"> ehs@med.uni-augsburg.de </a><br />
-    <button></button>
-  </div>`;
-  static _METHODS = `
-  <div id="methods-content" class="subpage">
-    Will be available after publication.<br />
-    <button></button>
-  </div>`;
-  static _POPUP_CONTENT_INFO = {
+  static _FACTOR_CLASSIFICATIONS = {
     Luftqualität: {
       Gegenwart: {
         headers: {
@@ -401,7 +385,6 @@ class ContentHandler {
    * @returns A html-parsed string with the detailed information.
    */
   _getDetailedPopupInformation(county) {
-    let classForValue;
     var detailedHtml = '</div><div id="detailed">';
     detailedHtml += `<div id="${this._risk}-${this._time}" class="explanation">`;
     if (this._risk == "HotSpots" && this._time != "Veränderung") {
@@ -414,7 +397,7 @@ class ContentHandler {
         }
       }
       for (const riskPropertyName of riskPropertiesToDisplay) {
-        classForValue = this._getClassForValue(
+        let classForValue = this._getClassForValue(
           county.feature.properties[riskPropertyName],
           this._risk,
           this._time
@@ -445,7 +428,7 @@ class ContentHandler {
               .headers[riskName].Maximum
           }</span><br>`;
         } else {
-          classForValue = this._getClassForValue(
+          let classForValue = this._getClassForValue(
             detailedRiskValue,
             this._risk,
             this._time,
@@ -599,7 +582,7 @@ class ContentHandler {
       this._time
     )}">${
       symbolizingValue > 0 && this._time == "Veränderung" ? "+" : ""
-    }${Number(symbolizingValue).toFixed(1)}</span>`;
+    }${Number(symbolizingValue).toFixed()}</span>`;
     return tooltipContentHtml;
   }
 }
