@@ -34,4 +34,13 @@ document.querySelectorAll("select option").forEach((option) => {
     updateDisplayedLayer(getCurrentRisk(), getCurrentTime());
     });
   });
-}
+
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .querySelector("div#risk-control button#Luftqualität")
+    .classList.add("current");
+  document
+    .querySelector("div#time-control button#current")
+    .classList.add("current");
+  updateDisplayedLayer("Luftqualität", "current");
+});
