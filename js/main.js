@@ -7,9 +7,7 @@ document.querySelectorAll("div#risk-control button").forEach((button) => {
       }
     }
     button.classList.add("current");
-    currentTime = document.querySelector("div#time-control .current")
-      ? document.querySelector("div#time-control .current").id
-      : null;
+    currentTime = getCurrentTime();
     if (currentTime) {
       updateDisplayedLayer(button.id, currentTime);
     }
@@ -23,48 +21,17 @@ document.querySelectorAll("#time-control button").forEach((button) => {
       timeButtons[i].classList.remove("current");
     }
     button.classList.add("current");
-    currentRisk = document.querySelector("div#risk-control .current")
-      ? document.querySelector("div#risk-control .current").id
-      : null;
+    currentRisk = getCurrentRisk();
     if (currentRisk) {
       updateDisplayedLayer(currentRisk, button.id);
     }
   });
 });
 
-document
-  .getElementById("imprint")
-  .addEventListener("click", (element) =>
-    ContentHandler.showSubpage(
-      document.getElementById("interface"),
-      element.target
-    )
-  );
-
-document
-  .getElementById("methods")
-  .addEventListener("click", (element) =>
-    ContentHandler.showSubpage(
-      document.getElementById("interface"),
-      element.target
-    )
-  );
-
-/**
- * Update the map ui with the current user's selected layer and it's information to display.
- * @param {*} risk the risk of the layer to display
- * @param {*} time the time of the layer to display
- */
-function updateDisplayedLayer(risk, time) {
-  const styleManager = new StyleManager(risk, time);
-  const contentHandler = new ContentHandler(risk, time);
-  const legendBuilder = new LegendBuilder(risk, time);
-  legendBuilder.build();
-  geo_json_counties.eachLayer(function (county) {
-    styleManager.style(county);
-    county.bindPopup(contentHandler.getPopupContent(county));
-    county.bindTooltip(contentHandler.getTooltipContent(county), {
-      sticky: true,
+document.querySelectorAll("select option").forEach((option) => {
+  option.addEventListener("click", function (event) {
+    languageHandler.setLanguage(event.target.text.toLowerCase());
+    updateDisplayedLayer(getCurrentRisk(), getCurrentTime());
     });
   });
 }
