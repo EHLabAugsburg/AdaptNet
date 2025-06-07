@@ -24,31 +24,31 @@ class ContentHandler {
       Gegenwart: {
         headers: {
           "Faktor 1 (PM2.5)": {
-            hoch: 2,
-            mittel: 1,
             gering: 0,
+            mittel: 1,
+            hoch: 2,
           },
           "Faktor 1 (PM10)": {
-            hoch: 2,
-            mittel: 1,
             gering: 0,
+            mittel: 1,
+            hoch: 2,
           },
           "Faktor 1 (NO2)": {
-            hoch: 2,
-            mittel: 1,
             gering: 0,
+            mittel: 1,
+            hoch: 2,
           },
           "Faktor 1 (O3)": {
-            hoch: 2,
-            mittel: 1,
             gering: 0,
+            mittel: 1,
+            hoch: 2,
           },
           "Faktor 2 (Hitze)": {
-            kritisch: 2,
-            hoch: 1.5,
-            mittel: 1,
-            niedrig: 0.5,
             gering: 0,
+            niedrig: 0.5,
+            mittel: 1,
+            hoch: 1.5,
+            kritisch: 2,
           },
           Summe: { Maximum: 10 },
         },
@@ -60,17 +60,18 @@ class ContentHandler {
           "Faktor 1 (NO2)": { abnehmend: -0.5 },
           "Faktor 1 (O3)": { stagniernd: 0 },
           "Faktor 2 (Bevölkerungsprognose)": {
-            "stark zunehmend": 1,
-            "eher zunehmend": 0.5,
-            stagnierend: 0,
-            "eher abnehmend": -0.5,
             "stark abnehmend": -1,
+            "eher abnehmend": -0.5,
+            stagnierend: 0,
+            "eher zunehmend": 0.5,
+            "stark zunehmend": 1,
           },
           "Faktor 3 (Hitze)": {
             stagnierend: 0,
             "leicht zunehmend": 1,
             zunehmend: 2,
             "stark zunehmend": 3,
+            "kritisch zunehmend": 4,
           },
           Summe: { Maximum: 10 },
         },
@@ -84,19 +85,19 @@ class ContentHandler {
             relevant: 1,
           },
           "Faktor 2 (Heuschnupfen)": {
-            "sehr hoch": 1,
-            hoch: 0.75,
-            mittel: 0.5,
-            gering: 0.25,
             "nicht relevant": 0,
+            gering: 0.25,
+            mittel: 0.5,
+            hoch: 0.75,
+            "sehr hoch": 1,
           },
           "Faktor 3 (Pollen)": { hoch: 2 },
           "Faktor 4 (Luftqualität)": {
-            kritisch: 2,
-            hoch: 1.5,
-            mittel: 1,
-            niedrig: 0.5,
             gering: 0,
+            niedrig: 0.5,
+            mittel: 1,
+            hoch: 1.5,
+            kritisch: 2,
           },
           Summe: { Maximum: 6 },
         },
@@ -104,24 +105,19 @@ class ContentHandler {
       Zukunft: {
         headers: {
           "Faktor 1 (Prozessionsspinner)": {
-            zunehmend: 0.5,
             stagnierend: 0,
+            zunehmend: 0.5,
           },
           "Faktor 2 (Bevölkerungsprognose)": {
-            "stark zunehmend": 0.5,
-            "eher zunehmend": 0.25,
-            stagnierend: 0,
-            "eher abnehmend": -0.25,
             "stark abnehmend": -0.5,
+            "eher abnehmend": -0.25,
+            stagnierend: 0,
+            "eher zunehmend": 0.25,
+            "stark zunehmend": 0.5,
           },
           "Faktor 3 (Temperatur)": {
+            stagnierend: 0,
             zunehmend: 1,
-            stagnierend: 0,
-          },
-          "Faktor 4 (Luftqualtät)": {
-            zunehmend: 0.5,
-            stagnierend: 0,
-            abnehmend: -0.5,
           },
           Summe: { Maximum: 6 },
         },
@@ -131,27 +127,27 @@ class ContentHandler {
       Gegenwart: {
         headers: {
           "Faktor 1 (Starkniederschlag)": {
-            hoch: 2,
-            mittel: 1,
             gering: 0,
+            mittel: 1,
+            hoch: 2,
           },
           "Faktor 2 (Hochwassergefahr)": {
-            "sehr hoch": 2,
-            hoch: 1.5,
-            mittel: 1,
-            gering: 0.5,
             "nicht relevant": 0,
+            gering: 0.5,
+            mittel: 1,
+            hoch: 1.5,
+            "sehr hoch": 2,
           },
           "Faktor 3 (Kreistyp)": {
-            hoch: 1,
-            mittel: 0.5,
-            gering: 0.25,
             "nicht relevant": 0,
+            gering: 0.25,
+            mittel: 0.5,
+            hoch: 1,
           },
           "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
-            hoch: 1,
-            mittel: 0.5,
             gering: 0,
+            mittel: 0.5,
+            hoch: 1,
           },
           Summe: { Maximum: 6 },
         },
@@ -159,24 +155,24 @@ class ContentHandler {
       Zukunft: {
         headers: {
           "Faktor 1 (Starkniederschlag)": {
-            zunehmend: 1,
             abnehmend: -1,
             stagnierend: 0,
+            zunehmend: 1,
           },
           "Faktor 2 (Hochwassergefahr)": {
             unbekannt: 0,
           },
           "Faktor 3 (Bevölkerungsprognose)": {
-            "stark zunehmend": 0.5,
-            "eher zunehmend": 0.25,
-            stagnierend: 0,
-            "eher abnehmend": -0.25,
             "stark abnehmend": -0.5,
+            "eher abnehmend": -0.25,
+            stagnierend: 0,
+            "eher zunehmend": 0.25,
+            "stark zunehmend": 0.5,
           },
           "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
-            zunehmend: 0.5,
-            stagnierend: 0,
             abnehmend: -0.5,
+            stagnierend: 0,
+            zunehmend: 0.5,
           },
           Summe: { Maximum: 6 },
         },
@@ -186,11 +182,11 @@ class ContentHandler {
       Gegenwart: {
         headers: {
           "Faktor 1 (FWI)": {
-            kritisch: 5,
-            hoch: 4,
-            mittel: 3,
-            niedrig: 2,
             gering: 1,
+            niedrig: 2,
+            mittel: 3,
+            hoch: 4,
+            kritisch: 5,
           },
           Summe: { Maximum: 5 },
         },
@@ -198,16 +194,16 @@ class ContentHandler {
       Zukunft: {
         headers: {
           "Faktor 1 (FWI)": {
-            "stark zunehmend": 1.67,
-            zunehmend: 0.83,
             stagnierend: 0,
+            zunehmend: 0.83,
+            "stark zunehmend": 1.67,
           },
           "Faktor 2 (Bevölkerungsprognose)": {
-            "stark zunehmend": 0.83,
-            "eher zunehmend": 0.42,
-            stagnierend: 0,
-            "eher abnehmend": -0.42,
             "stark abnehmend": -0.83,
+            "eher abnehmend": -0.42,
+            stagnierend: 0,
+            "eher zunehmend": 0.42,
+            "stark zunehmend": 0.83,
           },
           Summe: { Maximum: 5 },
         },
@@ -217,24 +213,24 @@ class ContentHandler {
       Gegenwart: {
         headers: {
           "Faktor 1 (Region)": {
-            hoch: 3,
-            mittel: 2,
             gering: 1,
+            mittel: 2,
+            hoch: 3,
           },
           "Faktor 1 (Trop.Nächte)": {
-            relevant: 3,
             "nicht relevant": 0,
+            relevant: 3,
           },
           "Faktor 2 (Kreistyp)": {
-            hoch: 1.5,
-            mittel: 1,
-            gering: 0.5,
             "nicht relevant": 0,
+            gering: 0.5,
+            mittel: 1,
+            hoch: 1.5,
           },
           "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-            hoch: 1.5,
-            mittel: 0.75,
             "nicht relevant": 0,
+            mittel: 0.75,
+            hoch: 1.5,
           },
           Summe: { Maximum: 9 },
         },
@@ -242,24 +238,24 @@ class ContentHandler {
       Zukunft: {
         headers: {
           "Faktor 1 (Heiße Tage)": {
-            zunehmend: 2,
             stagnierend: 0,
+            zunehmend: 2,
           },
           "Faktor 1 (Trop.Nächte)": {
-            zunehmend: 2,
             stagnierend: 0,
+            zunehmend: 2,
           },
           "Faktor 2 (Bevölkerungsprognose)": {
-            "stark zunehmend": 1,
-            "eher zunehmend": 0.5,
-            stagnierend: 0,
-            "eher abnehmend": -0.5,
             "stark abnehmend": -1,
+            "eher abnehmend": -0.5,
+            stagnierend: 0,
+            "eher zunehmend": 0.5,
+            "stark zunehmend": 1,
           },
           "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-            "stark zunehmend": 1,
-            "moderat zunehmend": 0,
             abnehmend: -1,
+            "moderat zunehmend": 0,
+            "stark zunehmend": 1,
           },
           Summe: { Maximum: 9 },
         },
@@ -269,28 +265,28 @@ class ContentHandler {
       Gegenwart: {
         headers: {
           "Faktor 1 (FSME)": {
-            relevant: 1.33,
             "nicht relevant": 0,
+            relevant: 1.33,
           },
           "Faktor 2 (Aedes albopictus)": {
-            relevant: 1.33,
             "nicht relevant": 0,
+            relevant: 1.33,
           },
           "Faktor 2 (West-Nil-Virus)": {
-            relevant: 1.33,
             "nicht relevant": 0,
+            relevant: 1.33,
           },
           "Faktor 3 (Zug)": {
-            relevant: 0.67,
             "nicht relevant": 0,
+            relevant: 0.67,
           },
           "Faktor 3 (Flughafen)": {
-            relevant: 0.67,
             "nicht relevant": 0,
+            relevant: 0.67,
           },
           "Faktor 3 (Schiff)": {
-            relevant: 0.67,
             "nicht relevant": 0,
+            relevant: 0.67,
           },
           Summe: { Maximum: 6 },
         },
@@ -299,34 +295,51 @@ class ContentHandler {
         headers: {
           "Faktor 1 (Zecken)": { zunehmend: 0.67 },
           "Faktor 2 (Aedes albopictus)": {
-            zunehmend: 0.67,
             stagnierend: 0,
+            zunehmend: 0.67,
           },
           "Faktor 2 (West-Nil-Virus)": {
-            zunehmend: 0.67,
             stagnierend: 0,
+            zunehmend: 0.67,
           },
           "Faktor 3 (Bevölkerungsprognose)": {
-            "stark zunehmend": 1,
-            "eher zunehmend": 0.5,
-            stagnierend: 0,
-            "eher abnehmend": -0.5,
             "stark abnehmend": -1,
+            "eher abnehmend": -0.5,
+            stagnierend: 0,
+            "eher zunehmend": 0.5,
+            "stark zunehmend": 1,
           },
           Summe: { Maximum: 6 },
         },
       },
     },
-    HotSpots: {},
+  };
+  static _IMPRINT = `
+  <div id="imprint-content" class="subpage">
+    <b>Impressum:</b> <br />
+    Regional Climate Change and Health<br />
+    Faculty of Medicine<br />
+    University of Augsburg<br />
+    Gutenbergstr. 7<br />
+    86356 Neusäß<br />
+    Contact: <a href="mailto:ehs@med.uni-augsburg.de"> ehs@med.uni-augsburg.de </a><br />
+    <button></button>
+  </div>`;
+  static _LAYER_CLASSIFICATIONS = {
+    // mapping of class descriptors to their upper bounds (exclusive)
+    HotSpotsVeränderung: {
+      headers: { gleichbleibend: 0, zunehmend: 1, "stark zunehmend": 2 },
+    },
     Veränderung: {
       headers: {
         abnehmend: -10,
-        "leicht abnehmend": 0,
+        "leicht abnehmend": -0.005, // TODO: find clean solution
+        gleichbleibend: 0,
         "leicht zunehmend": 10,
         zunehmend: 20,
         "stark zunehmend": 30,
         "kritisch zunehmend": 40,
-        "extrem zunehmend": 100,
+        "extrem zunehmend": 1000,
       },
     },
     Zeitpunkt: {
@@ -340,6 +353,11 @@ class ContentHandler {
       },
     },
   };
+  static _METHODS = `
+  <div id="methods-content" class="subpage">
+    Will be available after publication.<br />
+    <button></button>
+  </div>`;
 
   /**
    *
@@ -357,11 +375,33 @@ class ContentHandler {
   }
 
   /**
+   * Get the class of the provided value regards the classification based on the provided risk, time and optional detailed risk.
+   * @param {*} value The value to classify.
+   * @param {*} risk The risk the classification is based on.
+   * @param {*} time The time the classification is based on.
+   * @param {*} detailedRisk The detail-factor the classification is based on. Per default undefined.
+   * @returns The class as an array: The class-name at index 0, the upper bound of the class interval at index 1.
+   */
+  _getClassForValue(value, risk, time, detailedRisk = undefined) {
+    const classMap = detailedRisk
+      ? ContentHandler._FACTOR_CLASSIFICATIONS[risk][time].headers[detailedRisk]
+      : risk == "HotSpots" && time == "Veränderung"
+      ? ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung.headers
+      : time == "Veränderung"
+      ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers
+      : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers;
+    return Array.from(Object.entries(classMap)).filter((currentClass) => {
+      return currentClass[1] >= value;
+    })[0];
+  }
+
+  /**
    * Get a html-parsed string which displays the deatiled feature's property information.
    * @param {*} county The feature to compute the detailed information for.
    * @returns A html-parsed string with the detailed information.
    */
   _getDetailedPopupInformation(county) {
+    let classForValue;
     var detailedHtml = '</div><div id="detailed">';
     detailedHtml += `<div id="${this._risk}-${this._time}" class="explanation">`;
     if (this._risk == "HotSpots" && this._time != "Veränderung") {
@@ -374,45 +414,49 @@ class ContentHandler {
         }
       }
       for (const riskPropertyName of riskPropertiesToDisplay) {
-        for (const [riskClass, upperBound] of Object.entries(
-          ContentHandler._POPUP_CONTENT_INFO.Zeitpunkt.headers
-        )) {
-          if (county.feature.properties[riskPropertyName] <= upperBound) {
-            detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${riskPropertyName}:</b> ${riskClass}</span><br>`;
-            break;
-          }
-        }
+        classForValue = this._getClassForValue(
+          county.feature.properties[riskPropertyName],
+          this._risk,
+          this._time
+        );
+        detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${riskPropertyName}:</b> ${classForValue[0]}</span><br>`;
       }
     } else if (this._time == "Veränderung") {
-      var riskScoreToday = county.feature.properties[`${this._risk} Gegenwart`];
-      var riskScoreFuture = county.feature.properties[`${this._risk} Zukunft`];
-      for (const riskScore of [riskScoreToday, riskScoreFuture]) {
-        for (const [riskClass, upperBound] of Object.entries(
-          ContentHandler._POPUP_CONTENT_INFO.Zeitpunkt.headers
-        )) {
-          if (riskScore <= upperBound) {
-            detailedHtml += `<span class='${this._risk}-${
-              this._time
-            }-detailed'><b>${this._risk} ${
-              riskScore === riskScoreToday ? "Gegenwart" : "Zukunft"
-            }:</b> ${riskClass}</span><br>`;
-            break;
-          }
-        }
-      }
+      var riskScoreToday = Number(
+        county.feature.properties[`${this._risk} Gegenwart`]
+      );
+      var riskScoreFuture = Number(
+        county.feature.properties[`${this._risk} Zukunft`]
+      );
+      const classToday = this._getClassForValue(riskScoreToday, this._risk);
+      const classFuture = this._getClassForValue(riskScoreFuture, this._risk);
+      detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${this._risk} Gegenwart :</b> ${classToday[0]}</span><br><span class='${this._risk}-${this._time}-detailed'><b>${this._risk} Zukunft :</b> ${classFuture[0]}</span><br>`;
     } else {
-      for (const [riskName, riskClasses] of Object.entries(
-        ContentHandler._POPUP_CONTENT_INFO[this._risk][this._time].headers
+      for (const [riskName, _] of Object.entries(
+        ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time].headers
       )) {
         let detailedRiskValue =
           county.feature.properties[`${this._risk} ${this._time} ${riskName}`];
-        for (const [riskClass, upperBound] of Object.entries(riskClasses)) {
           if (riskName == "Summe") {
-            detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${riskName}:</b> ${detailedRiskValue} von ${upperBound}</span><br>`;
-          } else if (detailedRiskValue <= upperBound) {
-            detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${riskName}:</b> ${riskClass}</span><br>`;
-            break;
-          }
+          detailedHtml += `<span class='${this._risk}-${
+            this._time
+          }-detailed'><b>${riskName}:</b> ${detailedRiskValue} von ${
+            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
+              .headers[riskName].Maximum
+          }</span><br>`;
+        } else {
+          classForValue = this._getClassForValue(
+            detailedRiskValue,
+            this._risk,
+            this._time,
+            riskName
+          );
+          detailedHtml += `<span class='${this._risk}-${
+            this._time
+          }-detailed'><b>${riskName.substring(
+            riskName.indexOf("(") + 1,
+            riskName.indexOf(")")
+          )}:</b> ${classForValue[0]}</span><br>`;
         }
       }
     }
@@ -476,9 +520,11 @@ class ContentHandler {
     }</h4>`;
     var countyClassName;
     var classMap =
-      this._time == "Veränderung"
-        ? ContentHandler._POPUP_CONTENT_INFO.Veränderung.headers
-        : ContentHandler._POPUP_CONTENT_INFO.Zeitpunkt.headers;
+      this._time == "Veränderung" && this._risk == "HotSpots"
+        ? ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung.headers
+        : this._time == "Veränderung"
+        ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers
+        : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers;
     for (const [className, upperBound] of Object.entries(classMap)) {
       if (
         county.feature.properties[`${this._risk} ${this._time}`] <= upperBound
@@ -520,8 +566,8 @@ class ContentHandler {
       if (i == 1) {
         valueToDisplay =
           this._time == "Veränderung" && valueToDisplay >= 0.5
-            ? `+${Number(valueToDisplay.toFixed(1))}`
-            : `${Number(valueToDisplay.toFixed(1))}`;
+            ? `+${Number(valueToDisplay.toFixed())}`
+            : `${Number(valueToDisplay.toFixed())}`;
 
         popupContentHtml += `
         <div class="class-${i}">

@@ -53,6 +53,7 @@ LAYER_METADATA = {
                     "leicht zunehmend": 1,
                     "zunehmend": 2,
                     "stark zunehmend": 3,
+                    "kritisch zunehmend": 4,
                 },
                 "Luftqualität Zukunft Summe": {"Maximum": 10},
                 "Luftqualität Zukunft": None,
