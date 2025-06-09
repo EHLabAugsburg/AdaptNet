@@ -35,6 +35,24 @@ document.querySelectorAll("select option").forEach((option) => {
     });
   });
 
+document
+  .getElementById("imprint")
+  .addEventListener("click", (element) =>
+    ContentHandler.showSubpage(
+      document.getElementById("interface"),
+      element.target
+    )
+  );
+
+document
+  .getElementById("methods")
+  .addEventListener("click", (element) =>
+    ContentHandler.showSubpage(
+      document.getElementById("interface"),
+      element.target
+    )
+  );
+
 document.addEventListener("DOMContentLoaded", function () {
   document
     .querySelector("div#risk-control button#Luftqualität")

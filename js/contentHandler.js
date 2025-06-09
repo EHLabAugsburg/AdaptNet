@@ -376,7 +376,7 @@ class ContentHandler {
       : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers;
     return Array.from(Object.entries(classMap))
       .filter((currentClass) => {
-      return currentClass[1] >= value;
+        return currentClass[1] >= value;
       })
       .sort((firstClass, secondClass) => {
         // explicit sorting necessary because not guaranteed!
@@ -426,7 +426,7 @@ class ContentHandler {
       )) {
         let detailedRiskValue =
           county.feature.properties[`${this._risk} ${this._time} ${riskName}`];
-          if (riskName == "Summe") {
+        if (riskName == "Summe") {
           detailedHtml += `<span class='${this._risk}-${
             this._time
           }-detailed'><b>${riskName}:</b> ${detailedRiskValue} von ${
@@ -466,22 +466,6 @@ class ContentHandler {
   }
 
   /**
-   * Get the HTML-Element for the imprint subpage.
-   * @returns The HTML-parsed string representing the imprint-subpage.
-   */
-  static getImprint() {
-    return ContentHandler._IMPRINT;
-  }
-
-  /**
-   * Get the HTML-Element for the methods subpage.
-   * @returns The HTML-parsed string representing the methods-subpage.
-   */
-  static getMethods() {
-    return ContentHandler._METHODS;
-  }
-
-  /**
    * Show the corresponding subpage to the clicked button.
    * @param {*} subpageHtmlContainer The parent-node of the subpage HTML-element. Latter gets inserted here.
    * @param {*} clickedButton The button that was clicked and led to subpage request.
@@ -490,8 +474,8 @@ class ContentHandler {
     ContentHandler.closeCurrentSubpage(subpageHtmlContainer);
     var subPageHtml =
       clickedButton.id == "imprint"
-        ? ContentHandler.getImprint()
-        : ContentHandler.getMethods();
+        ? ContentHandler._IMPRINT
+        : ContentHandler._METHODS;
     subpageHtmlContainer.insertAdjacentHTML("afterbegin", subPageHtml);
     clickedButton.classList.add("current");
     document.querySelector(".subpage button").onclick = () =>
