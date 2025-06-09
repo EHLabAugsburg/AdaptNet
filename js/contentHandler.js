@@ -507,21 +507,21 @@ class ContentHandler {
     var popupContentHtml = `<h4>${
       county.feature.properties[ContentHandler._COUNTY_NAME_PROPERTY_NAME]
     }</h4>`;
-    var countyClassName;
+    var countyClassName, classSeperatorsAmount;
     var classMap =
       this._time == "Veränderung" && this._risk == "HotSpots"
         ? ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung.headers
         : this._time == "Veränderung"
         ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers
         : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers;
-    for (const [className, upperBound] of Object.entries(classMap)) {
-      if (
-        county.feature.properties[`${this._risk} ${this._time}`] <= upperBound
-      ) {
-        countyClassName = className;
-        break;
-      }
-    }
+    var index = Object.values(classMap).sort(
+      (number1, number2) => classMap[number1] - classMap[number2]
+    );
+    countyClassName = this._getClassForValue(
+      county.feature.properties[`${this._risk} ${this._time}`],
+      this._risk,
+      this._time
+    )[0];
     popupContentHtml += `<span id="${this._risk}-${this._time}-result"><b>${
       this._time == "Veränderung"
         ? `${this._risk}-Veränderung: `
@@ -529,29 +529,29 @@ class ContentHandler {
     }</b>${countyClassName}</span>`;
     var valueToDisplay =
       county.feature.properties[`${this._risk} ${this._time}`];
-    let left_property, classes;
+    let left_property;
     if (this._risk == "HotSpots" && this._time == "Veränderung") {
+      classSeperatorsAmount = 3;
       popupContentHtml += '<div id="hotspot-change" class="score-bar">';
       left_property = Math.min(40 * valueToDisplay + 8, 188); // 8px from left end to middle of first bar, then +40px for each class
-      classes = 3;
     } else if (this._risk == "HotSpots") {
+      classSeperatorsAmount = 5;
       popupContentHtml += '<div id="timed" class="score-bar">';
       left_property = Math.min(2 * valueToDisplay - 12, 228); // 2px represent one score-point, minus offset 12px
-      classes = 6;
     } else if (this._time == "Veränderung") {
+      index.splice(index.indexOf(-0.005), 1); // TODO: find clean solution
+      classSeperatorsAmount = 6;
       popupContentHtml += '<div id="change" class="score-bar">';
       left_property =
         valueToDisplay <= 0
           ? Math.max(4 * valueToDisplay + 68, -12)
           : Math.min(4 * valueToDisplay + 68, 268); // 4px represent one score-point, 68px represents zero score-points
-      classes = 7;
     } else {
+      classSeperatorsAmount = 5;
       popupContentHtml += '<div id="timed" class="score-bar">';
       left_property = Math.min(2 * valueToDisplay - 12, 228); // 2px represent one score-point, minus offset 12px
-      classes = 6;
     }
-
-    for (let i = 1; i <= classes; i++) {
+    for (let i = 1; i <= index.length; i++) {
       if (i == 1) {
         valueToDisplay =
           this._time == "Veränderung" && valueToDisplay >= 0.5
@@ -560,18 +560,42 @@ class ContentHandler {
 
         popupContentHtml += `
         <div class="class-${i}">
+          <div class="interval-border" ${
+            this._risk == "HotSpots" && this._time == "Veränderung"
+              ? "style=left:8px;"
+              : ""
+          }>
+            <span class="interval-bound">${index[i - 1]}</span>
+            <span class="interval-seperator">|</span>
+          </div>
           <div id="value-pointer" style="left:${left_property}px;">
             <span id="pointer"></span>
             <span id="value">${valueToDisplay}</span>
           </div>
         </div>`;
       } else {
-        popupContentHtml += `<div class="class-${i}"></div>`;
+        popupContentHtml += `<div class="class-${i}">`;
+        if (i <= classSeperatorsAmount) {
+          popupContentHtml += `
+          <div class="interval-border" ${
+            this._risk == "HotSpots" && this._time == "Veränderung"
+              ? "style=left:8px;"
+              : ""
+          }>
+            <span class="interval-bound">${index[i - 1]}</span>
+            <span class="interval-seperator">|</span>
+          </div>
+        </div>`;
+        } else {
+          popupContentHtml += "</div>";
+          break;
+        }
       }
     }
     popupContentHtml += this._getDetailedPopupInformation(county);
     return popupContentHtml;
   }
+
   /**
    * Get a html-parsed string which displays the feature-specific tooltip.
    * @param {*} county The feature to compute the tooltip for.

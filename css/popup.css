@@ -1,22 +1,31 @@
 div.leaflet-popup-content-wrapper {
   border: 1px solid black;
+  text-wrap: nowrap;
   div.leaflet-popup-content {
-    display: flex;
-    flex-direction: column;
-    span,
-    div,
+    align-items: center;
+    display: grid;
+    grid-template-areas:
+      "county-name  county-name  county-name"
+      "description description description"
+      "bar  bar info";
+    justify-items: center;
     h4 {
-      align-self: center;
-      text-wrap: nowrap;
+      grid-area: county-name;
+      text-align: center;
+    }
+    h4 + span {
+      grid-area: description;
+      text-align: center;
     }
     div {
       &#detailed {
-        align-self: flex-end;
         background-image: url("../resources/info.png");
         background-repeat: no-repeat;
         background-size: cover;
-        width: 24px;
+        grid-area: info;
         height: 24px;
+        margin: 0px 10px;
+        width: 24px;
         &:hover div.explanation {
           opacity: 1;
           visibility: visible;
@@ -40,13 +49,32 @@ div.leaflet-popup-content-wrapper {
       &.score-bar {
         display: flex;
         flex-direction: row;
-        margin: 20px 0px;
+        grid-area: bar;
+        margin: 25px 0px;
         div {
-          width: 40px;
           height: 10px;
+          width: 40px;
+          .interval-border {
+            bottom: 37px;
+            display: grid;
+            grid-template-columns: 24px;
+            grid-template-rows: 24px 24px;
+            justify-items: center;
+            left: 28px;
+            position: relative;
+            .interval-bound {
+              align-self: end;
+              position: relative;
+              top: 5px;
+            }
+            .interval-seperator {
+              font-size: large;
+              font-weight: bold;
+            }
+          }
           &.class-1 {
             #value-pointer {
-              bottom: 15px;
+              bottom: 10px;
               display: grid;
               grid-template-columns: 24px;
               grid-template-rows: 24px 24px;
@@ -55,9 +83,14 @@ div.leaflet-popup-content-wrapper {
               right: 12px;
               #pointer {
                 background-image: url("../resources/value_pointer.png");
-                transform: rotate(90deg);
+                transform: rotate(-90deg);
                 width: 24px;
                 height: 24px;
+              }
+              #value {
+                bottom: 5px;
+                font-size: large;
+                position: relative;
               }
             }
           }
