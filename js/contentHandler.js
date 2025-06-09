@@ -374,9 +374,19 @@ class ContentHandler {
       : time == "Veränderung"
       ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers
       : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers;
-    return Array.from(Object.entries(classMap)).filter((currentClass) => {
+    return Array.from(Object.entries(classMap))
+      .filter((currentClass) => {
       return currentClass[1] >= value;
-    })[0];
+      })
+      .sort((firstClass, secondClass) => {
+        // explicit sorting necessary because not guaranteed!
+        return firstClass[1] == secondClass[1]
+          ? 0
+          : firstClass[1] < secondClass[1]
+          ? 1
+          : -1;
+      })
+      .pop();
   }
 
   /**
@@ -405,12 +415,8 @@ class ContentHandler {
         detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${riskPropertyName}:</b> ${classForValue[0]}</span><br>`;
       }
     } else if (this._time == "Veränderung") {
-      var riskScoreToday = Number(
-        county.feature.properties[`${this._risk} Gegenwart`]
-      );
-      var riskScoreFuture = Number(
-        county.feature.properties[`${this._risk} Zukunft`]
-      );
+      var riskScoreToday = county.feature.properties[`${this._risk} Gegenwart`];
+      var riskScoreFuture = county.feature.properties[`${this._risk} Zukunft`];
       const classToday = this._getClassForValue(riskScoreToday, this._risk);
       const classFuture = this._getClassForValue(riskScoreFuture, this._risk);
       detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${this._risk} Gegenwart :</b> ${classToday[0]}</span><br><span class='${this._risk}-${this._time}-detailed'><b>${this._risk} Zukunft :</b> ${classFuture[0]}</span><br>`;
