@@ -42,7 +42,7 @@ class StyleManager {
    * @param {*} value The feature's property value.
    * @param {*} risk The risk of the layer to display.
    * @param {*} time The time of the layer to display.
-   * @returns
+   * @returns The HEX-encoded color-code.
    */
   static getHexColor(value, risk, time) {
     const colormap =
