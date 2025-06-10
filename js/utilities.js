@@ -27,7 +27,7 @@ function updateDisplayedLayer(risk, time) {
   if (risk && time) {
     const styleManager = new StyleManager(risk, time);
     const contentHandler = new ContentHandler(risk, time);
-    const legendBuilder = new LegendBuilder(risk, time);
+    const legendBuilder = new LegendBuilder(risk, time, languageHandler);
     legendBuilder.build();
     geo_json_counties.eachLayer(function (county) {
       styleManager.style(county);

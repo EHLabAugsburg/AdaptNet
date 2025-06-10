@@ -11,6 +11,10 @@ document.querySelectorAll("div#risk-control button").forEach((button) => {
     if (currentTime) {
       updateDisplayedLayer(button.id, currentTime);
     }
+    var popup = document.querySelector("div.leaflet-popup-content");
+    if (popup) {
+      languageHandler.translatePopup(getCurrentRisk(), getCurrentTime());
+    }
   });
 });
 
@@ -25,6 +29,10 @@ document.querySelectorAll("#time-control button").forEach((button) => {
     if (currentRisk) {
       updateDisplayedLayer(currentRisk, button.id);
     }
+    var popup = document.querySelector("div.leaflet-popup-content");
+    if (popup) {
+      languageHandler.translatePopup(getCurrentRisk(), getCurrentTime());
+    }
   });
 });
 
@@ -32,8 +40,12 @@ document.querySelectorAll("select option").forEach((option) => {
   option.addEventListener("click", function (event) {
     languageHandler.setLanguage(event.target.text.toLowerCase());
     updateDisplayedLayer(getCurrentRisk(), getCurrentTime());
-    });
+    var popup = document.querySelector("div.leaflet-popup-content");
+    if (popup) {
+      languageHandler.translatePopup(getCurrentRisk(), getCurrentTime());
+    }
   });
+});
 
 document
   .getElementById("imprint")
