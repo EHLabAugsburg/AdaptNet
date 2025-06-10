@@ -62,3 +62,5 @@ document.addEventListener("DOMContentLoaded", function () {
     .classList.add("current");
   updateDisplayedLayer("Luftqualität", "current");
 });
+
+var languageHandler = new LanguageHandler("de");
