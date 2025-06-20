@@ -13,7 +13,7 @@ div.leaflet-popup-content-wrapper {
       grid-area: county-name;
       text-align: center;
     }
-    h4 + span {
+    span[lang] {
       grid-area: description;
       text-align: center;
     }
@@ -41,9 +41,6 @@ div.leaflet-popup-content-wrapper {
           visibility: hidden;
           width: fit-content;
           z-index: 10;
-          span {
-            text-wrap: nowrap;
-          }
         }
       }
       &.score-bar {

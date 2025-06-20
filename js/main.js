@@ -38,12 +38,13 @@ document.querySelectorAll("#time-control button").forEach((button) => {
 
 document.querySelectorAll("select option").forEach((option) => {
   option.addEventListener("click", function (event) {
-    languageHandler.setLanguage(event.target.text.toLowerCase());
-    updateDisplayedLayer(getCurrentRisk(), getCurrentTime());
-    var popup = document.querySelector("div.leaflet-popup-content");
-    if (popup) {
-      languageHandler.translatePopup(getCurrentRisk(), getCurrentTime());
-    }
+    languageHandler.applyLanguage(event.target.value);
+    const legendBuilder = new LegendBuilder(
+      getCurrentRisk(),
+      getCurrentTime(),
+      languageHandler
+    );
+    legendBuilder.build();
   });
 });
 
@@ -73,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("div#time-control button#current")
     .classList.add("current");
   updateDisplayedLayer("Luftqualität", "current");
+  languageHandler.applyLanguage(languageHandler.getLanguage());
 });
 
-var languageHandler = new LanguageHandler("de");
+const languageHandler = new LanguageHandler("de");

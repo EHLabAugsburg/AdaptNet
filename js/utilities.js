@@ -18,6 +18,11 @@ function getCurrentTime() {
     : null;
 }
 
+function popupExists() {
+  if (document.querySelector("div.leaflet-popup-content")) return true;
+  return false;
+}
+
 /**
  * Update the map ui with the current user's selected layer and it's information to display.
  * @param {*} risk The risk of the layer to display
@@ -26,7 +31,7 @@ function getCurrentTime() {
 function updateDisplayedLayer(risk, time) {
   if (risk && time) {
     const styleManager = new StyleManager(risk, time);
-    const contentHandler = new ContentHandler(risk, time);
+    const contentHandler = new ContentHandler(risk, time, languageHandler);
     const legendBuilder = new LegendBuilder(risk, time, languageHandler);
     legendBuilder.build();
     geo_json_counties.eachLayer(function (county) {
@@ -34,6 +39,9 @@ function updateDisplayedLayer(risk, time) {
       county.bindPopup(contentHandler.getPopupContent(county));
       county.bindTooltip(contentHandler.getTooltipContent(county), {
         sticky: true,
+      });
+      county.addEventListener("popupopen", () => {
+        languageHandler.applyLanguage(languageHandler.getLanguage());
       });
     });
   }

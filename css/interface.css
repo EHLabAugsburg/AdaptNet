@@ -77,12 +77,11 @@ div#interface {
       }
     }
     &#language-control {
-      /* grid-column: 1;
+      grid-column: 1;
       grid-row: 2;
+      height: fit-content;
       margin: 10px 5px;
       width: fit-content;
-      height: fit-content; */
-      display: none;
     }
     &#legend {
       align-self: end;

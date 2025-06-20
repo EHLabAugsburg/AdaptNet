@@ -1,13 +1,15 @@
 <div id="interface">
   <div id="layer-control">
       <div id="risk-control">
-        Choose a hazard/Wählen Sie eine Gefahr:<br>
+        <span lang="de">Wählen Sie eine Gefahr:</span>
+        <span lang="en">Please choose a hazard:</span><br>
         {% for risk in risks %}
           <button id={{ risk }} title={{ risk }}></button>
         {% endfor %}
       </div>
       <div id="time-control">
-        Choose a time period/Wählen Sie einen Zeitraum:<br>
+        <span lang="de">Wählen Sie einen Zeitraum:</span>
+        <span lang="en">Please choose a time period:</span><br>
         {% for time in times %}
           <button id={% if time == "Gegenwart" %} "current" {% elif time == "Zukunft" %} "future" {% else %} "change" {% endif %}  title={{ time }}></button>
         {% endfor %}
@@ -15,8 +17,8 @@
   </div>
   <div id="language-control">
     <select>
-      <option id="german" selected="true">DE</option>
-      <option id="english">EN</option>
+      <option id="german" value="de" selected="true">DE</option>
+      <option id="english" value="en">EN</option>
     </select>
   </div>
   <div id="metadata">

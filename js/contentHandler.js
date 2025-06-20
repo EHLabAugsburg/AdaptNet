@@ -5,8 +5,18 @@ class ContentHandler {
   static _COUNTY_NAME_PROPERTY_NAME = "gen";
   static _FACTOR_CLASSIFICATIONS = {
     Luftqualität: {
+      riskName: { de: "Luftqualität", en: "air quality" },
       Gegenwart: {
+        factorNameTranslations: {
+          "Faktor 1 (PM2.5)": "factor 1 (PM2.5)",
+          "Faktor 1 (PM10)": "factor 1 (PM10)",
+          "Faktor 1 (NO2)": "factor 1 (NO2)",
+          "Faktor 1 (O3)": "factor 1 (O3)",
+          "Faktor 2 (Hitze)": "factosr 2 (heat)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (PM2.5)": {
             gering: 0,
             mittel: 1,
@@ -35,10 +45,51 @@ class ContentHandler {
             kritisch: 2,
           },
           Summe: { Maximum: 10 },
+          },
+          en: {
+            "Faktor 1 (PM2.5)": {
+              low: 0,
+              medium: 1,
+              high: 2,
+            },
+            "Faktor 1 (PM10)": {
+              low: 0,
+              medium: 1,
+              high: 2,
+            },
+            "Faktor 1 (NO2)": {
+              low: 0,
+              medium: 1,
+              high: 2,
+            },
+            "Faktor 1 (O3)": {
+              low: 0,
+              medium: 1,
+              high: 2,
+            },
+            "Faktor 2 (Hitze)": {
+              "very low": 0,
+              low: 0.5,
+              medium: 1,
+              high: 1.5,
+              critical: 2,
+            },
+            Summe: { Maximum: 10 },
+          },
         },
       },
       Zukunft: {
+        factorNameTranslations: {
+          "Faktor 1 (PM2.5)": "factor 1 (PM2.5)",
+          "Faktor 1 (PM10)": "factor 1 (PM10)",
+          "Faktor 1 (NO2)": "factor 1 (NO2)",
+          "Faktor 1 (O3)": "factor 1 (O3)",
+          "Faktor 2 (Bevölkerungsprognose)": "factor 2 (population forecast)",
+          "Faktor 3 (Hitze)": "factor 3 (heat)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (PM2.5)": { abnehmend: -0.5 },
           "Faktor 1 (PM10)": { abnehmend: -0.5 },
           "Faktor 1 (NO2)": { abnehmend: -0.5 },
@@ -59,11 +110,42 @@ class ContentHandler {
           },
           Summe: { Maximum: 10 },
         },
+          en: {
+            "Faktor 1 (PM2.5)": { decreasing: -0.5 },
+            "Faktor 1 (PM10)": { decreasing: -0.5 },
+            "Faktor 1 (NO2)": { decreasing: -0.5 },
+            "Faktor 1 (O3)": { stagnating: 0 },
+            "Faktor 2 (Bevölkerungsprognose)": {
+              "strongly decreasing": -1,
+              "slightly decreasing": -0.5,
+              stagnating: 0,
+              "slightly increasing": 0.5,
+              "strondly increasing": 1,
+            },
+            "Faktor 3 (Hitze)": {
+              stagnating: 0,
+              "slightly increasing": 1,
+              increasing: 2,
+              "strondly increasing": 3,
+              "critically increasing": 4,
+            },
+            Summe: { Maximum: 10 },
+          },
+        },
       },
     },
     Allergene: {
+      riskName: { de: "Allergene", en: "allergens" },
       Gegenwart: {
+        factorNameTranslations: {
+          "Faktor 1 (Prozessionsspinner)": "factor 1 (processionary moth)",
+          "Faktor 2 (Heuschnupfen)": "factor 2 (hay fever)",
+          "Faktor 3 (Pollen)": "factor 3 (pollen)",
+          "Faktor 4 (Luftqualität)": "factor 4 (air quality)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (Prozessionsspinner)": {
             "nicht relevant": 0,
             relevant: 1,
@@ -84,10 +166,40 @@ class ContentHandler {
             kritisch: 2,
           },
           Summe: { Maximum: 6 },
+          },
+          en: {
+            "Faktor 1 (Prozessionsspinner)": {
+              irrelevant: 0,
+              relevant: 1,
+            },
+            "Faktor 2 (Heuschnupfen)": {
+              irrelevant: 0,
+              low: 0.25,
+              medium: 0.5,
+              high: 0.75,
+              "very high": 1,
+            },
+            "Faktor 3 (Pollen)": { high: 2 },
+            "Faktor 4 (Luftqualität)": {
+              "very low": 0,
+              low: 0.5,
+              medium: 1,
+              high: 1.5,
+              critical: 2,
+            },
+            Summe: { Maximum: 6 },
+          },
         },
       },
       Zukunft: {
+        factorNameTranslations: {
+          "Faktor 1 (Prozessionsspinner)": "factor 1 (processionary moth)",
+          "Faktor 2 (Bevölkerungsprognose)": "factor 2 (population forecast)",
+          "Faktor 3 (Temperatur)": "factor 3 (temperature)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (Prozessionsspinner)": {
             stagnierend: 0,
             zunehmend: 0.5,
@@ -105,11 +217,40 @@ class ContentHandler {
           },
           Summe: { Maximum: 6 },
         },
+          en: {
+            "Faktor 1 (Prozessionsspinner)": {
+              stagnating: 0,
+              increasing: 0.5,
+            },
+            "Faktor 2 (Bevölkerungsprognose)": {
+              "strongly decreasing": -0.5,
+              "slighly decreasing": -0.25,
+              stagnating: 0,
+              "slightly increasing": 0.25,
+              "strongly increasing": 0.5,
+            },
+            "Faktor 3 (Temperatur)": {
+              stagnating: 0,
+              increasing: 1,
+            },
+            Summe: { Maximum: 6 },
+          },
+        },
       },
     },
     Überschwemmung: {
+      riskName: { de: "Überschwemmung", en: "flooding" },
       Gegenwart: {
+        factorNameTranslations: {
+          "Faktor 1 (Starkniederschlag)": "factor 1 (heavy precipitation)",
+          "Faktor 2 (Hochwassergefahr)": "factor 2 (flooding risk)",
+          "Faktor 3 (Kreistyp)": "factor 3 (county type)",
+          "Faktor 4 (Siedlungs-und Verkehrsfläche)":
+            "factor 4 (settlement and traffic area)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (Starkniederschlag)": {
             gering: 0,
             mittel: 1,
@@ -134,10 +275,46 @@ class ContentHandler {
             hoch: 1,
           },
           Summe: { Maximum: 6 },
+          },
+          en: {
+            "Faktor 1 (Starkniederschlag)": {
+              low: 0,
+              medium: 1,
+              high: 2,
+            },
+            "Faktor 2 (Hochwassergefahr)": {
+              "nicht relevant": 0,
+              low: 0.5,
+              medium: 1,
+              high: 1.5,
+              "very high": 2,
+            },
+            "Faktor 3 (Kreistyp)": {
+              irrelevant: 0,
+              low: 0.25,
+              medium: 0.5,
+              high: 1,
+            },
+            "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
+              low: 0,
+              medium: 0.5,
+              high: 1,
+            },
+            Summe: { Maximum: 6 },
+          },
         },
       },
       Zukunft: {
+        factorNameTranslations: {
+          "Faktor 1 (Starkniederschlag)": "factor 1 (heavy precipitation)",
+          "Faktor 2 (Hochwassergefahr)": "factor 2 (flooding risk)",
+          "Faktor 3 (Bevölkerungsprognose)": "factor 3 (population forecast)",
+          "Faktor 4 (Siedlungs-und Verkehrsfläche)":
+            "factor 4 (settlement and traffic area)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (Starkniederschlag)": {
             abnehmend: -1,
             stagnierend: 0,
@@ -160,11 +337,41 @@ class ContentHandler {
           },
           Summe: { Maximum: 6 },
         },
+          en: {
+            "Faktor 1 (Starkniederschlag)": {
+              decreasing: -1,
+              stagnating: 0,
+              increasing: 1,
+            },
+            "Faktor 2 (Hochwassergefahr)": {
+              unknown: 0,
+            },
+            "Faktor 3 (Bevölkerungsprognose)": {
+              "strongly decreasing": -0.5,
+              "slightly decreasing": -0.25,
+              stagnating: 0,
+              "slightly increasing": 0.25,
+              "strongly increasing": 0.5,
+            },
+            "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
+              decreasing: -0.5,
+              stagnating: 0,
+              increasing: 0.5,
+            },
+            Summe: { Maximum: 6 },
+          },
+        },
       },
     },
     Waldbrand: {
+      riskName: { de: "Waldbrand", en: "forest fire" },
       Gegenwart: {
+        factorNameTranslations: {
+          "Faktor 1 (FWI)": "factor 1 (FWI)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (FWI)": {
             gering: 1,
             niedrig: 2,
@@ -173,10 +380,27 @@ class ContentHandler {
             kritisch: 5,
           },
           Summe: { Maximum: 5 },
+          },
+          en: {
+            "Faktor 1 (FWI)": {
+              "very low": 1,
+              low: 2,
+              medium: 3,
+              high: 4,
+              critical: 5,
+            },
+            Summe: { Maximum: 5 },
+          },
         },
       },
       Zukunft: {
+        factorNameTranslations: {
+          "Faktor 1 (FWI)": "factor 1 (FWI)",
+          "Faktor 2 (Bevölkerungsprognose)": "factor 2 (popuation forecast)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (FWI)": {
             stagnierend: 0,
             zunehmend: 0.83,
@@ -191,11 +415,37 @@ class ContentHandler {
           },
           Summe: { Maximum: 5 },
         },
+          en: {
+            "Faktor 1 (FWI)": {
+              stagnating: 0,
+              increasing: 0.83,
+              "strongly increasing": 1.67,
+            },
+            "Faktor 2 (Bevölkerungsprognose)": {
+              "strongly decreasing": -0.83,
+              "slightly decreasing": -0.42,
+              stagnating: 0,
+              "slightly increasing": 0.42,
+              "strongly increasing": 0.83,
+            },
+            Summe: { Maximum: 5 },
+          },
+        },
       },
     },
     Hitze: {
+      riskName: { de: "Hitze", en: "heat" },
       Gegenwart: {
+        factorNameTranslations: {
+          "Faktor 1 (Region)": "factor 1 (region)",
+          "Faktor 1 (Trop.Nächte)": "factor 1 (tropical nights)",
+          "Faktor 2 (Kreistyp)": "factor 2 (county type)",
+          "Faktor 3 (Siedlungs-und Verkehrsfläche)":
+            "factor 3 (settlement and traffic area)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (Region)": {
             gering: 1,
             mittel: 2,
@@ -217,10 +467,43 @@ class ContentHandler {
             hoch: 1.5,
           },
           Summe: { Maximum: 9 },
+          },
+          en: {
+            "Faktor 1 (Region)": {
+              low: 1,
+              medium: 2,
+              high: 3,
+            },
+            "Faktor 1 (Trop.Nächte)": {
+              irrelevant: 0,
+              relevant: 3,
+            },
+            "Faktor 2 (Kreistyp)": {
+              irrelevant: 0,
+              low: 0.5,
+              medium: 1,
+              high: 1.5,
+            },
+            "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
+              irrelevant: 0,
+              medium: 0.75,
+              high: 1.5,
+            },
+            Summe: { Maximum: 9 },
+          },
         },
       },
       Zukunft: {
+        factorNameTranslations: {
+          "Faktor 1 (Heiße Tage)": "factor 1 (hot days)",
+          "Faktor 1 (Trop.Nächte)": "factor 1 (tropical nights)",
+          "Faktor 2 (Bevölkerungsprognose)": "factor 2 (population forecast)",
+          "Faktor 3 (Siedlungs-und Verkehrsfläche)":
+            "factor 3 (settlement and traffic area)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (Heiße Tage)": {
             stagnierend: 0,
             zunehmend: 2,
@@ -243,11 +526,46 @@ class ContentHandler {
           },
           Summe: { Maximum: 9 },
         },
+          en: {
+            "Faktor 1 (Heiße Tage)": {
+              stagnating: 0,
+              increasing: 2,
+            },
+            "Faktor 1 (Trop.Nächte)": {
+              stagnating: 0,
+              increasing: 2,
+            },
+            "Faktor 2 (Bevölkerungsprognose)": {
+              "strongly decresaing": -1,
+              "slightly decreasing": -0.5,
+              stagnating: 0,
+              "slightly increasing": 0.5,
+              "strongly increasing": 1,
+            },
+            "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
+              decreasing: -1,
+              "slightly increasing": 0,
+              "strongly increasing": 1,
+            },
+            Summe: { Maximum: 9 },
+          },
+        },
       },
     },
     Vektoren: {
+      riskName: { de: "Vektoren", en: "vectors" },
       Gegenwart: {
+        factorNameTranslations: {
+          "Faktor 1 (FSME)": "factor 1 (FSME)",
+          "Faktor 2 (Aedes albopictus)": "factor 2 (Aedes albopictus)",
+          "Faktor 2 (West-Nil-Virus)": "factor 2 (western-nile virus)",
+          "Faktor 3 (Zug)": "factor 3 (train)",
+          "Faktor 3 (Flughafen)": "factor 3 (airport)",
+          "Faktor 3 (Schiff)": "factor 3 (ship)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (FSME)": {
             "nicht relevant": 0,
             relevant: 1.33,
@@ -273,10 +591,46 @@ class ContentHandler {
             relevant: 0.67,
           },
           Summe: { Maximum: 6 },
+          },
+          en: {
+            "Faktor 1 (FSME)": {
+              irrelevant: 0,
+              relevant: 1.33,
+            },
+            "Faktor 2 (Aedes albopictus)": {
+              irrelevant: 0,
+              relevant: 1.33,
+            },
+            "Faktor 2 (West-Nil-Virus)": {
+              irrelevant: 0,
+              relevant: 1.33,
+            },
+            "Faktor 3 (Zug)": {
+              irrelevant: 0,
+              relevant: 0.67,
+            },
+            "Faktor 3 (Flughafen)": {
+              irrelevant: 0,
+              relevant: 0.67,
+            },
+            "Faktor 3 (Schiff)": {
+              irrelevant: 0,
+              relevant: 0.67,
+            },
+            Summe: { Maximum: 6 },
+          },
         },
       },
       Zukunft: {
+        factorNameTranslations: {
+          "Faktor 1 (Zecken)": "factor 1 (ticks)",
+          "Faktor 2 (Aedes albopictus)": "factor 2 (Aedes albopictus)",
+          "Faktor 2 (West-Nil-Virus)": "factor 2 (western-nile virus)",
+          "Faktor 3 (Bevölkerungsprognose)": "factor 3 (population forecast)",
+          Summe: "sum",
+        },
         headers: {
+          de: {
           "Faktor 1 (Zecken)": { zunehmend: 0.67 },
           "Faktor 2 (Aedes albopictus)": {
             stagnierend: 0,
@@ -294,6 +648,26 @@ class ContentHandler {
             "stark zunehmend": 1,
           },
           Summe: { Maximum: 6 },
+        },
+          en: {
+            "Faktor 1 (Zecken)": { increasing: 0.67 },
+            "Faktor 2 (Aedes albopictus)": {
+              stagnating: 0,
+              increasing: 0.67,
+            },
+            "Faktor 2 (West-Nil-Virus)": {
+              stagnating: 0,
+              increasing: 0.67,
+            },
+            "Faktor 3 (Bevölkerungsprognose)": {
+              "strongly decreasing": -1,
+              "slightly decreasing": -0.5,
+              stagnating: 0,
+              "slightly increasing": 0.5,
+              "strongly increasing": 1,
+            },
+            Summe: { Maximum: 6 },
+          },
         },
       },
     },
@@ -343,12 +717,54 @@ class ContentHandler {
     <button></button>
   </div>`;
 
+  static _TEXT_CONTENTS = {
+    riskControlHint: {
+      de: "Wählen Sie eine Gefahr:",
+      en: "Please choose a hazard:",
+    },
+    timeControlHint: {
+      de: "Wählen Sie einen Zeitraum",
+      en: "Please choose a time period:",
+    },
+    currentTimeTitle: {
+      de: "Gegenwart",
+      en: "currently",
+    },
+    futureTimeTitle: {
+      de: "Zukunft (um 2050)",
+      en: "future (about 2050)",
+    },
+    changeTimeTitle: {
+      de: "Veränderung",
+      en: "change",
+    },
+    methodsButtonTitle: {
+      de: "Methodik",
+      en: "methods",
+    },
+    sourcesButtonTitle: {
+      de: "Quellen",
+      en: "sources",
+    },
+    imprintButtonTitle: {
+      de: "Impressum",
+      en: "imprint",
+    },
+    searchPlaceHolder: {
+      de: "Kreis suchen...",
+      en: "Search county...",
+    },
+    risk: { de: "Risiko", en: "risk" },
+    change: { de: "Veränderung", en: "change" },
+  };
+
   /**
    *
    * @param {*} risk The risk of the current displayed layer.
    * @param {*} time The time of the current displayed layer.
+   * @param {*} languageHandler The global LanguageHandler-instance.
    */
-  constructor(risk, time) {
+  constructor(risk, time, languageHandler) {
     this._risk = risk;
     this._time =
       time == "current"
@@ -356,37 +772,42 @@ class ContentHandler {
         : time == "future"
         ? "Zukunft"
         : "Veränderung";
+    this._languageHandler = languageHandler;
   }
 
   /**
-   * Get the class of the provided value regards the classification based on the provided risk, time and optional detailed risk.
+   * Get the class of the provided value regards the classification based on an optional detailed risk.
    * @param {*} value The value to classify.
-   * @param {*} risk The risk the classification is based on.
-   * @param {*} time The time the classification is based on.
+   * @param {*} classMap The classification to use.
    * @param {*} detailedRisk The detail-factor the classification is based on. Per default undefined.
-   * @returns The class as an array: The class-name at index 0, the upper bound of the class interval at index 1.
+   * @returns The class as an array: The class-name in german at index 0, class-name in english at index 1 and the upper bound of the class interval at index 2.
    */
-  _getClassForValue(value, risk, time, detailedRisk = undefined) {
-    const classMap = detailedRisk
-      ? ContentHandler._FACTOR_CLASSIFICATIONS[risk][time].headers[detailedRisk]
-      : risk == "HotSpots" && time == "Veränderung"
-      ? ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung.headers
-      : time == "Veränderung"
-      ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers
-      : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers;
-    return Array.from(Object.entries(classMap))
-      .filter((currentClass) => {
-        return currentClass[1] >= value;
-      })
-      .sort((firstClass, secondClass) => {
-        // explicit sorting necessary because not guaranteed!
-        return firstClass[1] == secondClass[1]
-          ? 0
-          : firstClass[1] < secondClass[1]
-          ? 1
-          : -1;
-      })
-      .pop();
+  _getClassForValue(value, classMap, detailedRisk = undefined) {
+    if (!detailedRisk) {
+      const upperBound = classMap.upperBounds
+        .filter((bound) => {
+          return bound >= value;
+        })
+        .sort((number1, number2) =>
+          number1 > number2 ? 1 : number1 === number2 ? 0 : -1
+        )[0];
+      const upperBoundIndex = classMap.upperBounds.indexOf(upperBound);
+      const classNameDe = classMap.headers.de[upperBoundIndex];
+      const classNameEn = classMap.headers.en[upperBoundIndex];
+      return [classNameDe, classNameEn, upperBound];
+    } else {
+      for (const [classNameDe, valueDe] of Object.entries(classMap)) {
+        if (value === valueDe) {
+          for (const [classNameEn, valueEn] of Object.entries(
+            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
+              .headers.en[detailedRisk]
+          ))
+            if (valueEn === value) {
+              return [classNameDe, classNameEn, valueDe];
+            }
+        }
+      }
+    }
   }
 
   /**
@@ -395,59 +816,119 @@ class ContentHandler {
    * @returns A html-parsed string with the detailed information.
    */
   _getDetailedPopupInformation(county) {
-    var detailedHtml = '</div><div id="detailed">';
+    let detailedHtml = '</div><div id="detailed">';
     detailedHtml += `<div id="${this._risk}-${this._time}" class="explanation">`;
-    if (this._risk == "HotSpots" && this._time != "Veränderung") {
-      let riskPropertiesToDisplay = [];
-      for (const [riskPropertyName, _] of Object.entries(
+    if (this._risk === "HotSpots" && this._time !== "Veränderung") {
+      const riskPropertiesToDisplay = Object.keys(
         county.feature.properties
-      )) {
-        if (riskPropertyName.endsWith(this._time)) {
-          riskPropertiesToDisplay.push(riskPropertyName);
-        }
-      }
+      ).filter((property) => {
+        return (
+          property.endsWith(this._time) && !property.startsWith("HotSpots")
+        );
+      });
       for (const riskPropertyName of riskPropertiesToDisplay) {
         let classForValue = this._getClassForValue(
           county.feature.properties[riskPropertyName],
-          this._risk,
-          this._time
+          ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt
         );
-        detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${riskPropertyName}:</b> ${classForValue[0]}</span><br>`;
+        detailedHtml += `
+        <span class='${this._risk}-${
+          this._time
+        }-detailed' lang="de"><b>${riskPropertyName}:</b> ${
+          classForValue[0]
+        }<br></span>
+        <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
+          ContentHandler._FACTOR_CLASSIFICATIONS[riskPropertyName.split(" ")[0]]
+            .riskName.en
+        } ${
+          this._time === "Veränderung"
+            ? "change"
+            : this._time === "Gegenwart"
+            ? "currently"
+            : "future"
+        }:</b> ${classForValue[1]}<br></span>`;
       }
-    } else if (this._time == "Veränderung") {
-      var riskScoreToday = county.feature.properties[`${this._risk} Gegenwart`];
-      var riskScoreFuture = county.feature.properties[`${this._risk} Zukunft`];
-      const classToday = this._getClassForValue(riskScoreToday, this._risk);
-      const classFuture = this._getClassForValue(riskScoreFuture, this._risk);
-      detailedHtml += `<span class='${this._risk}-${this._time}-detailed'><b>${this._risk} Gegenwart :</b> ${classToday[0]}</span><br><span class='${this._risk}-${this._time}-detailed'><b>${this._risk} Zukunft :</b> ${classFuture[0]}</span><br>`;
+    } else if (this._time === "Veränderung") {
+      const riskScoreToday =
+        county.feature.properties[`${this._risk} Gegenwart`];
+      const riskScoreFuture =
+        county.feature.properties[`${this._risk} Zukunft`];
+      const classToday = this._getClassForValue(
+        riskScoreToday,
+        ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt
+      );
+      const classFuture = this._getClassForValue(
+        riskScoreFuture,
+        ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt
+      );
+      detailedHtml += `
+      <span class='${this._risk}-${this._time}-detailed' lang="de"><b>${
+        this._risk
+      } Gegenwart :</b> ${classToday[0]}<br></span>
+      <span class='${this._risk}-${this._time}-detailed' lang="de"><b>${
+        this._risk
+      } Zukunft :</b> ${classFuture[0]}<br></span>
+      <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
+        this._risk === "HotSpots"
+          ? "HotSpots"
+          : ContentHandler._FACTOR_CLASSIFICATIONS[this._risk].riskName.en
+      } currently :</b> ${classToday[1]}<br></span>
+      <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
+        this._risk === "HotSpots"
+          ? "HotSpots"
+          : ContentHandler._FACTOR_CLASSIFICATIONS[this._risk].riskName.en
+      } in future :</b> ${classFuture[1]}<br></span>`;
     } else {
-      for (const [riskName, _] of Object.entries(
+      Object.entries(
         ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time].headers
-      )) {
-        let detailedRiskValue =
-          county.feature.properties[`${this._risk} ${this._time} ${riskName}`];
-        if (riskName == "Summe") {
+          .de
+      ).forEach((risk) => {
+        ["de", "en"].forEach((language) => {
+          if (risk[0] === "Summe") {
           detailedHtml += `<span class='${this._risk}-${
             this._time
-          }-detailed'><b>${riskName}:</b> ${detailedRiskValue} von ${
+            }-detailed' lang="${language}"><b>${
+              language === "de" ? risk[0] : "sum"
+            }:</b> ${county.feature.properties[
+              `${this._risk} ${this._time} Summe`
+            ].toFixed()} ${language === "de" ? "von" : "out of"} ${
             ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
-              .headers[riskName].Maximum
-          }</span><br>`;
+                .headers[language][risk[0]].Maximum
+            }<br></span>`;
         } else {
+            let detailedRiskValue =
+              county.feature.properties[
+                `${this._risk} ${this._time} ${risk[0]}`
+              ];
           let classForValue = this._getClassForValue(
             detailedRiskValue,
-            this._risk,
-            this._time,
-            riskName
+              risk[1],
+              risk[0]
           );
           detailedHtml += `<span class='${this._risk}-${
             this._time
-          }-detailed'><b>${riskName.substring(
-            riskName.indexOf("(") + 1,
-            riskName.indexOf(")")
-          )}:</b> ${classForValue[0]}</span><br>`;
+            }-detailed' lang="${language}"><b>${
+              language === "de"
+                ? risk[0].substring(
+                    risk[0].indexOf("(") + 1,
+                    risk[0].indexOf(")")
+                  )
+                : ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
+                    this._time
+                  ].factorNameTranslations[risk[0]].substring(
+                    ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
+                      this._time
+                    ].factorNameTranslations[risk[0]].indexOf("(") + 1,
+                    ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
+                      this._time
+                    ].factorNameTranslations[risk[0]].indexOf(")")
+                  )
+            }:</b> ${
+              language === "de" ? classForValue[0] : classForValue[1]
+            }<br></span>`;
         }
-      }
+        });
+      });
     }
     return (detailedHtml += "</div></div>");
   }
@@ -488,41 +969,55 @@ class ContentHandler {
    * @returns A html-parsed string representing the popup for the provided county.
    */
   getPopupContent(county) {
-    var popupContentHtml = `<h4>${
+    let popupContentHtml = `<h4>${
       county.feature.properties[ContentHandler._COUNTY_NAME_PROPERTY_NAME]
     }</h4>`;
-    var countyClassName, classSeperatorsAmount;
-    var classMap =
-      this._time == "Veränderung" && this._risk == "HotSpots"
-        ? ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung.headers
-        : this._time == "Veränderung"
-        ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers
-        : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers;
-    var index = Object.values(classMap).sort(
-      (number1, number2) => classMap[number1] - classMap[number2]
-    );
-    countyClassName = this._getClassForValue(
-      county.feature.properties[`${this._risk} ${this._time}`],
-      this._risk,
-      this._time
+    let countyClass, classSeperatorsAmount;
+    const classMap =
+      this._time === "Veränderung" && this._risk === "HotSpots"
+        ? ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung
+        : this._time === "Veränderung"
+        ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung
+        : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt;
+    let index = new Array(
+      classMap.upperBounds.sort(
+        (number1, number2) =>
+          classMap.upperBounds[number1] - classMap.upperBounds[number2]
+      )
     )[0];
-    popupContentHtml += `<span id="${this._risk}-${this._time}-result"><b>${
-      this._time == "Veränderung"
+    countyClass = this._getClassForValue(
+      county.feature.properties[`${this._risk} ${this._time}`],
+      classMap
+    );
+    popupContentHtml += `<span class="${this._risk}-${
+      this._time
+    }-result" lang="de"><b>${
+      this._time === "Veränderung"
         ? `${this._risk}-Veränderung: `
         : `${this._risk}-Risiko: `
-    }</b>${countyClassName}</span>`;
-    var valueToDisplay =
+    }</b>${countyClass[0]}</span>
+    <span class="${this._risk}-${this._time}-result" lang="en"><b>${
+      this._risk === "HotSpots" && this._time === "Veränderung"
+        ? "HotSpots change: "
+        : this._risk === "HotSpots"
+        ? "HotSpots risk: "
+        : this._time === "Veränderung"
+        ? `${
+            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk].riskName.en
+          } change: `
+        : `${
+            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk].riskName.en
+          } risk: `
+    }</b>${countyClass[1]}</span>`;
+    let valueToDisplay =
       county.feature.properties[`${this._risk} ${this._time}`];
     let left_property;
-    if (this._risk == "HotSpots" && this._time == "Veränderung") {
+    if (this._risk === "HotSpots" && this._time === "Veränderung") {
       classSeperatorsAmount = 3;
       popupContentHtml += '<div id="hotspot-change" class="score-bar">';
       left_property = Math.min(40 * valueToDisplay + 8, 188); // 8px from left end to middle of first bar, then +40px for each class
-    } else if (this._risk == "HotSpots") {
-      classSeperatorsAmount = 5;
-      popupContentHtml += '<div id="timed" class="score-bar">';
-      left_property = Math.min(2 * valueToDisplay - 12, 228); // 2px represent one score-point, minus offset 12px
-    } else if (this._time == "Veränderung") {
+    } else if (this._time === "Veränderung") {
+      index = [...index]; // need for deep copy because of modification
       index.splice(index.indexOf(-0.005), 1); // TODO: find clean solution
       classSeperatorsAmount = 6;
       popupContentHtml += '<div id="change" class="score-bar">';
@@ -536,16 +1031,16 @@ class ContentHandler {
       left_property = Math.min(2 * valueToDisplay - 12, 228); // 2px represent one score-point, minus offset 12px
     }
     for (let i = 1; i <= index.length; i++) {
-      if (i == 1) {
+      if (i === 1) {
         valueToDisplay =
-          this._time == "Veränderung" && valueToDisplay >= 0.5
+          this._time === "Veränderung" && valueToDisplay >= 0.5
             ? `+${Number(valueToDisplay.toFixed())}`
             : `${Number(valueToDisplay.toFixed())}`;
 
         popupContentHtml += `
         <div class="class-${i}">
           <div class="interval-border" ${
-            this._risk == "HotSpots" && this._time == "Veränderung"
+            this._risk === "HotSpots" && this._time === "Veränderung"
               ? "style=left:8px;"
               : ""
           }>
@@ -562,7 +1057,7 @@ class ContentHandler {
         if (i <= classSeperatorsAmount) {
           popupContentHtml += `
           <div class="interval-border" ${
-            this._risk == "HotSpots" && this._time == "Veränderung"
+            this._risk === "HotSpots" && this._time === "Veränderung"
               ? "style=left:8px;"
               : ""
           }>
