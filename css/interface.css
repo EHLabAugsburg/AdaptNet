@@ -156,3 +156,15 @@ div#interface {
     }
   }
 }
+
+@media screen and (max-width: 365px) {
+  div#interface {
+    button {
+      width: 25px;
+      height: 25px;
+    }
+    div#control {
+      margin-top: 0px;
+    }
+  }
+}
