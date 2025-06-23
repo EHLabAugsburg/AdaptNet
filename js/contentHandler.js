@@ -1,6 +1,8 @@
+"use strict";
 /**
  * Class to ensure the dynamically display of correct information in popups, tooltips and subpages.
  */
+//TODO: leaning dictionary
 class ContentHandler {
   static _COUNTY_NAME_PROPERTY_NAME = "gen";
   static _FACTOR_CLASSIFICATIONS = {
@@ -17,34 +19,34 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (PM2.5)": {
-            gering: 0,
-            mittel: 1,
-            hoch: 2,
-          },
-          "Faktor 1 (PM10)": {
-            gering: 0,
-            mittel: 1,
-            hoch: 2,
-          },
-          "Faktor 1 (NO2)": {
-            gering: 0,
-            mittel: 1,
-            hoch: 2,
-          },
-          "Faktor 1 (O3)": {
-            gering: 0,
-            mittel: 1,
-            hoch: 2,
-          },
-          "Faktor 2 (Hitze)": {
-            gering: 0,
-            niedrig: 0.5,
-            mittel: 1,
-            hoch: 1.5,
-            kritisch: 2,
-          },
-          Summe: { Maximum: 10 },
+            "Faktor 1 (PM2.5)": {
+              gering: 0,
+              mittel: 1,
+              hoch: 2,
+            },
+            "Faktor 1 (PM10)": {
+              gering: 0,
+              mittel: 1,
+              hoch: 2,
+            },
+            "Faktor 1 (NO2)": {
+              gering: 0,
+              mittel: 1,
+              hoch: 2,
+            },
+            "Faktor 1 (O3)": {
+              gering: 0,
+              mittel: 1,
+              hoch: 2,
+            },
+            "Faktor 2 (Hitze)": {
+              gering: 0,
+              niedrig: 0.5,
+              mittel: 1,
+              hoch: 1.5,
+              kritisch: 2,
+            },
+            Summe: { Maximum: 10 },
           },
           en: {
             "Faktor 1 (PM2.5)": {
@@ -90,26 +92,26 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (PM2.5)": { abnehmend: -0.5 },
-          "Faktor 1 (PM10)": { abnehmend: -0.5 },
-          "Faktor 1 (NO2)": { abnehmend: -0.5 },
-          "Faktor 1 (O3)": { stagniernd: 0 },
-          "Faktor 2 (Bevölkerungsprognose)": {
-            "stark abnehmend": -1,
-            "eher abnehmend": -0.5,
-            stagnierend: 0,
-            "eher zunehmend": 0.5,
-            "stark zunehmend": 1,
+            "Faktor 1 (PM2.5)": { abnehmend: -0.5 },
+            "Faktor 1 (PM10)": { abnehmend: -0.5 },
+            "Faktor 1 (NO2)": { abnehmend: -0.5 },
+            "Faktor 1 (O3)": { stagniernd: 0 },
+            "Faktor 2 (Bevölkerungsprognose)": {
+              "stark abnehmend": -1,
+              "eher abnehmend": -0.5,
+              stagnierend: 0,
+              "eher zunehmend": 0.5,
+              "stark zunehmend": 1,
+            },
+            "Faktor 3 (Hitze)": {
+              stagnierend: 0,
+              "leicht zunehmend": 1,
+              zunehmend: 2,
+              "stark zunehmend": 3,
+              "kritisch zunehmend": 4,
+            },
+            Summe: { Maximum: 10 },
           },
-          "Faktor 3 (Hitze)": {
-            stagnierend: 0,
-            "leicht zunehmend": 1,
-            zunehmend: 2,
-            "stark zunehmend": 3,
-            "kritisch zunehmend": 4,
-          },
-          Summe: { Maximum: 10 },
-        },
           en: {
             "Faktor 1 (PM2.5)": { decreasing: -0.5 },
             "Faktor 1 (PM10)": { decreasing: -0.5 },
@@ -146,26 +148,26 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (Prozessionsspinner)": {
-            "nicht relevant": 0,
-            relevant: 1,
-          },
-          "Faktor 2 (Heuschnupfen)": {
-            "nicht relevant": 0,
-            gering: 0.25,
-            mittel: 0.5,
-            hoch: 0.75,
-            "sehr hoch": 1,
-          },
-          "Faktor 3 (Pollen)": { hoch: 2 },
-          "Faktor 4 (Luftqualität)": {
-            gering: 0,
-            niedrig: 0.5,
-            mittel: 1,
-            hoch: 1.5,
-            kritisch: 2,
-          },
-          Summe: { Maximum: 6 },
+            "Faktor 1 (Prozessionsspinner)": {
+              "nicht relevant": 0,
+              relevant: 1,
+            },
+            "Faktor 2 (Heuschnupfen)": {
+              "nicht relevant": 0,
+              gering: 0.25,
+              mittel: 0.5,
+              hoch: 0.75,
+              "sehr hoch": 1,
+            },
+            "Faktor 3 (Pollen)": { hoch: 2 },
+            "Faktor 4 (Luftqualität)": {
+              gering: 0,
+              niedrig: 0.5,
+              mittel: 1,
+              hoch: 1.5,
+              kritisch: 2,
+            },
+            Summe: { Maximum: 6 },
           },
           en: {
             "Faktor 1 (Prozessionsspinner)": {
@@ -200,23 +202,23 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (Prozessionsspinner)": {
-            stagnierend: 0,
-            zunehmend: 0.5,
+            "Faktor 1 (Prozessionsspinner)": {
+              stagnierend: 0,
+              zunehmend: 0.5,
+            },
+            "Faktor 2 (Bevölkerungsprognose)": {
+              "stark abnehmend": -0.5,
+              "eher abnehmend": -0.25,
+              stagnierend: 0,
+              "eher zunehmend": 0.25,
+              "stark zunehmend": 0.5,
+            },
+            "Faktor 3 (Temperatur)": {
+              stagnierend: 0,
+              zunehmend: 1,
+            },
+            Summe: { Maximum: 6 },
           },
-          "Faktor 2 (Bevölkerungsprognose)": {
-            "stark abnehmend": -0.5,
-            "eher abnehmend": -0.25,
-            stagnierend: 0,
-            "eher zunehmend": 0.25,
-            "stark zunehmend": 0.5,
-          },
-          "Faktor 3 (Temperatur)": {
-            stagnierend: 0,
-            zunehmend: 1,
-          },
-          Summe: { Maximum: 6 },
-        },
           en: {
             "Faktor 1 (Prozessionsspinner)": {
               stagnating: 0,
@@ -251,30 +253,30 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (Starkniederschlag)": {
-            gering: 0,
-            mittel: 1,
-            hoch: 2,
-          },
-          "Faktor 2 (Hochwassergefahr)": {
-            "nicht relevant": 0,
-            gering: 0.5,
-            mittel: 1,
-            hoch: 1.5,
-            "sehr hoch": 2,
-          },
-          "Faktor 3 (Kreistyp)": {
-            "nicht relevant": 0,
-            gering: 0.25,
-            mittel: 0.5,
-            hoch: 1,
-          },
-          "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
-            gering: 0,
-            mittel: 0.5,
-            hoch: 1,
-          },
-          Summe: { Maximum: 6 },
+            "Faktor 1 (Starkniederschlag)": {
+              gering: 0,
+              mittel: 1,
+              hoch: 2,
+            },
+            "Faktor 2 (Hochwassergefahr)": {
+              "nicht relevant": 0,
+              gering: 0.5,
+              mittel: 1,
+              hoch: 1.5,
+              "sehr hoch": 2,
+            },
+            "Faktor 3 (Kreistyp)": {
+              "nicht relevant": 0,
+              gering: 0.25,
+              mittel: 0.5,
+              hoch: 1,
+            },
+            "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
+              gering: 0,
+              mittel: 0.5,
+              hoch: 1,
+            },
+            Summe: { Maximum: 6 },
           },
           en: {
             "Faktor 1 (Starkniederschlag)": {
@@ -315,28 +317,28 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (Starkniederschlag)": {
-            abnehmend: -1,
-            stagnierend: 0,
-            zunehmend: 1,
+            "Faktor 1 (Starkniederschlag)": {
+              abnehmend: -1,
+              stagnierend: 0,
+              zunehmend: 1,
+            },
+            "Faktor 2 (Hochwassergefahr)": {
+              unbekannt: 0,
+            },
+            "Faktor 3 (Bevölkerungsprognose)": {
+              "stark abnehmend": -0.5,
+              "eher abnehmend": -0.25,
+              stagnierend: 0,
+              "eher zunehmend": 0.25,
+              "stark zunehmend": 0.5,
+            },
+            "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
+              abnehmend: -0.5,
+              stagnierend: 0,
+              zunehmend: 0.5,
+            },
+            Summe: { Maximum: 6 },
           },
-          "Faktor 2 (Hochwassergefahr)": {
-            unbekannt: 0,
-          },
-          "Faktor 3 (Bevölkerungsprognose)": {
-            "stark abnehmend": -0.5,
-            "eher abnehmend": -0.25,
-            stagnierend: 0,
-            "eher zunehmend": 0.25,
-            "stark zunehmend": 0.5,
-          },
-          "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
-            abnehmend: -0.5,
-            stagnierend: 0,
-            zunehmend: 0.5,
-          },
-          Summe: { Maximum: 6 },
-        },
           en: {
             "Faktor 1 (Starkniederschlag)": {
               decreasing: -1,
@@ -372,14 +374,14 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (FWI)": {
-            gering: 1,
-            niedrig: 2,
-            mittel: 3,
-            hoch: 4,
-            kritisch: 5,
-          },
-          Summe: { Maximum: 5 },
+            "Faktor 1 (FWI)": {
+              gering: 1,
+              niedrig: 2,
+              mittel: 3,
+              hoch: 4,
+              kritisch: 5,
+            },
+            Summe: { Maximum: 5 },
           },
           en: {
             "Faktor 1 (FWI)": {
@@ -401,20 +403,20 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (FWI)": {
-            stagnierend: 0,
-            zunehmend: 0.83,
-            "stark zunehmend": 1.67,
+            "Faktor 1 (FWI)": {
+              stagnierend: 0,
+              zunehmend: 0.83,
+              "stark zunehmend": 1.67,
+            },
+            "Faktor 2 (Bevölkerungsprognose)": {
+              "stark abnehmend": -0.83,
+              "eher abnehmend": -0.42,
+              stagnierend: 0,
+              "eher zunehmend": 0.42,
+              "stark zunehmend": 0.83,
+            },
+            Summe: { Maximum: 5 },
           },
-          "Faktor 2 (Bevölkerungsprognose)": {
-            "stark abnehmend": -0.83,
-            "eher abnehmend": -0.42,
-            stagnierend: 0,
-            "eher zunehmend": 0.42,
-            "stark zunehmend": 0.83,
-          },
-          Summe: { Maximum: 5 },
-        },
           en: {
             "Faktor 1 (FWI)": {
               stagnating: 0,
@@ -446,27 +448,27 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (Region)": {
-            gering: 1,
-            mittel: 2,
-            hoch: 3,
-          },
-          "Faktor 1 (Trop.Nächte)": {
-            "nicht relevant": 0,
-            relevant: 3,
-          },
-          "Faktor 2 (Kreistyp)": {
-            "nicht relevant": 0,
-            gering: 0.5,
-            mittel: 1,
-            hoch: 1.5,
-          },
-          "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-            "nicht relevant": 0,
-            mittel: 0.75,
-            hoch: 1.5,
-          },
-          Summe: { Maximum: 9 },
+            "Faktor 1 (Region)": {
+              gering: 1,
+              mittel: 2,
+              hoch: 3,
+            },
+            "Faktor 1 (Trop.Nächte)": {
+              "nicht relevant": 0,
+              relevant: 3,
+            },
+            "Faktor 2 (Kreistyp)": {
+              "nicht relevant": 0,
+              gering: 0.5,
+              mittel: 1,
+              hoch: 1.5,
+            },
+            "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
+              "nicht relevant": 0,
+              mittel: 0.75,
+              hoch: 1.5,
+            },
+            Summe: { Maximum: 9 },
           },
           en: {
             "Faktor 1 (Region)": {
@@ -504,28 +506,28 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (Heiße Tage)": {
-            stagnierend: 0,
-            zunehmend: 2,
+            "Faktor 1 (Heiße Tage)": {
+              stagnierend: 0,
+              zunehmend: 2,
+            },
+            "Faktor 1 (Trop.Nächte)": {
+              stagnierend: 0,
+              zunehmend: 2,
+            },
+            "Faktor 2 (Bevölkerungsprognose)": {
+              "stark abnehmend": -1,
+              "eher abnehmend": -0.5,
+              stagnierend: 0,
+              "eher zunehmend": 0.5,
+              "stark zunehmend": 1,
+            },
+            "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
+              abnehmend: -1,
+              "moderat zunehmend": 0,
+              "stark zunehmend": 1,
+            },
+            Summe: { Maximum: 9 },
           },
-          "Faktor 1 (Trop.Nächte)": {
-            stagnierend: 0,
-            zunehmend: 2,
-          },
-          "Faktor 2 (Bevölkerungsprognose)": {
-            "stark abnehmend": -1,
-            "eher abnehmend": -0.5,
-            stagnierend: 0,
-            "eher zunehmend": 0.5,
-            "stark zunehmend": 1,
-          },
-          "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-            abnehmend: -1,
-            "moderat zunehmend": 0,
-            "stark zunehmend": 1,
-          },
-          Summe: { Maximum: 9 },
-        },
           en: {
             "Faktor 1 (Heiße Tage)": {
               stagnating: 0,
@@ -566,31 +568,31 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (FSME)": {
-            "nicht relevant": 0,
-            relevant: 1.33,
-          },
-          "Faktor 2 (Aedes albopictus)": {
-            "nicht relevant": 0,
-            relevant: 1.33,
-          },
-          "Faktor 2 (West-Nil-Virus)": {
-            "nicht relevant": 0,
-            relevant: 1.33,
-          },
-          "Faktor 3 (Zug)": {
-            "nicht relevant": 0,
-            relevant: 0.67,
-          },
-          "Faktor 3 (Flughafen)": {
-            "nicht relevant": 0,
-            relevant: 0.67,
-          },
-          "Faktor 3 (Schiff)": {
-            "nicht relevant": 0,
-            relevant: 0.67,
-          },
-          Summe: { Maximum: 6 },
+            "Faktor 1 (FSME)": {
+              "nicht relevant": 0,
+              relevant: 1.33,
+            },
+            "Faktor 2 (Aedes albopictus)": {
+              "nicht relevant": 0,
+              relevant: 1.33,
+            },
+            "Faktor 2 (West-Nil-Virus)": {
+              "nicht relevant": 0,
+              relevant: 1.33,
+            },
+            "Faktor 3 (Zug)": {
+              "nicht relevant": 0,
+              relevant: 0.67,
+            },
+            "Faktor 3 (Flughafen)": {
+              "nicht relevant": 0,
+              relevant: 0.67,
+            },
+            "Faktor 3 (Schiff)": {
+              "nicht relevant": 0,
+              relevant: 0.67,
+            },
+            Summe: { Maximum: 6 },
           },
           en: {
             "Faktor 1 (FSME)": {
@@ -631,24 +633,24 @@ class ContentHandler {
         },
         headers: {
           de: {
-          "Faktor 1 (Zecken)": { zunehmend: 0.67 },
-          "Faktor 2 (Aedes albopictus)": {
-            stagnierend: 0,
-            zunehmend: 0.67,
+            "Faktor 1 (Zecken)": { zunehmend: 0.67 },
+            "Faktor 2 (Aedes albopictus)": {
+              stagnierend: 0,
+              zunehmend: 0.67,
+            },
+            "Faktor 2 (West-Nil-Virus)": {
+              stagnierend: 0,
+              zunehmend: 0.67,
+            },
+            "Faktor 3 (Bevölkerungsprognose)": {
+              "stark abnehmend": -1,
+              "eher abnehmend": -0.5,
+              stagnierend: 0,
+              "eher zunehmend": 0.5,
+              "stark zunehmend": 1,
+            },
+            Summe: { Maximum: 6 },
           },
-          "Faktor 2 (West-Nil-Virus)": {
-            stagnierend: 0,
-            zunehmend: 0.67,
-          },
-          "Faktor 3 (Bevölkerungsprognose)": {
-            "stark abnehmend": -1,
-            "eher abnehmend": -0.5,
-            stagnierend: 0,
-            "eher zunehmend": 0.5,
-            "stark zunehmend": 1,
-          },
-          Summe: { Maximum: 6 },
-        },
           en: {
             "Faktor 1 (Zecken)": { increasing: 0.67 },
             "Faktor 2 (Aedes albopictus)": {
@@ -673,7 +675,7 @@ class ContentHandler {
     },
   };
   static _IMPRINT = `
-  <div id="imprint-content" class="subpage">
+  <div id="imprint-content" class="subframe">
     <b>Impressum:</b> <br />
     Regional Climate Change and Health<br />
     Faculty of Medicine<br />
@@ -686,33 +688,61 @@ class ContentHandler {
   static _LAYER_CLASSIFICATIONS = {
     // mapping of class descriptors to their upper bounds (exclusive)
     HotSpotsVeränderung: {
-      headers: { gleichbleibend: 0, zunehmend: 1, "stark zunehmend": 2 },
+      headers: {
+        de: ["gleichbleibend", "zunehmend", "stark zunehmend"],
+        en: ["constant", "increasing", "strongly increasing"],
+      },
+      upperBounds: [0, 1, 2],
     },
     Veränderung: {
       headers: {
-        abnehmend: -10,
-        "leicht abnehmend": -0.005, // TODO: find clean solution
-        gleichbleibend: 0,
-        "leicht zunehmend": 10,
-        zunehmend: 20,
-        "stark zunehmend": 30,
-        "kritisch zunehmend": 40,
-        "extrem zunehmend": 1000,
+        de: [
+          "abnehmend",
+          "leicht abnehmend",
+          "gleichbleibend",
+          "leicht zunehmend",
+          "zunehmend",
+          "stark zunehmend",
+          "kritisch zunehmend",
+          "extrem zunehmend",
+        ],
+        en: [
+          "decreasing",
+          "slightly decreasing",
+          "constant",
+          "slightly increasing",
+          "increasing",
+          "strongly increasing",
+          "critically increasing",
+          "extremely increasing",
+        ],
       },
+      upperBounds: [-10, 0, 10, 20, 30, 40, 1000], // TODO: find clean solution
     },
     Zeitpunkt: {
       headers: {
-        "geringes Risiko": 20,
-        "niedriges Risiko": 40,
-        "mittleres Risiko": 60,
-        "hohes Risiko": 80,
-        "kritisches Risiko": 100,
-        "extremes Risiko": 1000,
+        de: [
+          "geringes Risiko",
+          "niedriges Risiko",
+          "mittleres Risiko",
+          "hohes Risiko",
+          "kritisches Risiko",
+          "extremes Risiko",
+        ],
+        en: [
+          "very low risk",
+          "low risk",
+          "medium risk",
+          "high risk",
+          "critical risk",
+          "extreme risk",
+        ],
       },
+      upperBounds: [20, 40, 60, 80, 100, 1000],
     },
   };
   static _METHODS = `
-  <div id="methods-content" class="subpage">
+  <div id="methods-content" class="subframe">
     Will be available after publication.<br />
     <button></button>
   </div>`;
@@ -795,7 +825,7 @@ class ContentHandler {
             classMap ===
             ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung
           ) {
-          return bound >= value;
+            return bound >= value;
           }
           return bound > value;
         })
@@ -904,28 +934,28 @@ class ContentHandler {
       ).forEach((risk) => {
         ["de", "en"].forEach((language) => {
           if (risk[0] === "Summe") {
-          detailedHtml += `<span class='${this._risk}-${
-            this._time
+            detailedHtml += `<span class='${this._risk}-${
+              this._time
             }-detailed' lang="${language}"><b>${
               language === "de" ? risk[0] : "sum"
             }:</b> ${county.feature.properties[
               `${this._risk} ${this._time} Summe`
             ].toFixed()} ${language === "de" ? "von" : "out of"} ${
-            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
+              ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
                 .headers[language][risk[0]].Maximum
             }<br></span>`;
-        } else {
+          } else {
             let detailedRiskValue =
               county.feature.properties[
                 `${this._risk} ${this._time} ${risk[0]}`
               ];
-          let classForValue = this._getClassForValue(
-            detailedRiskValue,
+            let classForValue = this._getClassForValue(
+              detailedRiskValue,
               risk[1],
               risk[0]
-          );
-          detailedHtml += `<span class='${this._risk}-${
-            this._time
+            );
+            detailedHtml += `<span class='${this._risk}-${
+              this._time
             }-detailed' lang="${language}"><b>${
               language === "de"
                 ? risk[0].substring(
@@ -945,7 +975,7 @@ class ContentHandler {
             }:</b> ${
               language === "de" ? classForValue[0] : classForValue[1]
             }<br></span>`;
-        }
+          }
         });
       });
     }
