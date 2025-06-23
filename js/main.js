@@ -1,38 +1,31 @@
+"use strict";
 document.querySelectorAll("div#risk-control button").forEach((button) => {
   button.addEventListener("click", function () {
-    let buttons = document.querySelectorAll("div#risk-control button");
-    for (let i = 0; i < buttons.length; i++) {
-      if (button[i] != button) {
-        buttons[i].classList.remove("current");
-      }
-    }
+    document
+      .querySelectorAll("div#risk-control button")
+      .forEach((riskButton) => {
+        if (riskButton !== button) riskButton.classList.remove("current");
+      });
     button.classList.add("current");
-    currentTime = getCurrentTime();
-    if (currentTime) {
-      updateDisplayedLayer(button.id, currentTime);
-    }
-    var popup = document.querySelector("div.leaflet-popup-content");
-    if (popup) {
-      languageHandler.translatePopup(getCurrentRisk(), getCurrentTime());
-    }
+    let currentTime = getCurrentTime();
+    if (currentTime) updateDisplayedLayer(button.id, currentTime);
+    if (document.querySelector("div.leaflet-popup-content"))
+      // if a popup is opened curently, update its content
+      languageHandler.setLanguage(languageHandler.getLanguage());
   });
 });
 
 document.querySelectorAll("#time-control button").forEach((button) => {
   button.addEventListener("click", function () {
-    let timeButtons = document.querySelectorAll("#time-control button");
-    for (let i = 0; i < timeButtons.length; i++) {
-      timeButtons[i].classList.remove("current");
-    }
+    document.querySelectorAll("#time-control button").forEach((timeButton) => {
+      timeButton.classList.remove("current");
+    });
     button.classList.add("current");
-    currentRisk = getCurrentRisk();
-    if (currentRisk) {
-      updateDisplayedLayer(currentRisk, button.id);
-    }
-    var popup = document.querySelector("div.leaflet-popup-content");
-    if (popup) {
-      languageHandler.translatePopup(getCurrentRisk(), getCurrentTime());
-    }
+    let currentRisk = getCurrentRisk();
+    if (currentRisk) updateDisplayedLayer(currentRisk, button.id);
+    if (document.querySelector("div.leaflet-popup-content"))
+      // if a popup is opened curently, update its content
+      languageHandler.setLanguage(languageHandler.getLanguage());
   });
 });
 
@@ -46,12 +39,12 @@ document
       languageHandler
     );
     legendBuilder.build();
-});
+  });
 
 document
   .getElementById("imprint")
   .addEventListener("click", (element) =>
-    ContentHandler.showSubpage(
+    ContentHandler.showSubframe(
       document.getElementById("interface"),
       element.target
     )
@@ -60,7 +53,7 @@ document
 document
   .getElementById("methods")
   .addEventListener("click", (element) =>
-    ContentHandler.showSubpage(
+    ContentHandler.showSubframe(
       document.getElementById("interface"),
       element.target
     )
@@ -74,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("div#time-control button#current")
     .classList.add("current");
   updateDisplayedLayer("Luftqualität", "current");
-  languageHandler.applyLanguage(languageHandler.getLanguage());
+  languageHandler.setLanguage(languageHandler.getLanguage());
 });
 
 const languageHandler = new LanguageHandler("de");

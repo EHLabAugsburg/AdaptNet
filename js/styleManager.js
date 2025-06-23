@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Class for managing the correct feature's appearance.
  */
@@ -13,7 +14,7 @@ class StyleManager {
       "#91bfdb": -10,
       "#4575b4": -100,
     },
-    timed: {
+    atTime: {
       "#B30000": 100,
       "#E34A33": 80,
       "#FC8D59": 60,
@@ -24,19 +25,19 @@ class StyleManager {
   };
 
   /**
-   *
    * @param {*} risk The risk of the current displayed layer.
    * @param {*} time The time of the current displayed layer.
    */
   constructor(risk, time) {
     this._risk = risk;
     this._time =
-      time == "current"
+      time === "current"
         ? "Gegenwart"
-        : time == "future"
+        : time === "future"
         ? "Zukunft"
         : "Veränderung";
   }
+
   /**
    * Get the color-code for the provided value with regards to the displayed layer.
    * @param {*} value The feature's property value.
@@ -46,11 +47,11 @@ class StyleManager {
    */
   static getHexColor(value, risk, time) {
     const colormap =
-      time == "Veränderung" && risk == "HotSpots"
+      time === "Veränderung" && risk === "HotSpots"
         ? StyleManager._STYLES.hotspotsChanged
-        : time == "Veränderung"
+        : time === "Veränderung"
         ? StyleManager._STYLES.changed
-        : StyleManager._STYLES.timed;
+        : StyleManager._STYLES.atTime;
     for (const [color, upperBound] of Object.entries(colormap)) {
       if (upperBound <= value) {
         return color;

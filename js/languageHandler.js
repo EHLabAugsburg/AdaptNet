@@ -8,7 +8,6 @@ class LanguageHandler {
     language: { de: "Übersetzen", en: "Translate" },
     methods: { de: "Methodik", en: "methods" },
     sources: { de: "Quellen", en: "sources" },
-    imprint: { de: "Impressum", en: "imprint" },
   };
   static _SEARCH_TEXT_PLACEHOLDER = {
     de: "Kreis suchen...",
@@ -31,7 +30,7 @@ class LanguageHandler {
    * Set the used language and apply the language.
    * @param {*} language The language of the applications DOM-elements.
    */
-  applyLanguage(language) {
+  setLanguage(language) {
     this._language = language;
     const languageControlButton = document.getElementById("language-control");
     languageControlButton.setAttribute(
@@ -45,17 +44,17 @@ class LanguageHandler {
       if (element.getAttribute("lang") === this.getLanguage())
         element.style.display = "inline";
     });
-    document.querySelector("button#methods").title =
+    document.getElementById("methods").title =
       LanguageHandler._BUTTON_TITLES.methods[this.getLanguage()];
-    document.querySelector("button#sources").title =
+    document.getElementById("sources").title =
       LanguageHandler._BUTTON_TITLES.sources[this.getLanguage()];
-    document.querySelector("button#imprint").title =
+    document.getElementById("imprint").title =
       LanguageHandler._BUTTON_TITLES.imprint[this.getLanguage()];
-    document.querySelector("input#searchtext15").placeholder =
+    document.getElementById("searchtext15").placeholder =
       LanguageHandler._SEARCH_TEXT_PLACEHOLDER[this.getLanguage()];
     document.querySelector("a.search-button").title =
       LanguageHandler._SEARCH_TEXT_PLACEHOLDER[this.getLanguage()];
-    if (popupExists()) {
+    if (document.querySelector("div.leaflet-popup-content")) {
       document
         .querySelectorAll("div.leaflet-popup-content span[lang]")
         .forEach((element) => {

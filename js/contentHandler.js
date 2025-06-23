@@ -767,9 +767,9 @@ class ContentHandler {
   constructor(risk, time, languageHandler) {
     this._risk = risk;
     this._time =
-      time == "current"
+      time === "current"
         ? "Gegenwart"
-        : time == "future"
+        : time === "future"
         ? "Zukunft"
         : "Veränderung";
     this._languageHandler = languageHandler;
@@ -786,14 +786,33 @@ class ContentHandler {
     if (!detailedRisk) {
       const upperBound = classMap.upperBounds
         .filter((bound) => {
+          if (
+            value === 0 &&
+            classMap === ContentHandler._LAYER_CLASSIFICATIONS.Veränderung
+          )
+            return bound === 0; // ensure 0 stays an own class
+          else if (
+            classMap ===
+            ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung
+          ) {
           return bound >= value;
+          }
+          return bound > value;
         })
         .sort((number1, number2) =>
           number1 > number2 ? 1 : number1 === number2 ? 0 : -1
         )[0];
       const upperBoundIndex = classMap.upperBounds.indexOf(upperBound);
-      const classNameDe = classMap.headers.de[upperBoundIndex];
-      const classNameEn = classMap.headers.en[upperBoundIndex];
+      const classNameDe =
+        classMap === ContentHandler._LAYER_CLASSIFICATIONS.Veränderung &&
+        value >= 0
+          ? classMap.headers.de[upperBoundIndex + 1] // ensure 0 stays an own class
+          : classMap.headers.de[upperBoundIndex];
+      const classNameEn =
+        classMap === ContentHandler._LAYER_CLASSIFICATIONS.Veränderung &&
+        value >= 0
+          ? classMap.headers.en[upperBoundIndex + 1] // ensure 0 stays an own class
+          : classMap.headers.en[upperBoundIndex];
       return [classNameDe, classNameEn, upperBound];
     } else {
       for (const [classNameDe, valueDe] of Object.entries(classMap)) {
@@ -934,33 +953,61 @@ class ContentHandler {
   }
 
   /**
-   * Remove the subpage HTML-Element from DOM and update the interface-appearance.
-   * @param {*} subpageHtmlContainer The parent-node of the subpage HTML-element.
+   * Remove the subframe HTML-Element from DOM and update the interface-appearance.
+   * @param {*} subframeHtmlContainer The parent-node of the subframe HTML-element.
    */
-  static closeCurrentSubpage(subpageHtmlContainer) {
+  static closeCurrentSubframe(subframeHtmlContainer) {
     for (const button of document.querySelectorAll("#metadata button")) {
       button.classList.remove("current");
     }
-    for (const subpage of document.querySelectorAll(".subpage")) {
-      subpageHtmlContainer.removeChild(subpage);
+    for (const subframe of document.querySelectorAll(".subframe")) {
+      subframeHtmlContainer.removeChild(subframe);
     }
   }
 
   /**
-   * Show the corresponding subpage to the clicked button.
-   * @param {*} subpageHtmlContainer The parent-node of the subpage HTML-element. Latter gets inserted here.
-   * @param {*} clickedButton The button that was clicked and led to subpage request.
+   * Show the corresponding subframe to the clicked button.
+   * @param {*} subframeHtmlContainer The parent-node of the subframe HTML-element. Latter gets inserted here.
+   * @param {*} clickedButton The button that was clicked and led to subframe request.
    */
-  static showSubpage(subpageHtmlContainer, clickedButton) {
-    ContentHandler.closeCurrentSubpage(subpageHtmlContainer);
-    var subPageHtml =
-      clickedButton.id == "imprint"
+  static showSubframe(subframeHtmlContainer, clickedButton) {
+    ContentHandler.closeCurrentSubframe(subframeHtmlContainer);
+    const subframeHtml =
+      clickedButton.id === "imprint"
         ? ContentHandler._IMPRINT
         : ContentHandler._METHODS;
-    subpageHtmlContainer.insertAdjacentHTML("afterbegin", subPageHtml);
+    subframeHtmlContainer.insertAdjacentHTML("afterbegin", subframeHtml);
     clickedButton.classList.add("current");
-    document.querySelector(".subpage button").onclick = () =>
-      ContentHandler.closeCurrentSubpage(subpageHtmlContainer);
+    document.querySelector(".subframe button").onclick = () =>
+      ContentHandler.closeCurrentSubframe(subframeHtmlContainer);
+  }
+
+  static getLegendClasses(risk, time, language) {
+    if (time === "Veränderung" && risk === "HotSpots") {
+      return ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung.headers[
+        language
+      ];
+    } else if (time === "Veränderung") {
+      return ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers[
+        language
+      ];
+    } else {
+      return ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers[language];
+    }
+  }
+
+  static getLegendTitle(risk, time, language) {
+    const legendRisk =
+      risk === "HotSpots"
+        ? "HotSpots"
+        : ContentHandler._FACTOR_CLASSIFICATIONS[risk].riskName[language];
+    const legendTime =
+      time === "Gegenwart"
+        ? ContentHandler._TEXT_CONTENTS.currentTimeTitle[language]
+        : time === "Veränderung"
+        ? ContentHandler._TEXT_CONTENTS.changeTimeTitle[language]
+        : ContentHandler._TEXT_CONTENTS.futureTimeTitle[language];
+    return `${legendRisk} ${legendTime}`;
   }
 
   /**
@@ -1017,8 +1064,6 @@ class ContentHandler {
       popupContentHtml += '<div id="hotspot-change" class="score-bar">';
       left_property = Math.min(40 * valueToDisplay + 8, 188); // 8px from left end to middle of first bar, then +40px for each class
     } else if (this._time === "Veränderung") {
-      index = [...index]; // need for deep copy because of modification
-      index.splice(index.indexOf(-0.005), 1); // TODO: find clean solution
       classSeperatorsAmount = 6;
       popupContentHtml += '<div id="change" class="score-bar">';
       left_property =
@@ -1027,7 +1072,7 @@ class ContentHandler {
           : Math.min(4 * valueToDisplay + 68, 268); // 4px represent one score-point, 68px represents zero score-points
     } else {
       classSeperatorsAmount = 5;
-      popupContentHtml += '<div id="timed" class="score-bar">';
+      popupContentHtml += '<div id="at-time" class="score-bar">';
       left_property = Math.min(2 * valueToDisplay - 12, 228); // 2px represent one score-point, minus offset 12px
     }
     for (let i = 1; i <= index.length; i++) {
@@ -1083,15 +1128,14 @@ class ContentHandler {
   getTooltipContent(county) {
     const symbolizingValue =
       county.feature.properties[`${this._risk} ${this._time}`];
-    var tooltipContentHtml = `<span class="tooltip-title">${
+    return `<span class="tooltip-title">${
       county.feature.properties[ContentHandler._COUNTY_NAME_PROPERTY_NAME]
     }</span><br><span class="value" style="color: ${StyleManager.getHexColor(
       symbolizingValue,
       this._risk,
       this._time
     )}">${
-      symbolizingValue > 0 && this._time == "Veränderung" ? "+" : ""
+      symbolizingValue > 0 && this._time === "Veränderung" ? "+" : ""
     }${Number(symbolizingValue).toFixed()}</span>`;
-    return tooltipContentHtml;
   }
 }

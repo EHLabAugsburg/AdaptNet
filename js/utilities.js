@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Get the current selected risk.
  * @returns The current selected risk if any selected. Else null.
@@ -18,11 +19,6 @@ function getCurrentTime() {
     : null;
 }
 
-function popupExists() {
-  if (document.querySelector("div.leaflet-popup-content")) return true;
-  return false;
-}
-
 /**
  * Update the map ui with the current user's selected layer and it's information to display.
  * @param {*} risk The risk of the layer to display
@@ -41,7 +37,7 @@ function updateDisplayedLayer(risk, time) {
         sticky: true,
       });
       county.addEventListener("popupopen", () => {
-        languageHandler.applyLanguage(languageHandler.getLanguage());
+        languageHandler.setLanguage(languageHandler.getLanguage());
       });
     });
   }

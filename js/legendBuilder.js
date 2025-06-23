@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Class for dynamic legend adjustements and document insertion.
  */
@@ -26,9 +27,9 @@ class LegendBuilder {
   constructor(risk, time, languageHandler) {
     this._risk = risk;
     this._time =
-      time == "current"
+      time === "current"
         ? "Gegenwart"
-        : time == "future"
+        : time === "future"
         ? "Zukunft"
         : "Veränderung";
     this._htmlLegendElement = document.getElementById(
@@ -46,26 +47,26 @@ class LegendBuilder {
    */
   build() {
     this._htmlLegendElement.classList.add(`${this._risk}-${this._time}`);
-    var htmlLegendInnerHtml = `<span id="title">${this._languageHandler.getLegendTitle(
-      this._risk,
-      this._time
-    )}</span><div class="legend-classes"><div id="text">`;
-    var htmlLegendColorRow = "<div id='symbol'>";
-    var colormap;
-    const classNames = this._languageHandler.getLegendClasses(
+    let htmlLegendInnerHtml = `<span id="title">${ContentHandler.getLegendTitle(
       this._risk,
       this._time,
-      this._languageHandler.language()
-    );
-    colormap =
-      this._time == "Veränderung" && this._risk == "HotSpots"
+      this._languageHandler.getLanguage()
+    )}</span><div class="legend-classes"><div id="text">`;
+    let htmlLegendColorRow = "<div id='symbol'>";
+    const colormap =
+      this._time === "Veränderung" && this._risk === "HotSpots"
         ? LegendBuilder._COLORMAPS.hotspotsChange
-        : this._time == "Veränderung"
+        : this._time === "Veränderung"
         ? LegendBuilder._COLORMAPS.change
         : LegendBuilder._COLORMAPS.atTime;
+    const classNames = ContentHandler.getLegendClasses(
+      this._risk,
+      this._time,
+      this._languageHandler.getLanguage()
+    );
     for (const [classNumber, classColor] of Object.entries(colormap)) {
       htmlLegendInnerHtml += `<span>${classNames[classNumber]}</span>`;
-      htmlLegendColorRow += `<div class='symbol' style='background-color: ${classColor};'></div>`;
+      htmlLegendColorRow += `<div class='symbol' style='background-color:${classColor};'></div>`;
     }
     htmlLegendInnerHtml += "</div>";
     htmlLegendColorRow += "</div>";
