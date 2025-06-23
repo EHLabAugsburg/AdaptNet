@@ -36,16 +36,16 @@ document.querySelectorAll("#time-control button").forEach((button) => {
   });
 });
 
-document.querySelectorAll("select option").forEach((option) => {
-  option.addEventListener("click", function (event) {
-    languageHandler.applyLanguage(event.target.value);
+document
+  .getElementById("language-control")
+  .addEventListener("click", function (event) {
+    languageHandler.setLanguage(event.target.value);
     const legendBuilder = new LegendBuilder(
       getCurrentRisk(),
       getCurrentTime(),
       languageHandler
     );
     legendBuilder.build();
-  });
 });
 
 document

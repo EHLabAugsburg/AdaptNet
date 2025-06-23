@@ -76,12 +76,17 @@ div#interface {
         }
       }
     }
-    &#language-control {
+    &#control {
       grid-column: 1;
       grid-row: 2;
-      height: fit-content;
       margin: 10px 5px;
-      width: fit-content;
+      button {
+        height: 25px;
+        width: 25px;
+        &#language-control {
+          background-image: url("../resources/translate.png");
+        }
+      }
     }
     &#legend {
       align-self: end;

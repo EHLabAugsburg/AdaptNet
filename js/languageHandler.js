@@ -4,6 +4,8 @@
  */
 class LanguageHandler {
   static _BUTTON_TITLES = {
+    imprint: { de: "Impressum", en: "imprint" },
+    language: { de: "Übersetzen", en: "Translate" },
     methods: { de: "Methodik", en: "methods" },
     sources: { de: "Quellen", en: "sources" },
     imprint: { de: "Impressum", en: "imprint" },
@@ -31,6 +33,13 @@ class LanguageHandler {
    */
   applyLanguage(language) {
     this._language = language;
+    const languageControlButton = document.getElementById("language-control");
+    languageControlButton.setAttribute(
+      "value",
+      this._language === "de" ? "en" : "de"
+    );
+    languageControlButton.title =
+      LanguageHandler._BUTTON_TITLES.language[this.getLanguage()];
     document.querySelectorAll("[lang]").forEach((element) => {
       element.style.display = "none";
       if (element.getAttribute("lang") === this.getLanguage())
