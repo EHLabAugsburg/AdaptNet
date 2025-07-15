@@ -33,12 +33,7 @@ document
   .getElementById("language-control")
   .addEventListener("click", function (event) {
     languageHandler.setLanguage(event.target.value);
-    const legendBuilder = new LegendBuilder(
-      getCurrentRisk(),
-      getCurrentTime(),
-      languageHandler
-    );
-    legendBuilder.build();
+    updateDisplayedLayer(getCurrentRisk(), getCurrentTime(), false);
   });
 
 document

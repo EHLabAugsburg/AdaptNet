@@ -23,13 +23,15 @@ function getCurrentTime() {
  * Update the map ui with the current user's selected layer and it's information to display.
  * @param {*} risk The risk of the layer to display
  * @param {*} time The time of the layer to display
+ * @param {*} switchedLayer True if the displayed layer was switched, else (e.g. just the language changed) false.
  */
-function updateDisplayedLayer(risk, time) {
+function updateDisplayedLayer(risk, time, switchedLayer = true) {
   if (risk && time) {
     const styleManager = new StyleManager(risk, time);
     const contentHandler = new ContentHandler(risk, time, languageHandler);
     const legendBuilder = new LegendBuilder(risk, time, languageHandler);
     legendBuilder.build();
+    if (switchedLayer)
     geo_json_counties.eachLayer(function (county) {
       styleManager.style(county);
       county.bindPopup(contentHandler.getPopupContent(county));
@@ -40,5 +42,9 @@ function updateDisplayedLayer(risk, time) {
         languageHandler.setLanguage(languageHandler.getLanguage());
       });
     });
+    document.querySelector("#map-title").textContent =
+      ContentHandler.getMapTitle(risk, languageHandler.getLanguage());
+    document.querySelector("#risk-explanation").innerHTML =
+      ContentHandler.getRiskExplanation(risk, languageHandler.getLanguage());
   }
 }
