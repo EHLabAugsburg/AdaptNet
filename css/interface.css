@@ -19,12 +19,16 @@ div#interface {
     height: fit-content;
     width: fit-content;
     z-index: 1000;
-    &#layer-control {
+    #map-title {
+      color: black;
+      padding: 5px;
+      text-shadow: 1px 1px white, -1px -1px white, 1px -1px white,
+        -1px 1px white;
+    }
+    #layer-control {
       background-color: white;
       border: 1px solid black;
-      grid-column: 1;
-      grid-row: 1;
-      margin: 10px 5px;
+      margin: 5px;
       padding: 5px;
       div {
         &#risk-control {
@@ -77,7 +81,30 @@ div#interface {
         width: 25px;
         &#language-control {
           background-image: url("../resources/translate.png");
+          background-size: cover;
         }
+      }
+    }
+    #risk-information {
+      all: unset;
+      width: 24px;
+      float: right;
+      height: 24px;
+      background-size: cover;
+      background-image: url("../resources/info.png");
+      #risk-explanation {
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 4px;
+        opacity: 0;
+        padding: 10px;
+        transition: opacity 0.5s;
+        visibility: hidden;
+        width: 245px;
+      }
+      &:hover #risk-explanation {
+        opacity: 1;
+        visibility: visible;
       }
     }
     &#legend {

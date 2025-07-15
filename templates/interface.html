@@ -1,22 +1,30 @@
 <div id="interface">
-  <div id="layer-control">
+  <div>
+    <h2 id="map-title"></h2> {# text-content will be inserted later #}
+    <div id="layer-control">
       <div id="risk-control">
-        <span lang="de">Wählen Sie eine Gefahr:</span>
-        <span lang="en">Please choose a hazard:</span><br>
+        <span lang="de"><b>1.</b>Wählen Sie eine Gefahr:</span>
+        <span lang="en"><b>1.</b>Please choose a hazard:</span><br>
         {% for risk in risks %}
           <button id={{ risk }} title={{ risk }}></button>
         {% endfor %}
       </div>
       <div id="time-control">
-        <span lang="de">Wählen Sie einen Zeitraum:</span>
-        <span lang="en">Please choose a time period:</span><br>
+        <span lang="de"><b>2.</b>Wählen Sie einen Zeitraum:</span>
+        <span lang="en"><b>2.</b>Please choose a time period:</span><br>
         {% for time in times %}
           <button id={% if time == "Gegenwart" %} "current" {% elif time == "Zukunft" %} "future" {% else %} "change" {% endif %}  title={{ time }}></button>
         {% endfor %}
       </div>
-  </div>
-  <div id="control">
-    <button id="language-control" title="Übersetzen" value="en"></button>
+      <span lang="de"><b>3.</b>Wählen Sie einen Kreis.</span>
+      <span lang="en"><b>3.</b>Please choose a county.</span>
+      <button id="risk-information">
+        <div id="risk-explanation"></div>
+      </button>
+    </div>
+    <div id="control">
+      <button id="language-control" title="Übersetzen" value="en"></button>
+    </div>
   </div>
   <div id="metadata">
       <button id="methods" title="Methodik"></button>
