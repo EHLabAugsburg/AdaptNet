@@ -72,13 +72,13 @@ div#interface {
         }
       }
     }
-    &#control {
-      grid-column: 1;
-      grid-row: 2;
-      margin: 10px 5px;
+    #control {
+      margin: 5px;
       button {
-        height: 25px;
-        width: 25px;
+        all: unset;
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
         &#language-control {
           background-image: url("../resources/translate.png");
           background-size: cover;
@@ -134,10 +134,12 @@ div#interface {
           }
           &#symbol {
             div {
-              border: 1px solid;
+              border: 1px solid black;
+              font-size: small;
               height: 20px;
               margin: 2px 0px 2px 10px;
-              width: 50px;
+              text-align: center;
+              width: 65px;
             }
           }
         }
