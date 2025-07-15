@@ -938,6 +938,34 @@ class ContentHandler {
   }
 
   /**
+   * Get the title of the map.
+   * @param {*} risk The risk the map displays currently.
+   * @param {*} language The langage of the map-title.
+   * @returns The appropriate map-title as string.
+   */
+  static getMapTitle(risk, language) {
+    if (language === "de") {
+      return risk !== "HotSpots"
+        ? `Gesundheitliche Risiken durch ${risk}`
+        : "HotSpots der Gesundheitsgefahren";
+    } else {
+      return risk !== "HotSpots"
+        ? `health risks through ${ContentHandler._FACTOR_CLASSIFICATIONS[risk].riskName[language]}`
+        : "Hotspots of Climate-Related Health Hazards";
+    }
+  }
+
+  /**
+   * Get a risk-explanation.
+   * @param {*} risk The risk of the explanation
+   * @param {*} language The language of the explanation.
+   * @returns The explanation as string.
+   */
+  static getRiskExplanation(risk, language) {
+    return ContentHandler._FACTOR_CLASSIFICATIONS[risk].explanation[language];
+  }
+
+  /**
    * Get a html-parsed string which displays the feature-specific popup.
    * @param {*} county The feature to compute the popup for.
    * @returns A html-parsed string representing the popup for the provided county.
