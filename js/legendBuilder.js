@@ -4,18 +4,29 @@
  */
 class LegendBuilder {
   static _COLORMAPS = {
-    // color-codes in ascending order
-    atTime: ["#FEF0D9", "#FDD49E", "#FDBB84", "#FC8D59", "#E34A33", "#B30000"],
-    change: [
-      "#4575b4",
-      "#91bfdb",
-      "#ffffb2",
-      "#fecc5c",
-      "#fd8d3c",
-      "#f03b20",
-      "#bd0026",
+    // color-codes with labeling-color and class-intervals in ascending order
+    atTime: [
+      ["#FEF0D9", "black", "&lt;20"],
+      ["#FDD49E", "black", "20 - &lt;40"],
+      ["#FDBB84", "black", "40 - &lt;60"],
+      ["#FC8D59", "black", "60 - &lt;80"],
+      ["#E34A33", "black", "80 - &lt;100"],
+      ["#B30000", "white", "&ge;100"],
     ],
-    hotspotsChange: ["#e0f3f8", "#fee090", "#d73027"],
+    change: [
+      ["#4575b4", "white", "&lt;-10"],
+      ["#91bfdb", "black", "-10 - &lt;0"],
+      ["#ffffb2", "black", "0 - &lt;10"],
+      ["#fecc5c", "black", "10 - &lt;20"],
+      ["#fd8d3c", "black", "20 - &lt;30"],
+      ["#f03b20", "black", "30 - &lt;40"],
+      ["#bd0026", "white", "&ge;40"],
+    ],
+    hotspotsChange: [
+      ["#e0f3f8", "black", "0"],
+      ["#fee090", "black", "+1"],
+      ["#d73027", "white", "+2"],
+    ],
   };
   static _LEGEND_HTML_ID = "legend";
 
@@ -64,9 +75,9 @@ class LegendBuilder {
       this._time,
       this._languageHandler.getLanguage()
     );
-    for (const [classNumber, classColor] of Object.entries(colormap)) {
+    for (const [classNumber, classProperties] of Object.entries(colormap)) {
       htmlLegendInnerHtml += `<span>${classNames[classNumber]}</span>`;
-      htmlLegendColorRow += `<div class='symbol' style='background-color:${classColor};'></div>`;
+      htmlLegendColorRow += `<div class='symbol' style='background-color:${classProperties[0]};color:${classProperties[1]};'>${classProperties[2]}</div>`;
     }
     htmlLegendInnerHtml += "</div>";
     htmlLegendColorRow += "</div>";
