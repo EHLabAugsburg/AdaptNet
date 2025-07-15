@@ -65,4 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
   languageHandler.setLanguage(languageHandler.getLanguage());
 });
 
-const languageHandler = new LanguageHandler("de");
+const languageHandler = new LanguageHandler(
+  navigator.language === "de" ? "de" : "en"
+);
