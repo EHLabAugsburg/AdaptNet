@@ -18,66 +18,32 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (PM2.5)": {
-              gering: 0,
-              mittel: 1,
-              hoch: 2,
+            de: ["gering", "mittel", "hoch"],
+            en: ["low", "medium", "high"],
+            values: [0, 1, 2],
             },
             "Faktor 1 (PM10)": {
-              gering: 0,
-              mittel: 1,
-              hoch: 2,
+            de: ["gering", "mittel", "hoch"],
+            en: ["low", "medium", "high"],
+            values: [0, 1, 2],
             },
             "Faktor 1 (NO2)": {
-              gering: 0,
-              mittel: 1,
-              hoch: 2,
+            de: ["gering", "mittel", "hoch"],
+            en: ["low", "medium", "high"],
+            values: [0, 1, 2],
             },
             "Faktor 1 (O3)": {
-              gering: 0,
-              mittel: 1,
-              hoch: 2,
+            de: ["gering", "mittel", "hoch"],
+            en: ["low", "medium", "high"],
+            values: [0, 1, 2],
             },
             "Faktor 2 (Hitze)": {
-              gering: 0,
-              niedrig: 0.5,
-              mittel: 1,
-              hoch: 1.5,
-              kritisch: 2,
+            de: ["gering", "niedrig", "mittel", "hoch", "kritisch"],
+            en: ["very low", "low", "medium", "high", "critical"],
+            values: [0, 0.5, 1, 1.5, 2],
             },
             Summe: { Maximum: 10 },
-          },
-          en: {
-            "Faktor 1 (PM2.5)": {
-              low: 0,
-              medium: 1,
-              high: 2,
-            },
-            "Faktor 1 (PM10)": {
-              low: 0,
-              medium: 1,
-              high: 2,
-            },
-            "Faktor 1 (NO2)": {
-              low: 0,
-              medium: 1,
-              high: 2,
-            },
-            "Faktor 1 (O3)": {
-              low: 0,
-              medium: 1,
-              high: 2,
-            },
-            "Faktor 2 (Hitze)": {
-              "very low": 0,
-              low: 0.5,
-              medium: 1,
-              high: 1.5,
-              critical: 2,
-            },
-            Summe: { Maximum: 10 },
-          },
         },
       },
       Zukunft: {
@@ -91,48 +57,61 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
-            "Faktor 1 (PM2.5)": { abnehmend: -0.5 },
-            "Faktor 1 (PM10)": { abnehmend: -0.5 },
-            "Faktor 1 (NO2)": { abnehmend: -0.5 },
-            "Faktor 1 (O3)": { stagniernd: 0 },
+          "Faktor 1 (PM2.5)": {
+            de: ["abnehmend"],
+            en: ["decreasing"],
+            values: [-0.5],
+          },
+          "Faktor 1 (PM10)": {
+            de: ["abnehmend"],
+            en: ["decreasing"],
+            values: [-0.5],
+            },
+          "Faktor 1 (NO2)": {
+            de: ["abnehmend"],
+            en: ["decreasing"],
+            values: [-0.5],
+          },
+          "Faktor 1 (O3)": {
+            de: ["stagnierend"],
+            en: ["stagnating"],
+            values: [0],
+          },
             "Faktor 2 (Bevölkerungsprognose)": {
-              "stark abnehmend": -1,
-              "eher abnehmend": -0.5,
-              stagnierend: 0,
-              "eher zunehmend": 0.5,
-              "stark zunehmend": 1,
+            de: [
+              "stark abnehmend",
+              "eher abnehmend",
+              "stagnierend",
+              "eher zunehmend",
+              "stark zunehmend",
+            ],
+            en: [
+              "strongly decreasing",
+              "slightly decreasing",
+              "stagnating",
+              "slightly increasing",
+              "strongly increasing",
+            ],
+            values: [-1, -0.5, 0, 0.5, 1],
             },
             "Faktor 3 (Hitze)": {
-              stagnierend: 0,
-              "leicht zunehmend": 1,
-              zunehmend: 2,
-              "stark zunehmend": 3,
-              "kritisch zunehmend": 4,
+            de: [
+              "stagnierend",
+              "leicht zunehmend",
+              "zunehmend",
+              "stark zunehmend",
+              "kritisch zunehmend",
+            ],
+            en: [
+              "stagnating",
+              "slightly increasing",
+              "increasing",
+              "strongly increasing",
+              "critically increasing",
+            ],
+            values: [0, 1, 2, 3, 4],
             },
             Summe: { Maximum: 10 },
-          },
-          en: {
-            "Faktor 1 (PM2.5)": { decreasing: -0.5 },
-            "Faktor 1 (PM10)": { decreasing: -0.5 },
-            "Faktor 1 (NO2)": { decreasing: -0.5 },
-            "Faktor 1 (O3)": { stagnating: 0 },
-            "Faktor 2 (Bevölkerungsprognose)": {
-              "strongly decreasing": -1,
-              "slightly decreasing": -0.5,
-              stagnating: 0,
-              "slightly increasing": 0.5,
-              "strondly increasing": 1,
-            },
-            "Faktor 3 (Hitze)": {
-              stagnating: 0,
-              "slightly increasing": 1,
-              increasing: 2,
-              "strondly increasing": 3,
-              "critically increasing": 4,
-            },
-            Summe: { Maximum: 10 },
-          },
         },
       },
     },
@@ -147,50 +126,23 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (Prozessionsspinner)": {
-              "nicht relevant": 0,
-              relevant: 1,
+            de: ["nicht relevant", "relevant"],
+            en: ["irrelevant", "relevant"],
+            values: [0, 1],
             },
             "Faktor 2 (Heuschnupfen)": {
-              "nicht relevant": 0,
-              gering: 0.25,
-              mittel: 0.5,
-              hoch: 0.75,
-              "sehr hoch": 1,
+            de: ["nicht relevant", "gering", "mittel", "hoch", "sehr hoch"],
+            en: ["irrelevant", "low", "medium", "high", "very high"],
+            values: [0, 0.25, 0.5, 0.75, 1],
             },
-            "Faktor 3 (Pollen)": { hoch: 2 },
+          "Faktor 3 (Pollen)": { de: ["hoch"], en: ["high"], values: [2] },
             "Faktor 4 (Luftqualität)": {
-              gering: 0,
-              niedrig: 0.5,
-              mittel: 1,
-              hoch: 1.5,
-              kritisch: 2,
+            de: ["gering", "niedrig", "mittel", "hoch", "kritisch"],
+            en: ["very low", "low", "medium", "high", "critical"],
+            values: [0, 0.5, 1, 1.5, 2],
             },
             Summe: { Maximum: 6 },
-          },
-          en: {
-            "Faktor 1 (Prozessionsspinner)": {
-              irrelevant: 0,
-              relevant: 1,
-            },
-            "Faktor 2 (Heuschnupfen)": {
-              irrelevant: 0,
-              low: 0.25,
-              medium: 0.5,
-              high: 0.75,
-              "very high": 1,
-            },
-            "Faktor 3 (Pollen)": { high: 2 },
-            "Faktor 4 (Luftqualität)": {
-              "very low": 0,
-              low: 0.5,
-              medium: 1,
-              high: 1.5,
-              critical: 2,
-            },
-            Summe: { Maximum: 6 },
-          },
         },
       },
       Zukunft: {
@@ -201,43 +153,35 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (Prozessionsspinner)": {
-              stagnierend: 0,
-              zunehmend: 0.5,
+            de: ["stagnierend", "zunehmend"],
+            en: ["stagnating", "increasing"],
+            values: [0, 0.5],
             },
             "Faktor 2 (Bevölkerungsprognose)": {
-              "stark abnehmend": -0.5,
-              "eher abnehmend": -0.25,
-              stagnierend: 0,
-              "eher zunehmend": 0.25,
-              "stark zunehmend": 0.5,
+            de: [
+              "stark abnehmend",
+              "eher abnehmend",
+              "stagnierend",
+              "eher zunehmend",
+              "stark zunehmend",
+            ],
+            en: [
+              "strongly decreasing",
+              "slightly decreasing",
+              "stagnating",
+              "slightly increasing",
+              "strongly increasing",
+            ],
+            values: [-0.5, -0.25, 0, 0.25, 0.5],
             },
             "Faktor 3 (Temperatur)": {
-              stagnierend: 0,
-              zunehmend: 1,
+            de: ["stagnierend", "zunehmend"],
+            en: ["stagnating", "increasing"],
+            values: [0, 1],
             },
             Summe: { Maximum: 6 },
           },
-          en: {
-            "Faktor 1 (Prozessionsspinner)": {
-              stagnating: 0,
-              increasing: 0.5,
-            },
-            "Faktor 2 (Bevölkerungsprognose)": {
-              "strongly decreasing": -0.5,
-              "slighly decreasing": -0.25,
-              stagnating: 0,
-              "slightly increasing": 0.25,
-              "strongly increasing": 0.5,
-            },
-            "Faktor 3 (Temperatur)": {
-              stagnating: 0,
-              increasing: 1,
-            },
-            Summe: { Maximum: 6 },
-          },
-        },
       },
     },
     Überschwemmung: {
@@ -252,58 +196,27 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (Starkniederschlag)": {
-              gering: 0,
-              mittel: 1,
-              hoch: 2,
+            de: ["gering", "mittel", "hoch"],
+            en: ["low", "medium", "high"],
+            values: [0, 1, 2],
             },
             "Faktor 2 (Hochwassergefahr)": {
-              "nicht relevant": 0,
-              gering: 0.5,
-              mittel: 1,
-              hoch: 1.5,
-              "sehr hoch": 2,
+            de: ["nicht relevant", "gering", "mittel", "hoch", "sehr hoch"],
+            en: ["irrelevant", "low", "medium", "high", "very high"],
+            values: [0, 0.5, 1, 1.5, 2],
             },
             "Faktor 3 (Kreistyp)": {
-              "nicht relevant": 0,
-              gering: 0.25,
-              mittel: 0.5,
-              hoch: 1,
+            de: ["nicht relevant", "gering", "mittel", "hoch"],
+            en: ["irrelevant", "low", "medium", "high"],
+            values: [0, 0.25, 0.5, 1],
             },
             "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
-              gering: 0,
-              mittel: 0.5,
-              hoch: 1,
+            de: ["gering", "mittel", "hoch"],
+            en: ["low", "medium", "high"],
+            values: [0, 0.5, 1],
             },
             Summe: { Maximum: 6 },
-          },
-          en: {
-            "Faktor 1 (Starkniederschlag)": {
-              low: 0,
-              medium: 1,
-              high: 2,
-            },
-            "Faktor 2 (Hochwassergefahr)": {
-              "nicht relevant": 0,
-              low: 0.5,
-              medium: 1,
-              high: 1.5,
-              "very high": 2,
-            },
-            "Faktor 3 (Kreistyp)": {
-              irrelevant: 0,
-              low: 0.25,
-              medium: 0.5,
-              high: 1,
-            },
-            "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
-              low: 0,
-              medium: 0.5,
-              high: 1,
-            },
-            Summe: { Maximum: 6 },
-          },
         },
       },
       Zukunft: {
@@ -316,53 +229,40 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (Starkniederschlag)": {
-              abnehmend: -1,
-              stagnierend: 0,
-              zunehmend: 1,
+            de: ["abnehmend", "stagnierend", "zunehmend"],
+            en: ["decreasing", "stagnating", "increasing"],
+            values: [-1, 0, 1],
             },
             "Faktor 2 (Hochwassergefahr)": {
-              unbekannt: 0,
+            de: ["unbekannt"],
+            en: ["unknown"],
+            values: [0],
             },
             "Faktor 3 (Bevölkerungsprognose)": {
-              "stark abnehmend": -0.5,
-              "eher abnehmend": -0.25,
-              stagnierend: 0,
-              "eher zunehmend": 0.25,
-              "stark zunehmend": 0.5,
+            de: [
+              "stark abnehmend",
+              "eher abnehmend",
+              "stagnierend",
+              "eher zunehmend",
+              "stark zunehmend",
+            ],
+            en: [
+              "strongly decreasing",
+              "slightly decreasing",
+              "stagnating",
+              "slightly increasing",
+              "strongly increasing",
+            ],
+            values: [-0.5, -0.25, 0, 0.25, 0.5],
             },
             "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
-              abnehmend: -0.5,
-              stagnierend: 0,
-              zunehmend: 0.5,
+            de: ["abnehmend", "stagnierend", "zunehmend"],
+            en: ["decreasing", "stagnating", "increasing"],
+            values: [-0.5, 0, 0.5],
             },
             Summe: { Maximum: 6 },
           },
-          en: {
-            "Faktor 1 (Starkniederschlag)": {
-              decreasing: -1,
-              stagnating: 0,
-              increasing: 1,
-            },
-            "Faktor 2 (Hochwassergefahr)": {
-              unknown: 0,
-            },
-            "Faktor 3 (Bevölkerungsprognose)": {
-              "strongly decreasing": -0.5,
-              "slightly decreasing": -0.25,
-              stagnating: 0,
-              "slightly increasing": 0.25,
-              "strongly increasing": 0.5,
-            },
-            "Faktor 4 (Siedlungs-und Verkehrsfläche)": {
-              decreasing: -0.5,
-              stagnating: 0,
-              increasing: 0.5,
-            },
-            Summe: { Maximum: 6 },
-          },
-        },
       },
     },
     Waldbrand: {
@@ -373,26 +273,12 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (FWI)": {
-              gering: 1,
-              niedrig: 2,
-              mittel: 3,
-              hoch: 4,
-              kritisch: 5,
+            de: ["gering", "niedrig", "mittel", "hoch", "kritisch"],
+            en: ["very low", "low", "medium", "high", "critical"],
+            values: [1, 2, 3, 4, 5],
             },
             Summe: { Maximum: 5 },
-          },
-          en: {
-            "Faktor 1 (FWI)": {
-              "very low": 1,
-              low: 2,
-              medium: 3,
-              high: 4,
-              critical: 5,
-            },
-            Summe: { Maximum: 5 },
-          },
         },
       },
       Zukunft: {
@@ -402,37 +288,30 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (FWI)": {
-              stagnierend: 0,
-              zunehmend: 0.83,
-              "stark zunehmend": 1.67,
+            de: ["stagnierend", "zunehmend", "stark zunehmend"],
+            en: ["stagnating", "increasing", "strongly increasing"],
+            values: [0, 0.83, 1.67],
             },
             "Faktor 2 (Bevölkerungsprognose)": {
-              "stark abnehmend": -0.83,
-              "eher abnehmend": -0.42,
-              stagnierend: 0,
-              "eher zunehmend": 0.42,
-              "stark zunehmend": 0.83,
+            de: [
+              "stark abnehmend",
+              "eher abnehmend",
+              "stagnierend",
+              "eher zunehmend",
+              "stark zunehmend",
+            ],
+            en: [
+              "strongly decreasing",
+              "slightly decreasing",
+              "stagnating",
+              "slightly increasing",
+              "strongly increasing",
+            ],
+            values: [-0.83, -0.42, 0, 0.42, 0.83],
             },
             Summe: { Maximum: 5 },
           },
-          en: {
-            "Faktor 1 (FWI)": {
-              stagnating: 0,
-              increasing: 0.83,
-              "strongly increasing": 1.67,
-            },
-            "Faktor 2 (Bevölkerungsprognose)": {
-              "strongly decreasing": -0.83,
-              "slightly decreasing": -0.42,
-              stagnating: 0,
-              "slightly increasing": 0.42,
-              "strongly increasing": 0.83,
-            },
-            Summe: { Maximum: 5 },
-          },
-        },
       },
     },
     Hitze: {
@@ -447,52 +326,27 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (Region)": {
-              gering: 1,
-              mittel: 2,
-              hoch: 3,
+            de: ["gering", "mittel", "hoch"],
+            en: ["low", "medium", "high"],
+            values: [1, 2, 3],
             },
             "Faktor 1 (Trop.Nächte)": {
-              "nicht relevant": 0,
-              relevant: 3,
+            de: ["nicht relevant", "relevant"],
+            en: ["irrelevant", "relevant"],
+            values: [0, 3],
             },
             "Faktor 2 (Kreistyp)": {
-              "nicht relevant": 0,
-              gering: 0.5,
-              mittel: 1,
-              hoch: 1.5,
+            de: ["nicht relevant", "gering", "mittel", "hoch"],
+            en: ["irrelevant", "low", "medium", "high"],
+            values: [0, 0.5, 1, 1.5],
             },
             "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-              "nicht relevant": 0,
-              mittel: 0.75,
-              hoch: 1.5,
+            de: ["nicht relevant", "mittel", "hoch"],
+            en: ["irrelevant", "medium", "high"],
+            values: [0, 0.75, 1.5],
             },
             Summe: { Maximum: 9 },
-          },
-          en: {
-            "Faktor 1 (Region)": {
-              low: 1,
-              medium: 2,
-              high: 3,
-            },
-            "Faktor 1 (Trop.Nächte)": {
-              irrelevant: 0,
-              relevant: 3,
-            },
-            "Faktor 2 (Kreistyp)": {
-              irrelevant: 0,
-              low: 0.5,
-              medium: 1,
-              high: 1.5,
-            },
-            "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-              irrelevant: 0,
-              medium: 0.75,
-              high: 1.5,
-            },
-            Summe: { Maximum: 9 },
-          },
         },
       },
       Zukunft: {
@@ -505,53 +359,40 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (Heiße Tage)": {
-              stagnierend: 0,
-              zunehmend: 2,
+            de: ["stagnierend", "zunehmend"],
+            en: ["stagnating", "increasing"],
+            values: [0, 2],
             },
             "Faktor 1 (Trop.Nächte)": {
-              stagnierend: 0,
-              zunehmend: 2,
+            de: ["stagnierend", "zunehmend"],
+            en: ["stagnating", "increasing"],
+            values: [0, 2],
             },
             "Faktor 2 (Bevölkerungsprognose)": {
-              "stark abnehmend": -1,
-              "eher abnehmend": -0.5,
-              stagnierend: 0,
-              "eher zunehmend": 0.5,
-              "stark zunehmend": 1,
+            de: [
+              "stark abnehmend",
+              "eher abnehmend",
+              "stagnierend",
+              "eher zunehmend",
+              "stark zunehmend",
+            ],
+            en: [
+              "strongly decreasing",
+              "slightly decreasing",
+              "stagnating",
+              "slightly increasing",
+              "strongly increasing",
+            ],
+            values: [-1, -0.5, 0, 0.5, 1],
             },
             "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-              abnehmend: -1,
-              "moderat zunehmend": 0,
-              "stark zunehmend": 1,
+            de: ["abnehmend", "moderat zunehmend", "stark zunehmend"],
+            en: ["decreasing", "slightly increasing", "strongly increasing"],
+            values: [-1, 0, 1],
             },
             Summe: { Maximum: 9 },
           },
-          en: {
-            "Faktor 1 (Heiße Tage)": {
-              stagnating: 0,
-              increasing: 2,
-            },
-            "Faktor 1 (Trop.Nächte)": {
-              stagnating: 0,
-              increasing: 2,
-            },
-            "Faktor 2 (Bevölkerungsprognose)": {
-              "strongly decresaing": -1,
-              "slightly decreasing": -0.5,
-              stagnating: 0,
-              "slightly increasing": 0.5,
-              "strongly increasing": 1,
-            },
-            "Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-              decreasing: -1,
-              "slightly increasing": 0,
-              "strongly increasing": 1,
-            },
-            Summe: { Maximum: 9 },
-          },
-        },
       },
     },
     Vektoren: {
@@ -567,60 +408,37 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
             "Faktor 1 (FSME)": {
-              "nicht relevant": 0,
-              relevant: 1.33,
+            de: ["nicht relevant", "relevant"],
+            en: ["irrelevant", "relevant"],
+            values: [0, 1.33],
             },
             "Faktor 2 (Aedes albopictus)": {
-              "nicht relevant": 0,
-              relevant: 1.33,
+            de: ["nicht relevant", "relevant"],
+            en: ["irrelevant", "relevant"],
+            values: [0, 1.33],
             },
             "Faktor 2 (West-Nil-Virus)": {
-              "nicht relevant": 0,
-              relevant: 1.33,
+            de: ["nicht relevant", "relevant"],
+            en: ["irrelevant", "relevant"],
+            values: [0, 1.33],
             },
             "Faktor 3 (Zug)": {
-              "nicht relevant": 0,
-              relevant: 0.67,
+            de: ["nicht relevant", "relevant"],
+            en: ["irrelevant", "relevant"],
+            values: [0, 0.67],
             },
             "Faktor 3 (Flughafen)": {
-              "nicht relevant": 0,
-              relevant: 0.67,
+            de: ["nicht relevant", "relevant"],
+            en: ["irrelevant", "relevant"],
+            values: [0, 0.67],
             },
             "Faktor 3 (Schiff)": {
-              "nicht relevant": 0,
-              relevant: 0.67,
+            de: ["nicht relevant", "relevant"],
+            en: ["irrelevant", "relevant"],
+            values: [0, 0.67],
             },
             Summe: { Maximum: 6 },
-          },
-          en: {
-            "Faktor 1 (FSME)": {
-              irrelevant: 0,
-              relevant: 1.33,
-            },
-            "Faktor 2 (Aedes albopictus)": {
-              irrelevant: 0,
-              relevant: 1.33,
-            },
-            "Faktor 2 (West-Nil-Virus)": {
-              irrelevant: 0,
-              relevant: 1.33,
-            },
-            "Faktor 3 (Zug)": {
-              irrelevant: 0,
-              relevant: 0.67,
-            },
-            "Faktor 3 (Flughafen)": {
-              irrelevant: 0,
-              relevant: 0.67,
-            },
-            "Faktor 3 (Schiff)": {
-              irrelevant: 0,
-              relevant: 0.67,
-            },
-            Summe: { Maximum: 6 },
-          },
         },
       },
       Zukunft: {
@@ -632,41 +450,37 @@ class ContentHandler {
           Summe: "sum",
         },
         headers: {
-          de: {
-            "Faktor 1 (Zecken)": { zunehmend: 0.67 },
-            "Faktor 2 (Aedes albopictus)": {
-              stagnierend: 0,
-              zunehmend: 0.67,
-            },
-            "Faktor 2 (West-Nil-Virus)": {
-              stagnierend: 0,
-              zunehmend: 0.67,
-            },
-            "Faktor 3 (Bevölkerungsprognose)": {
-              "stark abnehmend": -1,
-              "eher abnehmend": -0.5,
-              stagnierend: 0,
-              "eher zunehmend": 0.5,
-              "stark zunehmend": 1,
-            },
-            Summe: { Maximum: 6 },
+          "Faktor 1 (Zecken)": {
+            de: ["zunehmend"],
+            en: ["increasing"],
+            values: [0.67],
           },
-          en: {
-            "Faktor 1 (Zecken)": { increasing: 0.67 },
             "Faktor 2 (Aedes albopictus)": {
-              stagnating: 0,
-              increasing: 0.67,
+            de: ["stagnierend", "zunehmend"],
+            en: ["stagnating", "increasing"],
+            values: [0, 0.67],
             },
             "Faktor 2 (West-Nil-Virus)": {
-              stagnating: 0,
-              increasing: 0.67,
+            de: ["stagnierend", "zunehmend"],
+            en: ["stagnating", "increasing"],
+            values: [0, 0.67],
             },
             "Faktor 3 (Bevölkerungsprognose)": {
-              "strongly decreasing": -1,
-              "slightly decreasing": -0.5,
-              stagnating: 0,
-              "slightly increasing": 0.5,
-              "strongly increasing": 1,
+            de: [
+              "stark abnehmend",
+              "eher abnehmend",
+              "stagnierend",
+              "eher zunehmend",
+              "stark zunehmend",
+            ],
+            en: [
+              "strongly decreasing",
+              "slightly decreasing",
+              "stagnating",
+              "slightly increasing",
+              "strongly increasing",
+            ],
+            values: [-1, -0.5, 0, 0.5, 1],
             },
             Summe: { Maximum: 6 },
           },
@@ -929,7 +743,15 @@ class ContentHandler {
               `${this._risk} ${this._time} Summe`
             ].toFixed()} ${language === "de" ? "von" : "out of"} ${
               ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
-                .headers[language][risk[0]].Maximum
+              .headers[riskName].Maximum
+          }<br></span>
+          <span class='${this._risk}-${
+            this._time
+          }-detailed' lang="en"><b>sum:</b> ${county.feature.properties[
+            `${this._risk} ${this._time} Summe`
+          ].toFixed()} out of ${
+            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
+              .headers[riskName].Maximum
             }<br></span>`;
           } else {
             let detailedRiskValue =
@@ -951,19 +773,17 @@ class ContentHandler {
                   )
                 : ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
                     this._time
-                  ].factorNameTranslations[risk[0]].substring(
+          }-detailed' lang="en"><b>${ContentHandler._FACTOR_CLASSIFICATIONS[
+            this._risk
+          ][this._time].factorNameTranslations[riskName].substring(
                     ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
                       this._time
-                    ].factorNameTranslations[risk[0]].indexOf("(") + 1,
+            ].factorNameTranslations[riskName].indexOf("(") + 1,
                     ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
                       this._time
-                    ].factorNameTranslations[risk[0]].indexOf(")")
-                  )
-            }:</b> ${
-              language === "de" ? classForValue[0] : classForValue[1]
-            }<br></span>`;
+            ].factorNameTranslations[riskName].indexOf(")")
+          )}:</b> ${classForValue[1]}<br></span>`;
           }
-        });
       });
     }
     return (detailedHtml += "</div></div>");
