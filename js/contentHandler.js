@@ -2,12 +2,27 @@
 /**
  * Class to ensure the dynamically display of correct information in popups, tooltips and subpages.
  */
-//TODO: leaning dictionary
 class ContentHandler {
   static _COUNTY_NAME_PROPERTY_NAME = "gen";
+  static _LINK_PAGE_BASE_URL = {
+    de: "https://www.uni-augsburg.de/de/fakultaet/med/profs/klimawandel-gesundheit/forschung/adaptnet/risikokarten",
+    en: "https://www.uni-augsburg.de/en/fakultaet/med/profs/klimawandel-gesundheit/forschung/adaptnet/risikokarten",
+  };
   static _FACTOR_CLASSIFICATIONS = {
     Luftqualität: {
       riskName: { de: "Luftqualität", en: "air quality" },
+      explanation: {
+        de: `<b>Gesundheitliche Folgen von Luftverschmutzung</b><br>
+        Feinstaub, Ozon und Stickstoffoxide können unsere Gesundheit stark belasten – vor allem Atemwege und das Herz-Kreislaufsystem sind gefährdet.<br>
+        <b>Wer ist besonders betroffen?</b></br>
+        Kinder, ältere Menschen, chronisch erkrankte Menschen und Menschen, die viel Zeit im Freien verbringen, sind besonders anfällig.
+        <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+        en: `<b>Health Impacts of Air Pollution</b><br>
+        Fine particulate matter, ozone, and nitrogen oxides can severely affect our health, primarily impacting the respiratory and cardiovascular systems.<br>
+        <b>Who is especially affected?</b><br>
+        Children, older adults, people with chronic illnesses, and those who spend a lot of time outdoors are particularly susceptible.
+        <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      },
       Gegenwart: {
         factorNameTranslations: {
           "Faktor 1 (PM2.5)": "factor 1 (PM2.5)",
@@ -117,6 +132,18 @@ class ContentHandler {
     },
     Allergene: {
       riskName: { de: "Allergene", en: "allergens" },
+      explanation: {
+        de: `<b>Gesundheitsgefahren durch Pollen und andere Allergene</b><br>
+      Der Klimawandel führt dazu, dass sich die Pollensaison verlängert und sich die in der Umwelt vorkommenden Allergene verändern können, z.B. durch die Ansiedlung neuer allergener Pflanzen.<br>
+      <b>Wer besonders anfällig ist:</b><br>
+      Kinder und Erwachsene mit Allergien oder allergischen Asthma sind besonders betroffen.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+        en: `<b>Health Risks from Pollen and Other Allergens</b><br>
+      Climate change is causing longer pollen seasons and can alter the types of allergens in the environment, for example, through the spread of new allergenic plants.<br>
+      <b>Who is particularly sensitive?</b><br>
+      Children and adults with allergies or allergic asthma are especially affected.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      },
       Gegenwart: {
         factorNameTranslations: {
           "Faktor 1 (Prozessionsspinner)": "factor 1 (processionary moth)",
@@ -186,6 +213,18 @@ class ContentHandler {
     },
     Überschwemmung: {
       riskName: { de: "Überschwemmung", en: "flooding" },
+      explanation: {
+        de: `<b>Gesundheitliche Folgen von Überschwemmungen</b><br>
+      Hochwasser kann nicht nur hohe Sachschäden mit sich bringen, sondern auch die Gesundheit gefährden – durch Verletzungsrisiken bis hin zu Todesfällen, verunreinigtes Wasser, Infektionen oder psychische Belastungen.<br>
+      <b>Wer ist besonders betroffen?</b><br>
+      Besonders gefährdet sind Menschen mit Mobilitäts- und kognitiven Einschränkungen, Einsatzkräfte oder Personen, die direkt mit verschmutztem Wasser in Kontakt kommen.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+        en: `<b>Health Impacts of Flooding</b><br>
+      Floods can cause not only severe property damage but also serious health risks, includ-ing injuries and fatalities, contaminated water, infections, and psychological stress.<br>
+      <b>Who is most affected?</b><br>
+      People with mobility or cognitive impairments, emergency responders, and individuals who come into direct contact with polluted water are particularly at risk.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      },
       Gegenwart: {
         factorNameTranslations: {
           "Faktor 1 (Starkniederschlag)": "factor 1 (heavy precipitation)",
@@ -267,6 +306,18 @@ class ContentHandler {
     },
     Waldbrand: {
       riskName: { de: "Waldbrand", en: "forest fire" },
+      explanation: {
+        de: `<b>Gesundheitliche Folgen von Waldbränden</b><br>
+      Waldbrände gefährden nicht nur die Natur, sondern auch unsere Gesundheit – durch Atemwegsprobleme durch Rauch, Verletzungen und psychische Belastung.<br>
+      <b>Wer ist besonders betroffen?</b><br>
+      Kinder, ältere Menschen, Schwangere, Personen mit eingeschränkter Mobilität und Einsatzkräfte sind durch Waldbrände besonders gefährdet.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+        en: `<b>Health Impacts of Wildfires</b><br>
+      Wildfires not only endanger the environment but also pose serious health risks, from respiratory issues caused by smoke to physical injuries and psychological stress.<br>
+      <b>Who is particularly vulnerable?</b><br>
+      Children, the elderly, pregnant individuals, people with limited mobility, and emergency personnel are especially at risk during wildfires.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      },
       Gegenwart: {
         factorNameTranslations: {
           "Faktor 1 (FWI)": "factor 1 (FWI)",
@@ -316,6 +367,18 @@ class ContentHandler {
     },
     Hitze: {
       riskName: { de: "Hitze", en: "heat" },
+      explanation: {
+        de: `<b>Gesundheitliche Risiken durch Hitze</b><br>
+      Hohe Temperaturen können den Körper stark belasten – besonders bei bestimmten Vorerkrankungen oder anstrengender körperlicher Tätigkeit.<br>
+      <b>Wer ist bei Hitze besonders gefährdet?</b><br>
+      Jeder Mensch kann betroffen sein, aber einige Menschen sind durch Hitze besonders gefährdet – darunter ältere Menschen, Kinder und Personen mit bestimmten Vorerkrankungen.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+        en: `<b>Health Risks from Heat</b><br>
+      High temperatures can place a significant strain on the body – especially for people with certain pre-existing conditions or during intense physical activity.<br>
+      <b>Who is especially at risk during heatwaves?</b><br>
+      Everyone can be affected, but some groups are particularly vulnerable – including older adults, children, and people with certain chronic illnesses.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      },
       Gegenwart: {
         factorNameTranslations: {
           "Faktor 1 (Region)": "factor 1 (region)",
@@ -397,6 +460,18 @@ class ContentHandler {
     },
     Vektoren: {
       riskName: { de: "Vektoren", en: "vectors" },
+      explanation: {
+        de: `<b>Gesundheitsrisiken durch von Vektoren übertragene Krankheiten</b><br>
+      Vektoren sind Krankheitsüberträger, z.B. Zecken oder Mücken. Zecken übertragen in Deutschland schon heute Erkrankungen wie die Borreliose. Mücken könnten in Zukunft vermehrt Erkrankungen wie West-Nil-Fieber oder Denguefieber übertragen.<br>
+      <b>Wer ist besonders anfällig?</b><br>
+      Insbesondere Menschen, die sich viel in der Natur aufhalten, kommen häufiger mit Zecken in Kontakt, z.B. in Wiesen, Wald und Gärten.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+        en: `<b>Health Risks from Vector-Borne Diseases</b><br>
+      Vectors are disease carriers such as ticks or mosquitoes. In Germany, ticks already transmit diseases like Lyme borreliosis. In the future, mosquitoes may increasingly spread diseases such as West Nile virus or dengue fever.<br>
+      <b>Who is particularly exposed?</b><br>
+      People who spend a lot of time in nature (in meadows, forests, or gardens) are more likely to come into contact with ticks.
+      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      },
       Gegenwart: {
         factorNameTranslations: {
           "Faktor 1 (FSME)": "factor 1 (FSME)",
@@ -485,6 +560,15 @@ class ContentHandler {
             Summe: { Maximum: 6 },
           },
         },
+    },
+    HotSpots: {
+      explanation: {
+        de: `<b>HotSpots der Gesundheitsgefahren</b><br>
+      Diese Karte stellt die insgesamt durchschnittliche Gesundheitsgefahr durch den Klimawandel dar. Sie fasst die Belastungen durch verschiedene Umweltgefahren zusammen: <b>Hitze</b>, <b>Überschwemmungen</b>, <b>Allergene</b>, <b>Krankheitsüberträger (Vektoren)</b>, <b>Waldbrände</b> und <b>Luftverschmutzung</b>.<br>
+      Die angezeigte Gesundheitsgefahr ergibt sich also aus einer Kombination all dieser Faktoren und bietet einen Überblick darüber, wie stark ein Gebiet im Durchschnitt gesundheitlich durch den Klimawandel belastet ist.`,
+        en: `<b>Hotspots of Climate-Related Health Hazards</b><br>
+      This map shows the overall average health risk from climate change. It combines the impact of several environmental hazards: <b>heat</b>, <b>flooding</b>, <b>allergens</b>, <b>disease vectors</b>, <b>wildfires</b>, and <b>air pollution</b>.<br>
+      The displayed health risk results from a combination of all these factors and provides an overview of how strongly a particular region is, on average, affected by climate-related health threats.`,
       },
     },
   };
@@ -731,17 +815,13 @@ class ContentHandler {
     } else {
       Object.entries(
         ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time].headers
-          .de
-      ).forEach((risk) => {
-        ["de", "en"].forEach((language) => {
-          if (risk[0] === "Summe") {
+      ).forEach(([riskName, riskClasses]) => {
+        if (riskName === "Summe") {
             detailedHtml += `<span class='${this._risk}-${
               this._time
-            }-detailed' lang="${language}"><b>${
-              language === "de" ? risk[0] : "sum"
-            }:</b> ${county.feature.properties[
+          }-detailed' lang="de"><b>${riskName}:</b> ${county.feature.properties[
               `${this._risk} ${this._time} Summe`
-            ].toFixed()} ${language === "de" ? "von" : "out of"} ${
+          ].toFixed()} von ${
               ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
               .headers[riskName].Maximum
           }<br></span>
@@ -756,22 +836,25 @@ class ContentHandler {
           } else {
             let detailedRiskValue =
               county.feature.properties[
-                `${this._risk} ${this._time} ${risk[0]}`
+              `${this._risk} ${this._time} ${riskName}`
               ];
             let classForValue = this._getClassForValue(
               detailedRiskValue,
-              risk[1],
-              risk[0]
+            Object.fromEntries(
+              riskClasses.de.map((element, index) => [
+                element,
+                riskClasses.values[index],
+              ])
+            ),
+            riskName
             );
             detailedHtml += `<span class='${this._risk}-${
               this._time
-            }-detailed' lang="${language}"><b>${
-              language === "de"
-                ? risk[0].substring(
-                    risk[0].indexOf("(") + 1,
-                    risk[0].indexOf(")")
-                  )
-                : ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
+          }-detailed' lang="de"><b>${riskName.substring(
+            riskName.indexOf("(") + 1,
+            riskName.indexOf(")")
+          )}:</b> ${classForValue[0]}<br></span>
+          <span class='${this._risk}-${
                     this._time
           }-detailed' lang="en"><b>${ContentHandler._FACTOR_CLASSIFICATIONS[
             this._risk
