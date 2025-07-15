@@ -9,6 +9,7 @@ div.leaflet-popup-content-wrapper {
       "description description description"
       "bar  bar info";
     justify-items: center;
+    margin: 10px 20px;
     h4 {
       grid-area: county-name;
       text-align: center;

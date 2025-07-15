@@ -32,16 +32,16 @@ function updateDisplayedLayer(risk, time, switchedLayer = true) {
     const legendBuilder = new LegendBuilder(risk, time, languageHandler);
     legendBuilder.build();
     if (switchedLayer)
-    geo_json_counties.eachLayer(function (county) {
-      styleManager.style(county);
-      county.bindPopup(contentHandler.getPopupContent(county));
-      county.bindTooltip(contentHandler.getTooltipContent(county), {
-        sticky: true,
+      geo_json_counties.eachLayer(function (county) {
+        styleManager.style(county);
+        county.bindPopup(contentHandler.getPopupContent(county));
+        county.bindTooltip(contentHandler.getTooltipContent(county), {
+          sticky: true,
+        });
+        county.addEventListener("popupopen", () => {
+          languageHandler.setLanguage(languageHandler.getLanguage());
+        });
       });
-      county.addEventListener("popupopen", () => {
-        languageHandler.setLanguage(languageHandler.getLanguage());
-      });
-    });
     document.querySelector("#map-title").textContent =
       ContentHandler.getMapTitle(risk, languageHandler.getLanguage());
     document.querySelector("#risk-explanation").innerHTML =

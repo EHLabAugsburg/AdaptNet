@@ -699,7 +699,6 @@ class ContentHandler {
         de: [
           "abnehmend",
           "leicht abnehmend",
-          "gleichbleibend",
           "leicht zunehmend",
           "zunehmend",
           "stark zunehmend",
@@ -709,7 +708,6 @@ class ContentHandler {
         en: [
           "decreasing",
           "slightly decreasing",
-          "constant",
           "slightly increasing",
           "increasing",
           "strongly increasing",
@@ -717,7 +715,7 @@ class ContentHandler {
           "extremely increasing",
         ],
       },
-      upperBounds: [-10, 0, 10, 20, 30, 40, 1000], // TODO: find clean solution
+      upperBounds: [-10, 0, 10, 20, 30, 40, 1000],
     },
     Zeitpunkt: {
       headers: {
@@ -817,43 +815,32 @@ class ContentHandler {
       const upperBound = classMap.upperBounds
         .filter((bound) => {
           if (
-            value === 0 &&
-            classMap === ContentHandler._LAYER_CLASSIFICATIONS.Veränderung
-          )
-            return bound === 0; // ensure 0 stays an own class
-          else if (
             classMap ===
             ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung
-          ) {
+          )
             return bound >= value;
-          }
           return bound > value;
         })
         .sort((number1, number2) =>
           number1 > number2 ? 1 : number1 === number2 ? 0 : -1
         )[0];
       const upperBoundIndex = classMap.upperBounds.indexOf(upperBound);
-      const classNameDe =
-        classMap === ContentHandler._LAYER_CLASSIFICATIONS.Veränderung &&
-        value >= 0
-          ? classMap.headers.de[upperBoundIndex + 1] // ensure 0 stays an own class
-          : classMap.headers.de[upperBoundIndex];
-      const classNameEn =
-        classMap === ContentHandler._LAYER_CLASSIFICATIONS.Veränderung &&
-        value >= 0
-          ? classMap.headers.en[upperBoundIndex + 1] // ensure 0 stays an own class
-          : classMap.headers.en[upperBoundIndex];
+      const classNameDe = classMap.headers.de[upperBoundIndex];
+      const classNameEn = classMap.headers.en[upperBoundIndex];
       return [classNameDe, classNameEn, upperBound];
     } else {
-      for (const [classNameDe, valueDe] of Object.entries(classMap)) {
-        if (value === valueDe) {
-          for (const [classNameEn, valueEn] of Object.entries(
+      for (const [classNameDe, classValue] of Object.entries(classMap)) {
+        if (value === classValue) {
+          return [
+            classNameDe,
             ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
-              .headers.en[detailedRisk]
-          ))
-            if (valueEn === value) {
-              return [classNameDe, classNameEn, valueDe];
-            }
+              .headers[detailedRisk].en[
+              ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
+                this._time
+              ].headers[detailedRisk].de.indexOf(classNameDe)
+            ],
+            value,
+          ];
         }
       }
     }
@@ -1026,6 +1013,13 @@ class ContentHandler {
     }
   }
 
+  /**
+   * Get the title of the legend.
+   * @param {*} risk The risk the map displays currently.
+   * @param {*} time The time the map displays currently.
+   * @param {*} language The langage of the legend-title.
+   * @returns The appropriate legend-title as string.
+   */
   static getLegendTitle(risk, time, language) {
     const legendRisk =
       risk === "HotSpots"
@@ -1066,13 +1060,18 @@ class ContentHandler {
       county.feature.properties[`${this._risk} ${this._time}`],
       classMap
     );
+    const riskClassText = // alter risk-description for value 0 on change-layers
+      county.feature.properties[`${this._risk} ${this._time}`] === 0 &&
+      this._time === "Veränderung"
+        ? ["gleichbleibend", "constant"]
+        : [countyClass[0], countyClass[1]];
     popupContentHtml += `<span class="${this._risk}-${
       this._time
     }-result" lang="de"><b>${
       this._time === "Veränderung"
         ? `${this._risk}-Veränderung: `
         : `${this._risk}-Risiko: `
-    }</b>${countyClass[0]}</span>
+    }</b>${riskClassText[0]}</span>
     <span class="${this._risk}-${this._time}-result" lang="en"><b>${
       this._risk === "HotSpots" && this._time === "Veränderung"
         ? "HotSpots change: "
@@ -1085,7 +1084,7 @@ class ContentHandler {
         : `${
             ContentHandler._FACTOR_CLASSIFICATIONS[this._risk].riskName.en
           } risk: `
-    }</b>${countyClass[1]}</span>`;
+    }</b>${riskClassText[1]}</span>`;
     let valueToDisplay =
       county.feature.properties[`${this._risk} ${this._time}`];
     let left_property;

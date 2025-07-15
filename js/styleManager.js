@@ -4,23 +4,27 @@
  */
 class StyleManager {
   static _STYLES = {
-    hotspotsChanged: { "#d73027": 2, "#fee090": 1, "#e0f3f8": 0 },
+    hotspotsChanged: {
+      "#d73027": [2, 2],
+      "#fee090": [1, 1],
+      "#e0f3f8": [0, 0],
+    },
     changed: {
-      "#bd0026": 40,
-      "#f03b20": 30,
-      "#fd8d3c": 20,
-      "#fecc5c": 10,
-      "#ffffb2": 0,
-      "#91bfdb": -10,
-      "#4575b4": -100,
+      "#bd0026": [40, 100],
+      "#f03b20": [30, 39],
+      "#fd8d3c": [20, 29],
+      "#fecc5c": [10, 19],
+      "#ffffb2": [0, 9],
+      "#91bfdb": [-10, -1],
+      "#4575b4": [-100, -11],
     },
     atTime: {
-      "#B30000": 100,
-      "#E34A33": 80,
-      "#FC8D59": 60,
-      "#FDBB84": 40,
-      "#FDD49E": 20,
-      "#FEF0D9": 0,
+      "#B30000": [100, 1000],
+      "#E34A33": [80, 99],
+      "#FC8D59": [60, 79],
+      "#FDBB84": [40, 59],
+      "#FDD49E": [20, 39],
+      "#FEF0D9": [0, 19],
     },
   };
 
@@ -52,11 +56,8 @@ class StyleManager {
         : time === "Veränderung"
         ? StyleManager._STYLES.changed
         : StyleManager._STYLES.atTime;
-    for (const [color, upperBound] of Object.entries(colormap)) {
-      if (upperBound <= value) {
-        return color;
-      }
-    }
+    for (const [color, interval] of Object.entries(colormap))
+      if (value >= interval[0] && value <= interval[1]) return color;
   }
 
   /**
@@ -66,7 +67,7 @@ class StyleManager {
   style(county) {
     county.setStyle({
       fillColor: StyleManager.getHexColor(
-        county.feature.properties[`${this._risk} ${this._time}`],
+        county.feature.properties[`${this._risk} ${this._time}`].toFixed(),
         this._risk,
         this._time
       ),
