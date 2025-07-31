@@ -8,6 +8,9 @@ class LanguageHandler {
     language: { de: "Übersetzen", en: "Translate" },
     methods: { de: "Methodik", en: "methods" },
     sources: { de: "Quellen", en: "sources" },
+    current: { de: "Gegenwart", en: "present" },
+    future: { de: "Zukunft", en: "future" },
+    change: { de: "Veränderungen", en: "change" },
   };
   static _SEARCH_TEXT_PLACEHOLDER = {
     de: "Kreis suchen...",
@@ -44,6 +47,15 @@ class LanguageHandler {
       if (element.getAttribute("lang") === this.getLanguage())
         element.style.display = "inline";
     });
+    document.querySelectorAll("div#risk-control button").forEach((button) => {
+      button.title = DataProvider.getRiskName(button.id)[this.getLanguage()];
+    });
+    document
+      .querySelectorAll("#current, #future, #change")
+      .forEach((button) => {
+        button.title =
+          LanguageHandler._BUTTON_TITLES[button.id][this.getLanguage()];
+      });
     document.getElementById("methods").title =
       LanguageHandler._BUTTON_TITLES.methods[this.getLanguage()];
     document.getElementById("sources").title =
