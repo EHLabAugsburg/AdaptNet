@@ -34,12 +34,7 @@ class StyleManager {
    */
   constructor(risk, time) {
     this._risk = risk;
-    this._time =
-      time === "current"
-        ? "Gegenwart"
-        : time === "future"
-        ? "Zukunft"
-        : "Veränderung";
+    this._time = time;
   }
 
   /**
@@ -51,9 +46,9 @@ class StyleManager {
    */
   static getHexColor(value, risk, time) {
     const colormap =
-      time === "Veränderung" && risk === "HotSpots"
+      time === "change" && risk === "HotSpots"
         ? StyleManager._STYLES.hotspotsChanged
-        : time === "Veränderung"
+        : time === "change"
         ? StyleManager._STYLES.changed
         : StyleManager._STYLES.atTime;
     for (const [color, interval] of Object.entries(colormap))
@@ -67,7 +62,9 @@ class StyleManager {
   style(county) {
     county.setStyle({
       fillColor: StyleManager.getHexColor(
-        county.feature.properties[`${this._risk} ${this._time}`].toFixed(),
+        county.feature.properties[
+          `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
+        ].toFixed(),
         this._risk,
         this._time
       ),

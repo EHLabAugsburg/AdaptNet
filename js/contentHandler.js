@@ -104,12 +104,7 @@ class ContentHandler {
    */
   constructor(risk, time, languageHandler) {
     this._risk = risk;
-    this._time =
-      time === "current"
-        ? "Gegenwart"
-        : time === "future"
-        ? "Zukunft"
-        : "Veränderung";
+    this._time = time;
     this._languageHandler = languageHandler;
   }
 
@@ -164,12 +159,13 @@ class ContentHandler {
   _getDetailedPopupInformation(county) {
     let detailedHtml = '</div><div id="detailed">';
     detailedHtml += `<div id="${this._risk}-${this._time}" class="explanation">`;
-    if (this._risk === "HotSpots" && this._time !== "Veränderung") {
+    if (this._risk === "HotSpots" && this._time !== "change") {
       const riskPropertiesToDisplay = Object.keys(
         county.feature.properties
       ).filter((property) => {
         return (
-          property.endsWith(this._time) && !property.startsWith("HotSpots")
+          property.endsWith(DataProvider.getTimeDescriptor(this._time)) &&
+          !property.startsWith("HotSpots")
         );
       });
       for (const riskPropertyName of riskPropertiesToDisplay) {
@@ -185,15 +181,11 @@ class ContentHandler {
         }<br></span>
         <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
           DataProvider.getRiskName(riskPropertyName.split(" ")[0]).en
-        } ${
-          this._time === "Veränderung"
-            ? "change"
-            : this._time === "Gegenwart"
-            ? "currently"
-            : "future"
-        }:</b> ${classForValue[1]}<br></span>`;
+        } ${this._time === "current" ? "currently" : this._time}:</b> ${
+          classForValue[1]
+        }<br></span>`;
       }
-    } else if (this._time === "Veränderung") {
+    } else if (this._time === "change") {
       const riskScoreToday =
         county.feature.properties[`${this._risk} Gegenwart`];
       const riskScoreFuture =
@@ -232,12 +224,12 @@ class ContentHandler {
           detailedHtml += `<span class='${this._risk}-${
             this._time
           }-detailed' lang="de"><b>${riskName}:</b> ${county.feature.properties[
-            `${this._risk} ${this._time} Summe`
+            `${this._risk} ${DataProvider.getTimeDescriptor(this._time)} Summe`
           ].toFixed(2)} von ${riskFactorValue}<br></span>
           <span class='${this._risk}-${
             this._time
           }-detailed' lang="en"><b>sum:</b> ${county.feature.properties[
-            `${this._risk} ${this._time} Summe`
+            `${this._risk} ${DataProvider.getTimeDescriptor(this._time)} Summe`
           ].toFixed(2)} out of ${riskFactorValue}<br></span>`;
         } else {
           const factorName = DataProvider.getFactorNames(
@@ -247,7 +239,9 @@ class ContentHandler {
           );
           let detailedRiskValue =
             county.feature.properties[
-              `${this._risk} ${this._time} ${riskName}`
+              `${this._risk} ${DataProvider.getTimeDescriptor(
+                this._time
+              )} ${riskName}`
             ];
           let classForValue = this._getClassForValue(
             detailedRiskValue,
@@ -295,11 +289,11 @@ class ContentHandler {
   }
 
   static getLegendClasses(risk, time, language) {
-    if (time === "Veränderung" && risk === "HotSpots") {
+    if (time === "change" && risk === "HotSpots") {
       return ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung.headers[
         language
       ];
-    } else if (time === "Veränderung") {
+    } else if (time === "change") {
       return ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers[
         language
       ];
@@ -321,9 +315,9 @@ class ContentHandler {
         ? ContentHandler._TEXT_CONTENTS.hotSpotsLegendDescriber[language]
         : DataProvider.getRiskName(risk)[language];
     const legendTime =
-      time === "Gegenwart"
+      time === "current"
         ? ContentHandler._TEXT_CONTENTS.currentTimeTitle[language]
-        : time === "Veränderung"
+        : time === "change"
         ? ContentHandler._TEXT_CONTENTS.changeTimeTitle[language]
         : ContentHandler._TEXT_CONTENTS.futureTimeTitle[language];
     return `${legendTime} ${legendRisk}`;
@@ -358,9 +352,9 @@ class ContentHandler {
     }</h4>`;
     let countyClass, classSeperatorsAmount;
     const classMap =
-      this._time === "Veränderung" && this._risk === "HotSpots"
+      this._time === "change" && this._risk === "HotSpots"
         ? ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung
-        : this._time === "Veränderung"
+        : this._time === "change"
         ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung
         : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt;
     let index = new Array(
@@ -370,36 +364,39 @@ class ContentHandler {
       )
     )[0];
     countyClass = this._getClassForValue(
-      county.feature.properties[`${this._risk} ${this._time}`],
+      county.feature.properties[
+        `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
+      ],
       classMap
     );
     const riskClassText = // alter risk-description for exact value 0 on change-layers
-      county.feature.properties[`${this._risk} ${this._time}`] === 0 &&
-      this._time === "Veränderung"
+      county.feature.properties[
+        `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
+      ] === 0 && this._time === "change"
         ? ["gleichbleibend", "constant"]
         : [countyClass[0], countyClass[1]];
     popupContentHtml += `<span class="${this._risk}-${
       this._time
     }-result" lang="de"><b>${
-      this._time === "Veränderung"
+      this._time === "change"
         ? "Risiko-Trend: "
-        : `${
-            this._time === "Gegenwart" ? "aktuelles" : "projiziertes"
-          } Risiko: `
+        : `${this._time === "current" ? "aktuelles" : "projiziertes"} Risiko: `
     }</b>${riskClassText[0]}</span>
     <span class="${this._risk}-${this._time}-result" lang="en"><b>${
-      this._time === "Veränderung"
+      this._time === "change"
         ? "risk trend: "
-        : `${this._time === "Gegenwart" ? "current" : "projected"} risk: `
+        : `${this._time === "current" ? this._time : "projected"} risk: `
     }</b>${riskClassText[1]}</span>`;
     let valueToDisplay =
-      county.feature.properties[`${this._risk} ${this._time}`];
+      county.feature.properties[
+        `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
+      ];
     let left_property;
-    if (this._risk === "HotSpots" && this._time === "Veränderung") {
+    if (this._risk === "HotSpots" && this._time === "change") {
       classSeperatorsAmount = 3;
       popupContentHtml += '<div id="hotspot-change" class="score-bar">';
       left_property = Math.min(40 * valueToDisplay + 8, 188); // 8px from left end to middle of first bar, then +40px for each class
-    } else if (this._time === "Veränderung") {
+    } else if (this._time === "change") {
       classSeperatorsAmount = 6;
       popupContentHtml += '<div id="change" class="score-bar">';
       left_property =
@@ -414,14 +411,14 @@ class ContentHandler {
     for (let i = 1; i <= index.length; i++) {
       if (i === 1) {
         valueToDisplay =
-          this._time === "Veränderung" && valueToDisplay >= 0.5
+          this._time === "change" && valueToDisplay >= 0.5
             ? `+${Number(valueToDisplay.toFixed())}`
             : `${Number(valueToDisplay.toFixed())}`;
 
         popupContentHtml += `
         <div class="class-${i}">
           <div class="interval-border" ${
-            this._risk === "HotSpots" && this._time === "Veränderung"
+            this._risk === "HotSpots" && this._time === "change"
               ? "style=left:8px;"
               : ""
           }>
@@ -438,7 +435,7 @@ class ContentHandler {
         if (i <= classSeperatorsAmount) {
           popupContentHtml += `
           <div class="interval-border" ${
-            this._risk === "HotSpots" && this._time === "Veränderung"
+            this._risk === "HotSpots" && this._time === "change"
               ? "style=left:8px;"
               : ""
           }>
@@ -463,15 +460,17 @@ class ContentHandler {
    */
   getTooltipContent(county) {
     const symbolizingValue =
-      county.feature.properties[`${this._risk} ${this._time}`];
+      county.feature.properties[
+        `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
+      ];
     return `<span class="tooltip-title">${
       county.feature.properties[ContentHandler._COUNTY_NAME_PROPERTY_NAME]
     }</span><br><span class="value" style="color: ${StyleManager.getHexColor(
       symbolizingValue,
       this._risk,
       this._time
-    )}">${
-      symbolizingValue > 0 && this._time === "Veränderung" ? "+" : ""
-    }${Number(symbolizingValue).toFixed()}</span>`;
+    )}">${symbolizingValue > 0 && this._time === "change" ? "+" : ""}${Number(
+      symbolizingValue
+    ).toFixed()}</span>`;
   }
 }

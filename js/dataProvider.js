@@ -17,7 +17,7 @@ class DataProvider {
         Children, older adults, people with chronic illnesses, and those who spend a lot of time outdoors are particularly susceptible.
         <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      Gegenwart: {
+      current: {
         factorNameTranslations: {
           "Faktor 1 (PM2.5)": "factor 1 (PM2.5)",
           "Faktor 1 (PM10)": "factor 1 (PM10)",
@@ -55,7 +55,7 @@ class DataProvider {
           Summe: { Maximum: 10 },
         },
       },
-      Zukunft: {
+      future: {
         factorNameTranslations: {
           "Faktor 1 (PM2.5)": "factor 1 (PM2.5)",
           "Faktor 1 (PM10)": "factor 1 (PM10)",
@@ -138,7 +138,7 @@ class DataProvider {
       Children and adults with allergies or allergic asthma are especially affected.
       <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      Gegenwart: {
+      current: {
         factorNameTranslations: {
           "Faktor 1 (Prozessionsspinner)": "factor 1 (processionary moth)",
           "Faktor 2 (Heuschnupfen)": "factor 2 (hay fever)",
@@ -166,7 +166,7 @@ class DataProvider {
           Summe: { Maximum: 6 },
         },
       },
-      Zukunft: {
+      future: {
         factorNameTranslations: {
           "Faktor 1 (Prozessionsspinner)": "factor 1 (processionary moth)",
           "Faktor 2 (Bevölkerungsprognose)": "factor 2 (population forecast)",
@@ -219,7 +219,7 @@ class DataProvider {
       People with mobility or cognitive impairments, emergency responders, and individuals who come into direct contact with polluted water are particularly at risk.
       <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      Gegenwart: {
+      current: {
         factorNameTranslations: {
           "Faktor 1 (Starkniederschlag)": "factor 1 (heavy precipitation)",
           "Faktor 2 (Hochwassergefahr)": "factor 2 (flooding risk)",
@@ -252,7 +252,7 @@ class DataProvider {
           Summe: { Maximum: 6 },
         },
       },
-      Zukunft: {
+      future: {
         factorNameTranslations: {
           "Faktor 1 (Starkniederschlag)": "factor 1 (heavy precipitation)",
           "Faktor 2 (Hochwassergefahr)": "factor 2 (flooding risk)",
@@ -312,7 +312,7 @@ class DataProvider {
       Children, the elderly, pregnant individuals, people with limited mobility, and emergency personnel are especially at risk during wildfires.
       <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      Gegenwart: {
+      current: {
         factorNameTranslations: {
           "Faktor 1 (FWI)": "factor 1 (FWI)",
           Summe: "sum",
@@ -326,7 +326,7 @@ class DataProvider {
           Summe: { Maximum: 5 },
         },
       },
-      Zukunft: {
+      future: {
         factorNameTranslations: {
           "Faktor 1 (FWI)": "factor 1 (FWI)",
           "Faktor 2 (Bevölkerungsprognose)": "factor 2 (popuation forecast)",
@@ -373,7 +373,7 @@ class DataProvider {
       Everyone can be affected, but some groups are particularly vulnerable – including older adults, children, and people with certain chronic illnesses.
       <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      Gegenwart: {
+      current: {
         factorNameTranslations: {
           "Faktor 1 (Hitzebelastung)": "factor 1 (heat exposure)",
           "Faktor 1 (Trop.Nächte)": "factor 1 (tropical nights)",
@@ -406,7 +406,7 @@ class DataProvider {
           Summe: { Maximum: 9 },
         },
       },
-      Zukunft: {
+      future: {
         factorNameTranslations: {
           "Faktor 1 (Heiße Tage)": "factor 1 (hot days)",
           "Faktor 1 (Trop.Nächte)": "factor 1 (tropical nights)",
@@ -466,7 +466,7 @@ class DataProvider {
       People who spend a lot of time in nature (in meadows, forests, or gardens) are more likely to come into contact with ticks.
       <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      Gegenwart: {
+      current: {
         factorNameTranslations: {
           "Faktor 1 (FSME)": "factor 1 (FSME)",
           "Faktor 2 (Aedes albopictus)": "factor 2 (Aedes albopictus)",
@@ -510,7 +510,7 @@ class DataProvider {
           Summe: { Maximum: 6 },
         },
       },
-      Zukunft: {
+      future: {
         factorNameTranslations: {
           "Faktor 1 (Zecken)": "factor 1 (ticks)",
           "Faktor 2 (Aedes albopictus)": "factor 2 (Aedes albopictus)",
@@ -566,6 +566,13 @@ class DataProvider {
       The displayed health risk results from a combination of all these factors and provides an overview of how strongly a particular region is, on average, affected by climate-related health threats.`,
       },
     },
+  };
+
+  static _TIMES = {
+    // mapping of time-flags on data time descriptors
+    current: "Gegenwart",
+    future: "Zukunft",
+    change: "Veränderung",
   };
 
   /**
@@ -625,5 +632,14 @@ class DataProvider {
    */
   static getRiskExplanation(risk, language) {
     return DataProvider._RISK_DATA[risk].explanation[language];
+  }
+
+  /**
+   * Get the time descriptor for a given time-flag.
+   * @param {*} time the time-flag of the requesting instance
+   * @returns the appropriate time descriptor for the provided time flag
+   */
+  static getTimeDescriptor(time) {
+    return DataProvider._TIMES[time];
   }
 }

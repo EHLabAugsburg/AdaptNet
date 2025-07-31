@@ -37,12 +37,7 @@ class LegendBuilder {
    */
   constructor(risk, time, languageHandler) {
     this._risk = risk;
-    this._time =
-      time === "current"
-        ? "Gegenwart"
-        : time === "future"
-        ? "Zukunft"
-        : "Veränderung";
+    this._time = time;
     this._htmlLegendElement = document.getElementById(
       LegendBuilder._LEGEND_HTML_ID
     );
@@ -65,9 +60,9 @@ class LegendBuilder {
     )}</span><div class="legend-classes"><div id="text">`;
     let htmlLegendColorRow = "<div id='symbol'>";
     const colormap =
-      this._time === "Veränderung" && this._risk === "HotSpots"
+      this._time === "change" && this._risk === "HotSpots"
         ? LegendBuilder._COLORMAPS.hotspotsChange
-        : this._time === "Veränderung"
+        : this._time === "change"
         ? LegendBuilder._COLORMAPS.change
         : LegendBuilder._COLORMAPS.atTime;
     const classNames = ContentHandler.getLegendClasses(
