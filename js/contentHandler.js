@@ -68,15 +68,15 @@ class ContentHandler {
   static _TEXT_CONTENTS = {
     changeTimeTitle: {
       de: "Veränderung des Risikos durch",
-      en: "change in risk through",
+      en: "Change in risk through",
     },
     currentTimeTitle: {
-      de: "aktuelles Risiko durch",
-      en: "current risk through",
+      de: "Aktuelles Risiko durch",
+      en: "Current risk through",
     },
     futureTimeTitle: {
-      de: "künftiges Risiko durch",
-      en: "projected risk through",
+      de: "Künftiges Risiko durch",
+      en: "Projected risk through",
     },
     hotSpotsLegendDescriber: {
       de: "Gesundheits&shy;gefahren",
