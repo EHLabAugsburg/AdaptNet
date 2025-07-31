@@ -1,62 +1,62 @@
 COUNTY_NAME_PROPERTY = "gen"
 
 LAYER_METADATA = {
-    "Luftqualität": {
+    "Luftbelastung": {
         "Gegenwart": {
             "headers": {
-                "Luftqualität Gegenwart Faktor 1 (PM2.5)": {
+                "Luftbelastung Gegenwart Faktor 1 (PM2.5)": {
                     "gering": 0,
                     "mittel": 1,
                     "hoch": 2,
                 },
-                "Luftqualität Gegenwart Faktor 1 (PM10)": {
+                "Luftbelastung Gegenwart Faktor 1 (PM10)": {
                     "gering": 0,
                     "mittel": 1,
                     "hoch": 2,
                 },
-                "Luftqualität Gegenwart Faktor 1 (NO2)": {
+                "Luftbelastung Gegenwart Faktor 1 (NO2)": {
                     "gering": 0,
                     "mittel": 1,
                     "hoch": 2,
                 },
-                "Luftqualität Gegenwart Faktor 1 (O3)": {
+                "Luftbelastung Gegenwart Faktor 1 (O3)": {
                     "gering": 0,
                     "mittel": 1,
                     "hoch": 2,
                 },
-                "Luftqualität Gegenwart Faktor 2 (Hitze)": {
+                "Luftbelastung Gegenwart Faktor 2 (Hitze)": {
                     "gering": 0,
                     "niedrig": 0.5,
                     "mittel": 1,
                     "hoch": 1.5,
                     "kritisch": 2,
                 },
-                "Luftqualität Gegenwart Summe": {"Maximum": 10},
-                "Luftqualität Gegenwart": None,
+                "Luftbelastung Gegenwart Summe": {"Maximum": 10},
+                "Luftbelastung Gegenwart": None,
             },
         },
         "Zukunft": {
             "headers": {
-                "Luftqualität Zukunft Faktor 1 (PM2.5)": {"abnehmend": -0.5},
-                "Luftqualität Zukunft Faktor 1 (PM10)": {"abnehmend": -0.5},
-                "Luftqualität Zukunft Faktor 1 (NO2)": {"abnehmend": -0.5},
-                "Luftqualität Zukunft Faktor 1 (O3)": {"stagniernd": 0},
-                "Luftqualität Zukunft Faktor 2 (Bevölkerungsprognose)": {
+                "Luftbelastung Zukunft Faktor 1 (PM2.5)": {"abnehmend": -0.5},
+                "Luftbelastung Zukunft Faktor 1 (PM10)": {"abnehmend": -0.5},
+                "Luftbelastung Zukunft Faktor 1 (NO2)": {"abnehmend": -0.5},
+                "Luftbelastung Zukunft Faktor 1 (O3)": {"stagniernd": 0},
+                "Luftbelastung Zukunft Faktor 2 (Bevölkerungsprognose)": {
                     "stark abnehmend": -1,
                     "eher abnehmend": -0.5,
                     "stagnierend": 0,
                     "eher zunehmend": 0.5,
                     "stark zunehmend": 1,
                 },
-                "Luftqualität Zukunft Faktor 3 (Hitze)": {
+                "Luftbelastung Zukunft Faktor 3 (Hitze)": {
                     "stagnierend": 0,
                     "leicht zunehmend": 1,
                     "zunehmend": 2,
                     "stark zunehmend": 3,
                     "kritisch zunehmend": 4,
                 },
-                "Luftqualität Zukunft Summe": {"Maximum": 10},
-                "Luftqualität Zukunft": None,
+                "Luftbelastung Zukunft Summe": {"Maximum": 10},
+                "Luftbelastung Zukunft": None,
             },
         },
     },
@@ -75,7 +75,7 @@ LAYER_METADATA = {
                     "sehr hoch": 1,
                 },
                 "Allergene Gegenwart Faktor 3 (Pollen)": {"hoch": 2},
-                "Allergene Gegenwart Faktor 4 (Luftqualität)": {
+                "Allergene Gegenwart Faktor 4 (Luftbelastung)": {
                     "gering": 0,
                     "niedrig": 0.5,
                     "mittel": 1,
@@ -206,7 +206,7 @@ LAYER_METADATA = {
     "Hitze": {
         "Gegenwart": {
             "headers": {
-                "Hitze Gegenwart Faktor 1 (Region)": {
+                "Hitze Gegenwart Faktor 1 (Hitzebelastung)": {
                     "gering": 1,
                     "mittel": 2,
                     "hoch": 3,

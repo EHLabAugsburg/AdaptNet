@@ -56,12 +56,12 @@ document
 
 document.addEventListener("DOMContentLoaded", function () {
   document
-    .querySelector("div#risk-control button#Luftqualität")
+    .querySelector("div#risk-control button#Luftbelastung")
     .classList.add("current");
   document
     .querySelector("div#time-control button#current")
     .classList.add("current");
-  updateDisplayedLayer("Luftqualität", "current");
+  updateDisplayedLayer("Luftbelastung", "current");
   languageHandler.setLanguage(languageHandler.getLanguage());
 });
 
