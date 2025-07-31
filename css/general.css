@@ -2,7 +2,3 @@
 .leaflet-control-layers {
   display: none;
 }
-
-div#map_adaptNet {
-  position: fixed;
-}

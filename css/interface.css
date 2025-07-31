@@ -14,6 +14,9 @@ div#interface {
       border: 2px solid black;
     }
   }
+  + div {
+    position: fixed;
+  }
   div {
     border-radius: 4px;
     height: fit-content;
@@ -96,11 +99,13 @@ div#interface {
         background-color: white;
         border: 1px solid black;
         border-radius: 4px;
+        height: 200px;
         opacity: 0;
+        overflow: auto;
         padding: 10px;
         transition: opacity 0.5s;
         visibility: hidden;
-        width: 245px;
+        width: 250px;
       }
       &:hover #risk-explanation {
         opacity: 1;
@@ -116,7 +121,10 @@ div#interface {
       margin: 5px 0px 0px 5px;
       padding: 5px;
       span#title {
+        display: block;
         font-weight: bold;
+        hyphens: manual;
+        max-width: 175px;
       }
       div.legend-classes {
         display: flex;
@@ -183,6 +191,14 @@ div#interface {
         width: 15px;
       }
     }
+  }
+}
+
+@media screen and (max-width: 475px) {
+  div#interface div #risk-explanation {
+    left: 5px;
+    position: absolute;
+    top: 190px;
   }
 }
 
