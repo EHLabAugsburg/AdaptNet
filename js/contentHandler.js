@@ -336,7 +336,7 @@ class ContentHandler {
         : "HotSpots der Gesundheitsgefahren";
     } else {
       return risk !== "HotSpots"
-        ? `health risks through ${DataProvider.getRiskName(risk)[language]}`
+        ? `Health risks through ${DataProvider.getRiskName(risk)[language]}`
         : "Hotspots of Climate-Related Health Hazards";
     }
   }
