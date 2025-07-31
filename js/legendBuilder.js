@@ -23,9 +23,9 @@ class LegendBuilder {
       ["#bd0026", "white", "&ge;40"],
     ],
     hotspotsChange: [
-      ["#e0f3f8", "black", "0"],
-      ["#fee090", "black", "+1"],
-      ["#d73027", "white", "+2"],
+      ["#ffeda0", "black", "0"],
+      ["#feb24c", "black", "+1"],
+      ["#f03b20", "white", "+2"],
     ],
   };
   static _LEGEND_HTML_ID = "legend";

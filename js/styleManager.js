@@ -5,9 +5,9 @@
 class StyleManager {
   static _STYLES = {
     hotspotsChanged: {
-      "#d73027": [2, 2],
-      "#fee090": [1, 1],
-      "#e0f3f8": [0, 0],
+      "#f03b20": [2, 2],
+      "#feb24c": [1, 1],
+      "#ffeda0": [0, 0],
     },
     changed: {
       "#bd0026": [40, 100],
