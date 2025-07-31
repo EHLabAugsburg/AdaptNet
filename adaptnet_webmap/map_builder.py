@@ -35,24 +35,18 @@ class MapBuilder:
             zoom_control=False,
             zoom_start=6,
         )
-        # modify variable names to make instances javascript-accessible via
-        # variable names: folium internally uses protected members to derive
-        # variable names in js translation
-        self.__map._id = "adaptNet"
 
     def __add_external_file_dependencies(self) -> None:
-        self.__map.add_js_link("styleManager", "js\\styleManager.js")
-        self.__map.add_js_link("contentHandler", "js\\contentHandler.js")
-        self.__map.add_js_link("legendBuilder", "js\\legendBuilder.js")
-        self.__map.add_js_link("dataProvider", "js\\dataprovider.js")
-        self.__map.add_js_link("languageHandler", "js\\languageHandler.js")
-        self.__map.add_js_link("utilities", "js\\utilities.js")
+        for script in filter(
+            lambda script: script.name != "main.js", Path("js").iterdir()
+        ):
+            self.__map.add_js_link(script.name, f"js\\{script.name}")
         with open("js\\main.js", "r", encoding="utf-8") as script:
             script_code = folium.Element(script.read())
             self.__map.get_root().script.add_child(script_code)
         for stylesheet in Path("css").iterdir():
             self.__map.add_css_link(
-                f"{stylesheet.name}",
+                stylesheet.name,
                 f"css\\{stylesheet.name}",
             )
 
@@ -86,7 +80,6 @@ class MapBuilder:
             geom_type="Line",
             layer=self.__map_layers[1],
             position="topright",
-            placeholder="Kreis suchen...",
             search_label=utilities.COUNTY_NAME_PROPERTY,
         )
         search_bar.add_to(self.__map)

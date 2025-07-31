@@ -19,32 +19,7 @@ class DataProcessor:
     __COUNTY_AMOUNT = 400
     __COUNTY_KEY_PROPERTY = "ags"
     __RISKS_AMOUNT = 6
-    __VALUE_CLASSIFICATION = (
-        {  # mapping of class descriptions and their upper bounds
-            "risk": {
-                "geringes Risiko": 20,
-                "niedriges Risiko": 40,
-                "mittleres Risiko": 60,
-                "hohes Risiko": 80,
-                "kritisches Risiko": 100,
-                "extremes Risiko": 1000,
-            },
-            "change": {
-                "abnehmend": -10,
-                "leicht abnehmend": 0,
-                "leicht zunehmend": 10,
-                "zunehmend": 20,
-                "stark zunehmend": 30,
-                "kritisch zunehmend": 40,
-                "extrem zunehmend": 100,
-            },
-            "hotspots-change": {
-                "stagnierend": 0,
-                "zunehmend": 1,
-                "stark zunehmend": 2,
-            },
-        }
-    )
+    __RISK_CLASSES_UPPER_BOUNDS = [20, 40, 60, 80, 100, 1000]
 
     def __init__(self, attribute_table_path: Path):
         self.__data_downloader = DataDownloader()
@@ -118,29 +93,34 @@ class DataProcessor:
                 }
             )
             # define hotspots-change using class-difference
-            current_class, future_class = None, None
-            for class_name, upper_bound in DataProcessor.__VALUE_CLASSIFICATION[
-                "risk"
-            ].items():
+            current_class_number, future_class_number = None, None
+            for upper_bound in DataProcessor.__RISK_CLASSES_UPPER_BOUNDS:
                 if (
                     feature["properties"]["HotSpots Zukunft"] <= upper_bound
-                    and future_class is None
+                    and future_class_number is None
                 ):
-                    future_class = class_name
+                    future_class_number = (
+                        DataProcessor.__RISK_CLASSES_UPPER_BOUNDS.index(
+                            upper_bound
+                        )
+                    )
                 if (
                     feature["properties"]["HotSpots Gegenwart"] <= upper_bound
-                    and current_class is None
+                    and current_class_number is None
                 ):
-                    current_class = class_name
-                if future_class and current_class:
+                    current_class_number = (
+                        DataProcessor.__RISK_CLASSES_UPPER_BOUNDS.index(
+                            upper_bound
+                        )
+                    )
+                if future_class_number and current_class_number:
                     break
             feature["properties"].update(
                 {
-                    "HotSpots Veränderung": list(
-                        DataProcessor.__VALUE_CLASSIFICATION["risk"]
-                    ).index(future_class)
-                    - list(DataProcessor.__VALUE_CLASSIFICATION["risk"]).index(
-                        current_class
+                    "HotSpots Veränderung": (
+                        future_class_number - current_class_number
+                        if future_class_number and current_class_number
+                        else None
                     )
                 }
             )
