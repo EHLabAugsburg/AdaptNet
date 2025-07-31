@@ -44,6 +44,7 @@ class MapBuilder:
         self.__map.add_js_link("styleManager", "js\\styleManager.js")
         self.__map.add_js_link("contentHandler", "js\\contentHandler.js")
         self.__map.add_js_link("legendBuilder", "js\\legendBuilder.js")
+        self.__map.add_js_link("dataProvider", "js\\dataprovider.js")
         self.__map.add_js_link("languageHandler", "js\\languageHandler.js")
         self.__map.add_js_link("utilities", "js\\utilities.js")
         with open("js\\main.js", "r", encoding="utf-8") as script:

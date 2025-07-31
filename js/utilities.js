@@ -45,6 +45,6 @@ function updateDisplayedLayer(risk, time, switchedLayer = true) {
     document.querySelector("#map-title").textContent =
       ContentHandler.getMapTitle(risk, languageHandler.getLanguage());
     document.querySelector("#risk-explanation").innerHTML =
-      ContentHandler.getRiskExplanation(risk, languageHandler.getLanguage());
+      DataProvider.getRiskExplanation(risk, languageHandler.getLanguage());
   }
 }
