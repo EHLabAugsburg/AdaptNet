@@ -62,7 +62,7 @@ class LanguageHandler {
       LanguageHandler._BUTTON_TITLES.sources[this.getLanguage()];
     document.getElementById("imprint").title =
       LanguageHandler._BUTTON_TITLES.imprint[this.getLanguage()];
-    document.getElementById("searchtext15").placeholder =
+    document.querySelector(".leaflet-control-search input").placeholder =
       LanguageHandler._SEARCH_TEXT_PLACEHOLDER[this.getLanguage()];
     document.querySelector("a.search-button").title =
       LanguageHandler._SEARCH_TEXT_PLACEHOLDER[this.getLanguage()];

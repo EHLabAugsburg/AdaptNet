@@ -53,22 +53,8 @@ class ContentHandler {
     },
     Zeitpunkt: {
       headers: {
-        de: [
-          "geringes Risiko",
-          "niedriges Risiko",
-          "mittleres Risiko",
-          "hohes Risiko",
-          "kritisches Risiko",
-          "extremes Risiko",
-        ],
-        en: [
-          "very low risk",
-          "low risk",
-          "medium risk",
-          "high risk",
-          "critical risk",
-          "extreme risk",
-        ],
+        de: ["gering", "niedrig", "mittel", "hoch", "kritisch", "extrem"],
+        en: ["very low", "low", "medium", "high", "critical", "extreme"],
       },
       upperBounds: [20, 40, 60, 80, 100, 1000],
     },
@@ -80,48 +66,38 @@ class ContentHandler {
   </div>`;
 
   static _TEXT_CONTENTS = {
+    changeTimeTitle: {
+      de: "Veränderung des Risikos durch",
+      en: "change in risk through",
+    },
+    currentTimeTitle: {
+      de: "aktuelles Risiko durch",
+      en: "current risk through",
+    },
+    futureTimeTitle: {
+      de: "künftiges Risiko durch",
+      en: "projected risk through",
+    },
+    hotSpotsLegendDescriber: {
+      de: "Gesundheits&shy;gefahren",
+      en: "health hazards",
+    },
+    risk: { de: "Risiko", en: "risk" },
     riskControlHint: {
       de: "Wählen Sie eine Gefahr:",
       en: "Please choose a hazard:",
-    },
-    timeControlHint: {
-      de: "Wählen Sie einen Zeitraum",
-      en: "Please choose a time period:",
-    },
-    currentTimeTitle: {
-      de: "Gegenwart",
-      en: "currently",
-    },
-    futureTimeTitle: {
-      de: "Zukunft (um 2050)",
-      en: "future (about 2050)",
-    },
-    changeTimeTitle: {
-      de: "Veränderung",
-      en: "change",
-    },
-    methodsButtonTitle: {
-      de: "Methodik",
-      en: "methods",
-    },
-    sourcesButtonTitle: {
-      de: "Quellen",
-      en: "sources",
-    },
-    imprintButtonTitle: {
-      de: "Impressum",
-      en: "imprint",
     },
     searchPlaceHolder: {
       de: "Kreis suchen...",
       en: "Search county...",
     },
-    risk: { de: "Risiko", en: "risk" },
-    change: { de: "Veränderung", en: "change" },
+    timeControlHint: {
+      de: "Wählen Sie einen Zeitraum",
+      en: "Please choose a time period:",
+    },
   };
 
   /**
-   *
    * @param {*} risk The risk of the current displayed layer.
    * @param {*} time The time of the current displayed layer.
    * @param {*} languageHandler The global LanguageHandler-instance.
@@ -152,7 +128,7 @@ class ContentHandler {
             classMap ===
             ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung
           )
-            return bound >= value;
+            return bound >= value; //using greater than in this case because values are discrete
           return bound > value;
         })
         .sort((number1, number2) =>
@@ -165,14 +141,14 @@ class ContentHandler {
     } else {
       for (const [classNameDe, classValue] of Object.entries(classMap)) {
         if (value === classValue) {
+          const factorClasses = DataProvider.getFactorClasses(
+            this._risk,
+            this._time,
+            detailedRisk
+          );
           return [
             classNameDe,
-            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
-              .headers[detailedRisk].en[
-              ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
-                this._time
-              ].headers[detailedRisk].de.indexOf(classNameDe)
-            ],
+            factorClasses.en[factorClasses.de.indexOf(classNameDe)],
             value,
           ];
         }
@@ -248,23 +224,27 @@ class ContentHandler {
         DataProvider.getRiskFactors(this._risk, this._time)
       ).forEach(([riskName, riskClasses]) => {
         if (riskName === "Summe") {
+          const riskFactorValue = DataProvider.getFactorClasses(
+            this._risk,
+            this._time,
+            riskName
+          ).Maximum;
           detailedHtml += `<span class='${this._risk}-${
             this._time
           }-detailed' lang="de"><b>${riskName}:</b> ${county.feature.properties[
             `${this._risk} ${this._time} Summe`
-          ].toFixed()} von ${
-            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
-              .headers[riskName].Maximum
-          }<br></span>
+          ].toFixed(2)} von ${riskFactorValue}<br></span>
           <span class='${this._risk}-${
             this._time
           }-detailed' lang="en"><b>sum:</b> ${county.feature.properties[
             `${this._risk} ${this._time} Summe`
-          ].toFixed()} out of ${
-            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][this._time]
-              .headers[riskName].Maximum
-          }<br></span>`;
+          ].toFixed(2)} out of ${riskFactorValue}<br></span>`;
         } else {
+          const factorName = DataProvider.getFactorNames(
+            this._risk,
+            this._time,
+            riskName
+          );
           let detailedRiskValue =
             county.feature.properties[
               `${this._risk} ${this._time} ${riskName}`
@@ -287,15 +267,9 @@ class ContentHandler {
           )}:</b> ${classForValue[0]}<br></span>
           <span class='${this._risk}-${
             this._time
-          }-detailed' lang="en"><b>${ContentHandler._FACTOR_CLASSIFICATIONS[
-            this._risk
-          ][this._time].factorNameTranslations[riskName].substring(
-            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
-              this._time
-            ].factorNameTranslations[riskName].indexOf("(") + 1,
-            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk][
-              this._time
-            ].factorNameTranslations[riskName].indexOf(")")
+          }-detailed' lang="en"><b>${factorName.substring(
+            factorName.indexOf("(") + 1,
+            factorName.indexOf(")")
           )}:</b> ${classForValue[1]}<br></span>`;
         }
       });
@@ -304,25 +278,12 @@ class ContentHandler {
   }
 
   /**
-   * Remove the subframe HTML-Element from DOM and update the interface-appearance.
-   * @param {*} subframeHtmlContainer The parent-node of the subframe HTML-element.
-   */
-  static closeCurrentSubframe(subframeHtmlContainer) {
-    for (const button of document.querySelectorAll("#metadata button")) {
-      button.classList.remove("current");
-    }
-    for (const subframe of document.querySelectorAll(".subframe")) {
-      subframeHtmlContainer.removeChild(subframe);
-    }
-  }
-
-  /**
    * Show the corresponding subframe to the clicked button.
    * @param {*} subframeHtmlContainer The parent-node of the subframe HTML-element. Latter gets inserted here.
    * @param {*} clickedButton The button that was clicked and led to subframe request.
    */
   static showSubframe(subframeHtmlContainer, clickedButton) {
-    ContentHandler.closeCurrentSubframe(subframeHtmlContainer);
+    closeCurrentSubframe(subframeHtmlContainer);
     const subframeHtml =
       clickedButton.id === "imprint"
         ? ContentHandler._IMPRINT
@@ -330,7 +291,7 @@ class ContentHandler {
     subframeHtmlContainer.insertAdjacentHTML("afterbegin", subframeHtml);
     clickedButton.classList.add("current");
     document.querySelector(".subframe button").onclick = () =>
-      ContentHandler.closeCurrentSubframe(subframeHtmlContainer);
+      closeCurrentSubframe(subframeHtmlContainer);
   }
 
   static getLegendClasses(risk, time, language) {
@@ -365,7 +326,7 @@ class ContentHandler {
         : time === "Veränderung"
         ? ContentHandler._TEXT_CONTENTS.changeTimeTitle[language]
         : ContentHandler._TEXT_CONTENTS.futureTimeTitle[language];
-    return `${legendRisk} ${legendTime}`;
+    return `${legendTime} ${legendRisk}`;
   }
 
   /**
@@ -384,16 +345,6 @@ class ContentHandler {
         ? `health risks through ${DataProvider.getRiskName(risk)[language]}`
         : "Hotspots of Climate-Related Health Hazards";
     }
-  }
-
-  /**
-   * Get a risk-explanation.
-   * @param {*} risk The risk of the explanation
-   * @param {*} language The language of the explanation.
-   * @returns The explanation as string.
-   */
-  static getRiskExplanation(risk, language) {
-    return ContentHandler._FACTOR_CLASSIFICATIONS[risk].explanation[language];
   }
 
   /**
@@ -422,7 +373,7 @@ class ContentHandler {
       county.feature.properties[`${this._risk} ${this._time}`],
       classMap
     );
-    const riskClassText = // alter risk-description for value 0 on change-layers
+    const riskClassText = // alter risk-description for exact value 0 on change-layers
       county.feature.properties[`${this._risk} ${this._time}`] === 0 &&
       this._time === "Veränderung"
         ? ["gleichbleibend", "constant"]
@@ -431,21 +382,15 @@ class ContentHandler {
       this._time
     }-result" lang="de"><b>${
       this._time === "Veränderung"
-        ? `${this._risk}-Veränderung: `
-        : `${this._risk}-Risiko: `
+        ? "Risiko-Trend: "
+        : `${
+            this._time === "Gegenwart" ? "aktuelles" : "projiziertes"
+          } Risiko: `
     }</b>${riskClassText[0]}</span>
     <span class="${this._risk}-${this._time}-result" lang="en"><b>${
-      this._risk === "HotSpots" && this._time === "Veränderung"
-        ? "HotSpots change: "
-        : this._risk === "HotSpots"
-        ? "HotSpots risk: "
-        : this._time === "Veränderung"
-        ? `${
-            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk].riskName.en
-          } change: `
-        : `${
-            ContentHandler._FACTOR_CLASSIFICATIONS[this._risk].riskName.en
-          } risk: `
+      this._time === "Veränderung"
+        ? "risk trend: "
+        : `${this._time === "Gegenwart" ? "current" : "projected"} risk: `
     }</b>${riskClassText[1]}</span>`;
     let valueToDisplay =
       county.feature.properties[`${this._risk} ${this._time}`];

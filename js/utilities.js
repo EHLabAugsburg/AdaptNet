@@ -1,4 +1,18 @@
 "use strict";
+
+/**
+ * Remove the subframe HTML-Element from DOM and update the interface-appearance.
+ * @param {*} subframeHtmlContainer The parent-node of the subframe HTML-element.
+ */
+function closeCurrentSubframe(subframeHtmlContainer) {
+  for (const button of document.querySelectorAll("#metadata button")) {
+    button.classList.remove("current");
+  }
+  for (const subframe of document.querySelectorAll(".subframe")) {
+    subframeHtmlContainer.removeChild(subframe);
+  }
+}
+
 /**
  * Get the current selected risk.
  * @returns The current selected risk if any selected. Else null.
