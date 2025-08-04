@@ -29,7 +29,7 @@ class MapLayerCreator:
             },
             overlay=True,
             control=False,
-            pane="base-layer",
+            pane="states",
         )
         counties_layer = folium.GeoJson(
             self.__data_processor.county_geo_json,
@@ -41,7 +41,7 @@ class MapLayerCreator:
             zoom_on_click=True,
             overlay=True,
             control=False,
-            pane="risk-layer",
+            pane="counties",
         )
         counties_layer._id = "counties"  # modified to access layers with JS
         return [states_base_layer, counties_layer]

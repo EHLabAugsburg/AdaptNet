@@ -27,14 +27,10 @@ class MapBuilder:
             max_lat=60,
             min_lat=40,
             min_lon=0,
-            tiles=folium.raster_layers.TileLayer(
-                tiles="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",  # noqa
-                attr="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors, &copy; <a href='https://cartodb.com/attributions'>CartoDB</a>",  # noqa
-                control=False,
-            ),
             zoom_control=False,
             zoom_start=6,
         )
+        self.__map._id = "adaptNet"  # modified to access map-instance with JS
 
     def __add_external_file_dependencies(self) -> None:
         for script in filter(
@@ -54,10 +50,10 @@ class MapBuilder:
         """
         Add all layers from map-layers property to the map.
         """
-        folium.map.CustomPane("base-layer", z_index=630).add_to(
+        folium.map.CustomPane("states", z_index=630).add_to(
             self.__map
-        )  # to ensure base-layer visibility
-        folium.map.CustomPane("risk-layer").add_to(self.__map)
+        )  # to ensure state-boundaries are visibile
+        folium.map.CustomPane("counties").add_to(self.__map)
         for layer in self.__map_layers:
             layer.add_to(self.__map)
 
