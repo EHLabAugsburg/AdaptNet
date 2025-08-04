@@ -79,12 +79,20 @@ div#interface {
       margin: 5px;
       button {
         all: unset;
+        background-size: cover;
         cursor: pointer;
         height: 20px;
         width: 20px;
         &#language-control {
           background-image: url("../resources/translate.png");
-          background-size: cover;
+        }
+        &#theme-control {
+          &.dark {
+            background-image: url("../resources/dark_mode.png");
+          }
+          &.light {
+            background-image: url("../resources/light_mode.png");
+          }
         }
       }
     }

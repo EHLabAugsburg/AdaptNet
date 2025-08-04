@@ -34,6 +34,26 @@ function getCurrentTime() {
 }
 
 /**
+ * Switch the color-theme.
+ * @param {*} colorTheme The theme to switch to.
+ */
+function switchColorTheme(colorTheme) {
+  document.querySelectorAll("body, button#theme-control").forEach((element) => {
+    element.classList.forEach((elementClass) =>
+      element.classList.remove(elementClass)
+    );
+  });
+  if (colorTheme === "light") {
+    document.querySelector("body").classList.add("light");
+    document.querySelector("button#theme-control").classList.add("dark");
+  } else {
+    document.querySelector("body").classList.add("dark");
+    document.querySelector("button#theme-control").classList.add("light");
+  }
+  BaseLayerSwitcher.setBaseLayer(colorTheme);
+}
+
+/**
  * Update the map ui with the current user's selected layer and it's information to display.
  * @param {*} risk The risk of the layer to display
  * @param {*} time The time of the layer to display

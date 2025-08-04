@@ -36,6 +36,11 @@ document
     updateDisplayedLayer(getCurrentRisk(), getCurrentTime(), false);
   });
 
+document.getElementById("theme-control").addEventListener("click", (event) => {
+  if (event.target.classList.contains("dark")) switchColorTheme("dark");
+  else switchColorTheme("light");
+});
+
 document
   .getElementById("imprint")
   .addEventListener("click", (element) =>
@@ -55,6 +60,9 @@ document
   );
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (window.matchMedia("(prefers-color-scheme: dark)"))
+    switchColorTheme("dark");
+  else switchColorTheme("light");
   document
     .querySelector("div#risk-control button#Luftbelastung")
     .classList.add("current");
