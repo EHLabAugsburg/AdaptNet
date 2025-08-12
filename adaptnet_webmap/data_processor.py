@@ -18,8 +18,6 @@ class DataProcessor:
     ]
     __COUNTY_AMOUNT = 400
     __COUNTY_KEY_PROPERTY = "ags"
-    __RISKS_AMOUNT = 6
-    __RISK_CLASSES_UPPER_BOUNDS = [20, 40, 60, 80, 100, 1000]
 
     def __init__(self, attribute_table_path: Path):
         self.__data_downloader = DataDownloader()
@@ -55,75 +53,6 @@ class DataProcessor:
         for geo_json in self.__geo_json:
             if geo_json.get("totalFeatures") != DataProcessor.__COUNTY_AMOUNT:
                 return self.__get_polygon_boundaries(geo_json)
-
-    def __add_symbolizing_values_to_geo_json(self) -> None:
-        """
-        Calculate the symbolizing-values for the change-layers and
-        hotspot-layer. Save them as properties in feature properties.
-        """
-        for _, feature in enumerate(self.county_geo_json["features"]):
-            for risk in [
-                risk for risk in utilities.RISKS if risk != "HotSpots"
-            ]:
-                change_value = (
-                    feature["properties"][f"{risk} Zukunft"]
-                    - feature["properties"][f"{risk} Gegenwart"]
-                )
-                feature["properties"].update(
-                    {f"{risk} Veränderung": change_value},
-                )
-            total_future_score = sum(
-                [
-                    feature["properties"][f"{risk} Zukunft"]
-                    for risk in utilities.LAYER_METADATA
-                ]
-            )
-            total_current_score = sum(
-                [
-                    feature["properties"][f"{risk} Gegenwart"]
-                    for risk in utilities.LAYER_METADATA
-                ]
-            )
-            feature["properties"].update(
-                {
-                    "HotSpots Gegenwart": total_current_score
-                    / DataProcessor.__RISKS_AMOUNT,
-                    "HotSpots Zukunft": total_future_score
-                    / DataProcessor.__RISKS_AMOUNT,
-                }
-            )
-            # define hotspots-change using class-difference
-            current_class_number, future_class_number = None, None
-            for upper_bound in DataProcessor.__RISK_CLASSES_UPPER_BOUNDS:
-                if (
-                    feature["properties"]["HotSpots Zukunft"] <= upper_bound
-                    and future_class_number is None
-                ):
-                    future_class_number = (
-                        DataProcessor.__RISK_CLASSES_UPPER_BOUNDS.index(
-                            upper_bound
-                        )
-                    )
-                if (
-                    feature["properties"]["HotSpots Gegenwart"] <= upper_bound
-                    and current_class_number is None
-                ):
-                    current_class_number = (
-                        DataProcessor.__RISK_CLASSES_UPPER_BOUNDS.index(
-                            upper_bound
-                        )
-                    )
-                if future_class_number and current_class_number:
-                    break
-            feature["properties"].update(
-                {
-                    "HotSpots Veränderung": (
-                        future_class_number - current_class_number
-                        if future_class_number and current_class_number
-                        else None
-                    )
-                }
-            )
 
     def __remove_properties_from_geojson(
         self,
@@ -205,12 +134,14 @@ class DataProcessor:
                 self.__attribute_table_data_path,
                 sheet_name=sheet_name,
                 skiprows=3,
+                usecols=("A,B,C,D,K,R,S" if sheet_name == "HotSpots" else None),
                 dtype={1: str},  # interpret county-keys as str
             )
             attribute_table.columns = (
                 DataProcessor.__BASE_ATTRIBUTE_TABLE_COLUMNS
-                + list(metadata["Gegenwart"]["headers"].keys())
-                + list(metadata["Zukunft"]["headers"].keys())
+                + list(metadata["Gegenwart"]["headers"])
+                + list(metadata["Zukunft"]["headers"])
+                + [f"{sheet_name} Veränderung"]
             )
             self.__attribute_tables.append(attribute_table)
 
@@ -229,4 +160,3 @@ class DataProcessor:
             )
         self.__get_attribute_tables()
         self.__join_attribute_tables_with_features()
-        self.__add_symbolizing_values_to_geo_json()

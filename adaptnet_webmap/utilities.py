@@ -3,314 +3,140 @@ COUNTY_NAME_PROPERTY = "gen"
 LAYER_METADATA = {
     "Luftbelastung": {
         "Gegenwart": {
-            "headers": {
-                "Luftbelastung Gegenwart Faktor 1 (PM2.5)": {
-                    "gering": 0,
-                    "mittel": 1,
-                    "hoch": 2,
-                },
-                "Luftbelastung Gegenwart Faktor 1 (PM10)": {
-                    "gering": 0,
-                    "mittel": 1,
-                    "hoch": 2,
-                },
-                "Luftbelastung Gegenwart Faktor 1 (NO2)": {
-                    "gering": 0,
-                    "mittel": 1,
-                    "hoch": 2,
-                },
-                "Luftbelastung Gegenwart Faktor 1 (O3)": {
-                    "gering": 0,
-                    "mittel": 1,
-                    "hoch": 2,
-                },
-                "Luftbelastung Gegenwart Faktor 2 (Hitze)": {
-                    "gering": 0,
-                    "niedrig": 0.5,
-                    "mittel": 1,
-                    "hoch": 1.5,
-                    "kritisch": 2,
-                },
-                "Luftbelastung Gegenwart Summe": {"Maximum": 10},
-                "Luftbelastung Gegenwart": None,
-            },
+            "headers": [
+                "Luftbelastung Gegenwart Faktor 1 (PM2.5)",
+                "Luftbelastung Gegenwart Faktor 1 (PM10)",
+                "Luftbelastung Gegenwart Faktor 1 (NO2)",
+                "Luftbelastung Gegenwart Faktor 1 (O3)",
+                "Luftbelastung Gegenwart Faktor 2 (Hitze)",
+                "Luftbelastung Gegenwart Summe",
+                "Luftbelastung Gegenwart",
+            ],
         },
         "Zukunft": {
-            "headers": {
-                "Luftbelastung Zukunft Faktor 1 (PM2.5)": {"abnehmend": -0.5},
-                "Luftbelastung Zukunft Faktor 1 (PM10)": {"abnehmend": -0.5},
-                "Luftbelastung Zukunft Faktor 1 (NO2)": {"abnehmend": -0.5},
-                "Luftbelastung Zukunft Faktor 1 (O3)": {"stagniernd": 0},
-                "Luftbelastung Zukunft Faktor 2 (Bevölkerungsprognose)": {
-                    "stark abnehmend": -1,
-                    "eher abnehmend": -0.5,
-                    "stagnierend": 0,
-                    "eher zunehmend": 0.5,
-                    "stark zunehmend": 1,
-                },
-                "Luftbelastung Zukunft Faktor 3 (Hitze)": {
-                    "stagnierend": 0,
-                    "leicht zunehmend": 1,
-                    "zunehmend": 2,
-                    "stark zunehmend": 3,
-                    "kritisch zunehmend": 4,
-                },
-                "Luftbelastung Zukunft Summe": {"Maximum": 10},
-                "Luftbelastung Zukunft": None,
-            },
+            "headers": [
+                "Luftbelastung Zukunft Faktor 1 (PM2.5)",
+                "Luftbelastung Zukunft Faktor 1 (PM10)",
+                "Luftbelastung Zukunft Faktor 1 (NO2)",
+                "Luftbelastung Zukunft Faktor 1 (O3)",
+                "Luftbelastung Zukunft Faktor 2 (Bevölkerungsprognose)",
+                "Luftbelastung Zukunft Faktor 3 (Hitze)",
+                "Luftbelastung Zukunft Summe",
+                "Luftbelastung Zukunft",
+            ],
         },
     },
     "Allergene": {
         "Gegenwart": {
-            "headers": {
-                "Allergene Gegenwart Faktor 1 (Prozessionsspinner)": {
-                    "nicht relevant": 0,
-                    "relevant": 1,
-                },
-                "Allergene Gegenwart Faktor 2 (Heuschnupfen)": {
-                    "nicht relevant": 0,
-                    "gering": 0.25,
-                    "mittel": 0.5,
-                    "hoch": 0.75,
-                    "sehr hoch": 1,
-                },
-                "Allergene Gegenwart Faktor 3 (Pollen)": {"hoch": 2},
-                "Allergene Gegenwart Faktor 4 (Luftbelastung)": {
-                    "gering": 0,
-                    "niedrig": 0.5,
-                    "mittel": 1,
-                    "hoch": 1.5,
-                    "kritisch": 2,
-                },
-                "Allergene Gegenwart Summe": {"Maximum": 6},
-                "Allergene Gegenwart": None,
-            },
+            "headers": [
+                "Allergene Gegenwart Faktor 1 (Prozessionsspinner)",
+                "Allergene Gegenwart Faktor 2 (Heuschnupfen)",
+                "Allergene Gegenwart Faktor 3 (Pollen)",
+                "Allergene Gegenwart Faktor 4 (Luftbelastung)",
+                "Allergene Gegenwart Summe",
+                "Allergene Gegenwart",
+            ],
         },
         "Zukunft": {
-            "headers": {
-                "Allergene Zukunft Faktor 1 (Prozessionsspinner)": {
-                    "stagnierend": 0,
-                    "zunehmend": 0.5,
-                },
-                "Allergene Zukunft Faktor 2 (Bevölkerungsprognose)": {
-                    "stark abnehmend": -0.5,
-                    "eher abnehmend": -0.25,
-                    "stagnierend": 0,
-                    "eher zunehmend": 0.25,
-                    "stark zunehmend": 0.5,
-                },
-                "Allergene Zukunft Faktor 3 (Temperatur)": {
-                    "stagnierend": 0,
-                    "zunehmend": 1,
-                },
-                "Allergene Zukunft Faktor 4 (Luftqualtät)": {
-                    "abnehmend": -0.5,
-                    "stagnierend": 0,
-                    "zunehmend": 0.5,
-                },
-                "Allergene Zukunft Summe": {"Maximum": 6},
-                "Allergene Zukunft": None,
-            },
+            "headers": [
+                "Allergene Zukunft Faktor 1 (Prozessionsspinner)",
+                "Allergene Zukunft Faktor 2 (Bevölkerungsprognose)",
+                "Allergene Zukunft Faktor 3 (Temperatur)",
+                "Allergene Zukunft Faktor 4 (Luftqualtät)",
+                "Allergene Zukunft Summe",
+                "Allergene Zukunft",
+            ],
         },
     },
     "Überschwemmung": {
         "Gegenwart": {
-            "headers": {
-                "Überschwemmung Gegenwart Faktor 1 (Starkniederschlag)": {
-                    "gering": 0,
-                    "mittel": 1,
-                    "hoch": 2,
-                },
-                "Überschwemmung Gegenwart Faktor 2 (Hochwassergefahr)": {
-                    "nicht relevant": 0,
-                    "gering": 0.5,
-                    "mittel": 1,
-                    "hoch": 1.5,
-                    "sehr hoch": 2,
-                },
-                "Überschwemmung Gegenwart Faktor 3 (Kreistyp)": {
-                    "nicht relevant": 0,
-                    "gering": 0.25,
-                    "mittel": 0.5,
-                    "hoch": 1,
-                },
-                "Überschwemmung Gegenwart Faktor 4 (Siedlungs-und Verkehrsfläche)": {  # noqa
-                    "gering": 0,
-                    "mittel": 0.5,
-                    "hoch": 1,
-                },
-                "Überschwemmung Gegenwart Summe": {"Maximum": 6},
-                "Überschwemmung Gegenwart": None,
-            },
+            "headers": [
+                "Überschwemmung Gegenwart Faktor 1 (Starkniederschlag)",
+                "Überschwemmung Gegenwart Faktor 2 (Hochwassergefahr)",
+                "Überschwemmung Gegenwart Faktor 3 (Kreistyp)",
+                "Überschwemmung Gegenwart Faktor 4 (Siedlungs-und Verkehrsfläche)",  # noqa
+                "Überschwemmung Gegenwart Summe",
+                "Überschwemmung Gegenwart",
+            ],
         },
         "Zukunft": {
-            "headers": {
-                "Überschwemmung Zukunft Faktor 1 (Starkniederschlag)": {
-                    "abnehmend": -1,
-                    "stagnierend": 0,
-                    "zunehmend": 1,
-                },
-                "Überschwemmung Zukunft Faktor 2 (Hochwassergefahr)": {
-                    "unbekannt": 0
-                },
-                "Überschwemmung Zukunft Faktor 3 (Bevölkerungsprognose)": {
-                    "stark abnehmend": -0.5,
-                    "eher abnehmend": -0.25,
-                    "stagnierend": 0,
-                    "eher zunehmend": 0.25,
-                    "stark zunehmend": 0.5,
-                },
-                "Überschwemmung Zukunft Faktor 4 (Siedlungs-und Verkehrsfläche)": {  # noqa
-                    "abnehmend": -0.5,
-                    "stagnierend": 0,
-                    "zunehmend": 0.5,
-                },
-                "Überschwemmung Zukunft Summe": {"Maximum": 6},
-                "Überschwemmung Zukunft": None,
-            },
+            "headers": [
+                "Überschwemmung Zukunft Faktor 1 (Starkniederschlag)",
+                "Überschwemmung Zukunft Faktor 2 (Hochwassergefahr)",
+                "Überschwemmung Zukunft Faktor 3 (Bevölkerungsprognose)",
+                "Überschwemmung Zukunft Faktor 4 (Siedlungs-und Verkehrsfläche)",  # noqa
+                "Überschwemmung Zukunft Summe",
+                "Überschwemmung Zukunft",
+            ],
         },
     },
     "Waldbrand": {
         "Gegenwart": {
-            "headers": {
-                "Waldbrand Gegenwart Faktor 1 (FWI)": {
-                    "gering": 1,
-                    "niedrig": 2,
-                    "mittel": 3,
-                    "hoch": 4,
-                    "kritisch": 5,
-                },
-                "Waldbrand Gegenwart Summe": {"Maximum": 5},
-                "Waldbrand Gegenwart": None,
-            },
+            "headers": [
+                "Waldbrand Gegenwart Faktor 1 (FWI)",
+                "Waldbrand Gegenwart Summe",
+                "Waldbrand Gegenwart",
+            ],
         },
         "Zukunft": {
-            "headers": {
-                "Waldbrand Zukunft Faktor 1 (FWI)": {
-                    "stagnierend": 0,
-                    "zunehmend": 0.83,
-                    "stark zunehmend": 1.67,
-                },
-                "Waldbrand Zukunft Faktor 2 (Bevölkerungsprognose)": {
-                    "stark abnehmend": -0.83,
-                    "eher abnehmend": -0.42,
-                    "stagnierend": 0,
-                    "eher zunehmend": 0.42,
-                    "stark zunehmend": 0.83,
-                },
-                "Waldbrand Zukunft Summe": {"Maximum": 5},
-                "Waldbrand Zukunft": None,
-            },
+            "headers": [
+                "Waldbrand Zukunft Faktor 1 (FWI)",
+                "Waldbrand Zukunft Faktor 2 (Bevölkerungsprognose)",
+                "Waldbrand Zukunft Summe",
+                "Waldbrand Zukunft",
+            ],
         },
     },
     "Hitze": {
         "Gegenwart": {
-            "headers": {
-                "Hitze Gegenwart Faktor 1 (Hitzebelastung)": {
-                    "gering": 1,
-                    "mittel": 2,
-                    "hoch": 3,
-                },
-                "Hitze Gegenwart Faktor 1 (Trop.Nächte)": {
-                    "nicht relevant": 0,
-                    "relevant": 3,
-                },
-                "Hitze Gegenwart Faktor 2 (Kreistyp)": {
-                    "nicht relevant": 0,
-                    "gering": 0.5,
-                    "mittel": 1,
-                    "hoch": 1.5,
-                },
-                "Hitze Gegenwart Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-                    "nicht relevant": 0,
-                    "mittel": 0.75,
-                    "hoch": 1.5,
-                },
-                "Hitze Gegenwart Summe": {"Maximum": 9},
-                "Hitze Gegenwart": None,
-            },
+            "headers": [
+                "Hitze Gegenwart Faktor 1 (Hitzebelastung)",
+                "Hitze Gegenwart Faktor 1 (Trop.Nächte)",
+                "Hitze Gegenwart Faktor 2 (Kreistyp)",
+                "Hitze Gegenwart Faktor 3 (Siedlungs-und Verkehrsfläche)",
+                "Hitze Gegenwart Summe",
+                "Hitze Gegenwart",
+            ],
         },
         "Zukunft": {
-            "headers": {
-                "Hitze Zukunft Faktor 1 (Heiße Tage)": {
-                    "stagnierend": 0,
-                    "zunehmend": 2,
-                },
-                "Hitze Zukunft Faktor 1 (Trop.Nächte)": {
-                    "stagnierend": 0,
-                    "zunehmend": 2,
-                },
-                "Hitze Zukunft Faktor 2 (Bevölkerungsprognose)": {
-                    "stark abnehmend": -1,
-                    "eher abnehmend": -0.5,
-                    "stagnierend": 0,
-                    "eher zunehmend": 0.5,
-                    "stark zunehmend": 1,
-                },
-                "Hitze Zukunft Faktor 3 (Siedlungs-und Verkehrsfläche)": {
-                    "abnehmend": -1,
-                    "moderat zunehmend": 0,
-                    "stark zunehmend": 1,
-                },
-                "Hitze Zukunft Summe": {"Maximum": 9},
-                "Hitze Zukunft": None,
-            },
+            "headers": [
+                "Hitze Zukunft Faktor 1 (Heiße Tage)",
+                "Hitze Zukunft Faktor 1 (Trop.Nächte)",
+                "Hitze Zukunft Faktor 2 (Bevölkerungsprognose)",
+                "Hitze Zukunft Faktor 3 (Siedlungs-und Verkehrsfläche)",
+                "Hitze Zukunft Summe",
+                "Hitze Zukunft",
+            ],
         },
     },
     "Vektoren": {
         "Gegenwart": {
-            "headers": {
-                "Vektoren Gegenwart Faktor 1 (FSME)": {
-                    "nicht relevant": 0,
-                    "relevant": 1.33,
-                },
-                "Vektoren Gegenwart Faktor 2 (Aedes albopictus)": {
-                    "nicht relevant": 0,
-                    "relevant": 1.33,
-                },
-                "Vektoren Gegenwart Faktor 2 (West-Nil-Virus)": {
-                    "nicht relevant": 0,
-                    "relevant": 1.33,
-                },
-                "Vektoren Gegenwart Faktor 3 (Zug)": {
-                    "nicht relevant": 0,
-                    "relevant": 0.67,
-                },
-                "Vektoren Gegenwart Faktor 3 (Flughafen)": {
-                    "nicht relevant": 0,
-                    "relevant": 0.67,
-                },
-                "Vektoren Gegenwart Faktor 3 (Schiff)": {
-                    "nicht relevant": 0,
-                    "relevant": 0.67,
-                },
-                "Vektoren Gegenwart Summe": {"Maximum": 6},
-                "Vektoren Gegenwart": None,
-            },
+            "headers": [
+                "Vektoren Gegenwart Faktor 1 (FSME)",
+                "Vektoren Gegenwart Faktor 2 (Aedes albopictus)",
+                "Vektoren Gegenwart Faktor 2 (West-Nil-Virus)",
+                "Vektoren Gegenwart Faktor 3 (Zug)",
+                "Vektoren Gegenwart Faktor 3 (Flughafen)",
+                "Vektoren Gegenwart Faktor 3 (Schiff)",
+                "Vektoren Gegenwart Summe",
+                "Vektoren Gegenwart",
+            ],
         },
         "Zukunft": {
-            "headers": {
-                "Vektoren Zukunft Faktor 1 (Zecken)": {"zunehmend": 0.67},
-                "Vektoren Zukunft Faktor 2 (Aedes albopictus)": {
-                    "stagnierend": 0,
-                    "zunehmend": 0.67,
-                },
-                "Vektoren Zukunft Faktor 2 (West-Nil-Virus)": {
-                    "stagnierend": 0,
-                    "zunehmend": 0.67,
-                },
-                "Vektoren Zukunft Faktor 3 (Bevölkerungsprognose)": {
-                    "stark abnehmend": -1,
-                    "eher abnehmend": -0.5,
-                    "stagnierend": 0,
-                    "eher zunehmend": 0.5,
-                    "stark zunehmend": 1,
-                },
-                "Vektoren Zukunft Summe": {"Maximum": 6},
-                "Vektoren Zukunft": None,
-            },
+            "headers": [
+                "Vektoren Zukunft Faktor 1 (Zecken)",
+                "Vektoren Zukunft Faktor 2 (Aedes albopictus)",
+                "Vektoren Zukunft Faktor 2 (West-Nil-Virus)",
+                "Vektoren Zukunft Faktor 3 (Bevölkerungsprognose)",
+                "Vektoren Zukunft Summe",
+                "Vektoren Zukunft",
+            ],
         },
+    },
+    "HotSpots": {
+        "Gegenwart": {"headers": ["HotSpots Gegenwart"]},
+        "Zukunft": {"headers": ["HotSpots Zukunft"]},
     },
 }
 
-RISKS = [risk for risk in LAYER_METADATA] + ["HotSpots"]
+RISKS = [risk for risk in LAYER_METADATA]
