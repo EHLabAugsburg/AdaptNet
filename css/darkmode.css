@@ -61,13 +61,15 @@ body.dark {
     border: 1px solid var(--dark-mode-border-color);
     color: var(--dark-mode-font-color);
     background-color: var(--dark-mode-background-color);
-    div.leaflet-popup-content div#detailed {
-      background-image: url("../resources/info_white.png");
-      div.explanation {
-        background-color: var(--dark-mode-background-color);
-        border: 1px solid var(--dark-mode-border-color);
+    div.leaflet-popup-content {
+      div#detailed {
+        background-image: url("../resources/info_white.png");
+        div.explanation {
+          background-color: var(--dark-mode-background-color);
+          border: 1px solid var(--dark-mode-border-color);
+        }
       }
-      &.score-bar div &.class-1 #value-pointer #pointer {
+      div.score-bar div.class-1 #value-pointer #pointer {
         background-image: url("../resources/value_pointer_white.png");
       }
     }
