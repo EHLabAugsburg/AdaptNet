@@ -71,8 +71,8 @@ class ContentHandler {
       en: "Change in risk through",
     },
     currentTimeTitle: {
-      de: "Aktuelles Risiko durch",
-      en: "Current risk through",
+      de: "in der jüngeren Vergangenheit",
+      en: "in the recent past",
     },
     futureTimeTitle: {
       de: "Künftiges Risiko durch",
