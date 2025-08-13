@@ -50,15 +50,6 @@ document
     )
   );
 
-document
-  .getElementById("methods")
-  .addEventListener("click", (element) =>
-    ContentHandler.showSubframe(
-      document.getElementById("interface"),
-      element.target
-    )
-  );
-
 document.addEventListener("DOMContentLoaded", function () {
   if (window.matchMedia("(prefers-color-scheme: dark)").matches)
     switchColorTheme("dark");

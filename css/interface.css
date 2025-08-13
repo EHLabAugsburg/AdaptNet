@@ -171,11 +171,8 @@ div#interface {
       button {
         height: 25px;
         width: 25px;
-        &#methods {
-          background-image: url("../resources/methods.png");
-        }
-        &#sources {
-          background-image: url("../resources/sources.png");
+        &#website-link {
+          background-image: url("../resources/info.png");
         }
         &#imprint {
           background-image: url("../resources/imprint.png");

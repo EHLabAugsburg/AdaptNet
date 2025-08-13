@@ -6,8 +6,7 @@ class LanguageHandler {
   static _BUTTON_TITLES = {
     imprint: { de: "Impressum", en: "imprint" },
     language: { de: "Übersetzen", en: "Translate" },
-    methods: { de: "Methodik", en: "methods" },
-    sources: { de: "Quellen", en: "sources" },
+    websiteLink: { de: "Methodik und Quellen", en: "methods and sources" },
     current: { de: "Gegenwart", en: "present" },
     future: { de: "Zukunft", en: "future" },
     change: { de: "Veränderungen", en: "change" },
@@ -56,10 +55,12 @@ class LanguageHandler {
         button.title =
           LanguageHandler._BUTTON_TITLES[button.id][this.getLanguage()];
       });
-    document.getElementById("methods").title =
-      LanguageHandler._BUTTON_TITLES.methods[this.getLanguage()];
-    document.getElementById("sources").title =
-      LanguageHandler._BUTTON_TITLES.sources[this.getLanguage()];
+    const websiteLink = document.getElementById("website-link");
+    websiteLink.title =
+      LanguageHandler._BUTTON_TITLES.websiteLink[this.getLanguage()];
+    websiteLink.onclick = () => {
+      window.location.href = DataProvider.getLinkPageUrl(this.getLanguage());
+    };
     document.getElementById("imprint").title =
       LanguageHandler._BUTTON_TITLES.imprint[this.getLanguage()];
     document.querySelector(".leaflet-control-search input").placeholder =
