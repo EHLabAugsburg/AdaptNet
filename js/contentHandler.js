@@ -251,13 +251,16 @@ class ContentHandler {
       risk === "HotSpots"
         ? ContentHandler._TEXT_CONTENTS.hotSpotsLegendDescriber[language]
         : DataProvider.getRiskName(risk)[language];
-    const legendTime =
-      time === "current"
-        ? ContentHandler._TEXT_CONTENTS.currentTimeTitle[language]
-        : time === "change"
-        ? ContentHandler._TEXT_CONTENTS.changeTimeTitle[language]
-        : ContentHandler._TEXT_CONTENTS.futureTimeTitle[language];
-    return `${legendTime} ${legendRisk}`;
+    if (time === "current")
+      return `${
+        language === "de" ? "Risiko durch" : "risk through"
+      } ${legendRisk} ${
+        ContentHandler._TEXT_CONTENTS.currentTimeTitle[language]
+      }`;
+    else if (time === "change")
+      return `${ContentHandler._TEXT_CONTENTS.changeTimeTitle[language]} ${legendRisk}`;
+    else
+      return `${ContentHandler._TEXT_CONTENTS.futureTimeTitle[language]} ${legendRisk}`;
   }
 
   /**
