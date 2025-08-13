@@ -664,6 +664,17 @@ class DataProvider {
     },
   };
 
+  /**
+   * Get the configuration data for the classification on the given risk at the given point in time.
+   * @param {*} risk
+   * @param {*} time
+   * @returns The configuration data for the classification as JSON-object (in ascending order):
+   * colors: the HEX-color codes for the classes
+   * legendFontColors: the color in which the interval gets written inside the legend color-box
+   * bounds: upper bounds for the classes
+   * intervalLabels: the text content of the color-boxes in the legend
+   * classLabels: the description of the classes
+   */
   static getClassification(risk, time) {
     if (risk === "HotSpots" && time === "change")
       return DataProvider._CLASSIFICATIONS.hotspotsChange;
