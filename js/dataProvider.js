@@ -2,6 +2,10 @@
  * Class for accessing (meta-)data for the risks and used classifications.
  */
 class DataProvider {
+  static _LINK_PAGE_BASE_URL = {
+    de: "https://www.uni-augsburg.de/de/fakultaet/med/profs/klimawandel-gesundheit/forschung/adaptnet/risikokarten",
+    en: "https://www.uni-augsburg.de/en/fakultaet/med/profs/klimawandel-gesundheit/forschung/adaptnet/risikokarten",
+  };
   static _RISK_DATA = {
     Luftbelastung: {
       riskName: { de: "Luftbelastung", en: "air quality" },
@@ -10,12 +14,12 @@ class DataProvider {
         Feinstaub, Ozon und Stickstoffoxide können unsere Gesundheit stark belasten – vor allem Atemwege und das Herz-Kreislaufsystem sind gefährdet.<br>
         <b>Wer ist besonders betroffen?</b></br>
         Kinder, ältere Menschen, chronisch erkrankte Menschen und Menschen, die viel Zeit im Freien verbringen, sind besonders anfällig.
-        <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+        <a href="${DataProvider._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
         en: `<b>Health Impacts of Air Pollution</b><br>
         Fine particulate matter, ozone, and nitrogen oxides can severely affect our health, primarily impacting the respiratory and cardiovascular systems.<br>
         <b>Who is especially affected?</b><br>
         Children, older adults, people with chronic illnesses, and those who spend a lot of time outdoors are particularly susceptible.
-        <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+        <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
       current: {
         factorNameTranslations: {
@@ -131,12 +135,12 @@ class DataProvider {
       Der Klimawandel führt dazu, dass sich die Pollensaison verlängert und sich die in der Umwelt vorkommenden Allergene verändern können, z.B. durch die Ansiedlung neuer allergener Pflanzen.<br>
       <b>Wer besonders anfällig ist:</b><br>
       Kinder und Erwachsene mit Allergien oder allergischen Asthma sind besonders betroffen.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
         en: `<b>Health Risks from Pollen and Other Allergens</b><br>
       Climate change is causing longer pollen seasons and can alter the types of allergens in the environment, for example, through the spread of new allergenic plants.<br>
       <b>Who is particularly sensitive?</b><br>
       Children and adults with allergies or allergic asthma are especially affected.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
       current: {
         factorNameTranslations: {
@@ -212,12 +216,12 @@ class DataProvider {
       Hochwasser kann nicht nur hohe Sachschäden mit sich bringen, sondern auch die Gesundheit gefährden – durch Verletzungsrisiken bis hin zu Todesfällen, verunreinigtes Wasser, Infektionen oder psychische Belastungen.<br>
       <b>Wer ist besonders betroffen?</b><br>
       Besonders gefährdet sind Menschen mit Mobilitäts- und kognitiven Einschränkungen, Einsatzkräfte oder Personen, die direkt mit verschmutztem Wasser in Kontakt kommen.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
         en: `<b>Health Impacts of Flooding</b><br>
       Floods can cause not only severe property damage but also serious health risks, includ-ing injuries and fatalities, contaminated water, infections, and psychological stress.<br>
       <b>Who is most affected?</b><br>
       People with mobility or cognitive impairments, emergency responders, and individuals who come into direct contact with polluted water are particularly at risk.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
       current: {
         factorNameTranslations: {
@@ -305,12 +309,12 @@ class DataProvider {
       Waldbrände gefährden nicht nur die Natur, sondern auch unsere Gesundheit – durch Atemwegsprobleme durch Rauch, Verletzungen und psychische Belastung.<br>
       <b>Wer ist besonders betroffen?</b><br>
       Kinder, ältere Menschen, Schwangere, Personen mit eingeschränkter Mobilität und Einsatzkräfte sind durch Waldbrände besonders gefährdet.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
         en: `<b>Health Impacts of Wildfires</b><br>
       Wildfires not only endanger the environment but also pose serious health risks, from respiratory issues caused by smoke to physical injuries and psychological stress.<br>
       <b>Who is particularly vulnerable?</b><br>
       Children, the elderly, pregnant individuals, people with limited mobility, and emergency personnel are especially at risk during wildfires.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
       current: {
         factorNameTranslations: {
@@ -366,12 +370,12 @@ class DataProvider {
       Hohe Temperaturen können den Körper stark belasten – besonders bei bestimmten Vorerkrankungen oder anstrengender körperlicher Tätigkeit.<br>
       <b>Wer ist bei Hitze besonders gefährdet?</b><br>
       Jeder Mensch kann betroffen sein, aber einige Menschen sind durch Hitze besonders gefährdet – darunter ältere Menschen, Kinder und Personen mit bestimmten Vorerkrankungen.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
         en: `<b>Health Risks from Heat</b><br>
       High temperatures can place a significant strain on the body – especially for people with certain pre-existing conditions or during intense physical activity.<br>
       <b>Who is especially at risk during heatwaves?</b><br>
       Everyone can be affected, but some groups are particularly vulnerable – including older adults, children, and people with certain chronic illnesses.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
       current: {
         factorNameTranslations: {
@@ -459,12 +463,12 @@ class DataProvider {
       Vektoren sind Krankheitsüberträger, z.B. Zecken oder Mücken. Zecken übertragen in Deutschland schon heute Erkrankungen wie die Borreliose. Mücken könnten in Zukunft vermehrt Erkrankungen wie West-Nil-Fieber oder Denguefieber übertragen.<br>
       <b>Wer ist besonders anfällig?</b><br>
       Insbesondere Menschen, die sich viel in der Natur aufhalten, kommen häufiger mit Zecken in Kontakt, z.B. in Wiesen, Wald und Gärten.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.de}#gesundheit">Mehr Infos</a>`,
         en: `<b>Health Risks from Vector-Borne Diseases</b><br>
       Vectors are disease carriers such as ticks or mosquitoes. In Germany, ticks already transmit diseases like Lyme borreliosis. In the future, mosquitoes may increasingly spread diseases such as West Nile virus or dengue fever.<br>
       <b>Who is particularly exposed?</b><br>
       People who spend a lot of time in nature (in meadows, forests, or gardens) are more likely to come into contact with ticks.
-      <a href="${ContentHandler._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
+      <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
       current: {
         factorNameTranslations: {
@@ -567,13 +571,105 @@ class DataProvider {
       },
     },
   };
-
   static _TIMES = {
     // mapping of time-flags on data time descriptors
     current: "Gegenwart",
     future: "Zukunft",
     change: "Veränderung",
   };
+  static _CLASSIFICATIONS = {
+    atTime: {
+      colors: [
+        "#FEF0D9",
+        "#FDD49E",
+        "#FDBB84",
+        "#FC8D59",
+        "#E34A33",
+        "#B30000",
+      ],
+      legendFontColors: ["black", "black", "black", "black", "black", "white"],
+      bounds: [20, 40, 60, 80, 100, 1000],
+      intervalLabels: [
+        "&lt;20",
+        "20 - &lt;40",
+        "40 - &lt;60",
+        "60 - &lt;80",
+        "80 - &lt;100",
+        "&ge;100",
+      ],
+      classLabels: {
+        de: ["gering", "niedrig", "mittel", "hoch", "kritisch", "extrem"],
+        en: ["very low", "low", "medium", "high", "critical", "extreme"],
+      },
+    },
+    change: {
+      colors: [
+        "#4575b4",
+        "#91bfdb",
+        "#ffffb2",
+        "#fecc5c",
+        "#fd8d3c",
+        "#f03b20",
+        "#bd0026",
+      ],
+      legendFontColors: [
+        "white",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "white",
+      ],
+      bounds: [-10, 0, 10, 20, 30, 40, 100],
+      intervalLabels: [
+        "&lt;-10",
+        "-10 - &lt;0",
+        "0 - &lt;10",
+        "10 - &lt;20",
+        "20 - &lt;30",
+        "30 - &lt;40",
+        "&ge;40",
+      ],
+      classLabels: {
+        de: [
+          "abnehmend",
+          "leicht abnehmend",
+          "leicht zunehmend",
+          "zunehmend",
+          "stark zunehmend",
+          "kritisch zunehmend",
+          "extrem zunehmend",
+        ],
+        en: [
+          "decreasing",
+          "slightly decreasing",
+          "slightly increasing",
+          "increasing",
+          "strongly increasing",
+          "critically increasing",
+          "extremely increasing",
+        ],
+      },
+    },
+    hotspotsChange: {
+      colors: ["#eaeaea", "#feb24c", "#f03b20"],
+      legendFontColors: ["black", "black", "white"],
+      bounds: [0, 1, 2],
+      intervalLabels: ["0", "+1", "+2"],
+      classLabels: {
+        de: ["gleichbleibend", "zunehmend", "stark zunehmend"],
+        en: ["constant", "increasing", "strongly increasing"],
+      },
+    },
+  };
+
+  static getClassification(risk, time) {
+    if (risk === "HotSpots" && time === "change")
+      return DataProvider._CLASSIFICATIONS.hotspotsChange;
+    else if (time === "change") return DataProvider._CLASSIFICATIONS.change;
+    else return DataProvider._CLASSIFICATIONS.atTime;
+  }
 
   /**
    * Get the factor classification for the passed factor-name.
@@ -599,6 +695,15 @@ class DataProvider {
     return DataProvider._RISK_DATA[risk][time].factorNameTranslations[
       factorName
     ];
+  }
+
+  /**
+   * Retrieve the URL of the project-page.
+   * @param {*} language the language of the URL-link to retrieve
+   * @returns The URL which leads to the appropriate project-website.
+   */
+  static getLinkPageUrl(language) {
+    return DataProvider._LINK_PAGE_BASE_URL[language];
   }
 
   /**

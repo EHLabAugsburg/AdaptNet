@@ -4,10 +4,6 @@
  */
 class ContentHandler {
   static _COUNTY_NAME_PROPERTY_NAME = "gen";
-  static _LINK_PAGE_BASE_URL = {
-    de: "https://www.uni-augsburg.de/de/fakultaet/med/profs/klimawandel-gesundheit/forschung/adaptnet/risikokarten",
-    en: "https://www.uni-augsburg.de/en/fakultaet/med/profs/klimawandel-gesundheit/forschung/adaptnet/risikokarten",
-  };
   static _IMPRINT = `
   <div id="imprint-content" class="subframe">
     <b>Impressum:</b> <br />
@@ -19,46 +15,6 @@ class ContentHandler {
     Contact: <a href="mailto:ehs@med.uni-augsburg.de"> ehs@med.uni-augsburg.de </a><br />
     <button></button>
   </div>`;
-  static _LAYER_CLASSIFICATIONS = {
-    // mapping of class descriptors to their upper bounds (exclusive)
-    HotSpotsVeränderung: {
-      headers: {
-        de: ["gleichbleibend", "zunehmend", "stark zunehmend"],
-        en: ["constant", "increasing", "strongly increasing"],
-      },
-      upperBounds: [0, 1, 2],
-    },
-    Veränderung: {
-      headers: {
-        de: [
-          "abnehmend",
-          "leicht abnehmend",
-          "leicht zunehmend",
-          "zunehmend",
-          "stark zunehmend",
-          "kritisch zunehmend",
-          "extrem zunehmend",
-        ],
-        en: [
-          "decreasing",
-          "slightly decreasing",
-          "slightly increasing",
-          "increasing",
-          "strongly increasing",
-          "critically increasing",
-          "extremely increasing",
-        ],
-      },
-      upperBounds: [-10, 0, 10, 20, 30, 40, 1000],
-    },
-    Zeitpunkt: {
-      headers: {
-        de: ["gering", "niedrig", "mittel", "hoch", "kritisch", "extrem"],
-        en: ["very low", "low", "medium", "high", "critical", "extreme"],
-      },
-      upperBounds: [20, 40, 60, 80, 100, 1000],
-    },
-  };
   static _METHODS = `
   <div id="methods-content" class="subframe">
     Will be available after publication.<br />
@@ -117,21 +73,16 @@ class ContentHandler {
    */
   _getClassForValue(value, classMap, detailedRisk = undefined) {
     if (!detailedRisk) {
-      const upperBound = classMap.upperBounds
-        .filter((bound) => {
-          if (
-            classMap ===
-            ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung
-          )
+      const upperBound = Math.min(
+        ...classMap.bounds.filter((bound) => {
+          if (classMap === DataProvider.getClassification("HotSpots", "change"))
             return bound >= value; //using greater than in this case because values are discrete
           return bound > value;
         })
-        .sort((number1, number2) =>
-          number1 > number2 ? 1 : number1 === number2 ? 0 : -1
-        )[0];
-      const upperBoundIndex = classMap.upperBounds.indexOf(upperBound);
-      const classNameDe = classMap.headers.de[upperBoundIndex];
-      const classNameEn = classMap.headers.en[upperBoundIndex];
+      );
+      const upperBoundIndex = classMap.bounds.indexOf(upperBound);
+      const classNameDe = classMap.classLabels.de[upperBoundIndex];
+      const classNameEn = classMap.classLabels.en[upperBoundIndex];
       return [classNameDe, classNameEn, upperBound];
     } else {
       for (const [classNameDe, classValue] of Object.entries(classMap)) {
@@ -171,7 +122,7 @@ class ContentHandler {
       for (const riskPropertyName of riskPropertiesToDisplay) {
         let classForValue = this._getClassForValue(
           county.feature.properties[riskPropertyName],
-          ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt
+          DataProvider.getClassification(this._risk, this._time)
         );
         detailedHtml += `
         <span class='${this._risk}-${
@@ -192,11 +143,11 @@ class ContentHandler {
         county.feature.properties[`${this._risk} Zukunft`];
       const classToday = this._getClassForValue(
         riskScoreToday,
-        ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt
+        DataProvider.getClassification(this._risk, "current")
       );
       const classFuture = this._getClassForValue(
         riskScoreFuture,
-        ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt
+        DataProvider.getClassification(this._risk, "future")
       );
       detailedHtml += `
       <span class='${this._risk}-${this._time}-detailed' lang="de"><b>${
@@ -288,20 +239,6 @@ class ContentHandler {
       closeCurrentSubframe(subframeHtmlContainer);
   }
 
-  static getLegendClasses(risk, time, language) {
-    if (time === "change" && risk === "HotSpots") {
-      return ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung.headers[
-        language
-      ];
-    } else if (time === "change") {
-      return ContentHandler._LAYER_CLASSIFICATIONS.Veränderung.headers[
-        language
-      ];
-    } else {
-      return ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt.headers[language];
-    }
-  }
-
   /**
    * Get the title of the legend.
    * @param {*} risk The risk the map displays currently.
@@ -351,16 +288,11 @@ class ContentHandler {
       county.feature.properties[ContentHandler._COUNTY_NAME_PROPERTY_NAME]
     }</h4>`;
     let countyClass, classSeperatorsAmount;
-    const classMap =
-      this._time === "change" && this._risk === "HotSpots"
-        ? ContentHandler._LAYER_CLASSIFICATIONS.HotSpotsVeränderung
-        : this._time === "change"
-        ? ContentHandler._LAYER_CLASSIFICATIONS.Veränderung
-        : ContentHandler._LAYER_CLASSIFICATIONS.Zeitpunkt;
+    const classMap = DataProvider.getClassification(this._risk, this._time);
     let index = new Array(
-      classMap.upperBounds.sort(
+      classMap.bounds.sort(
         (number1, number2) =>
-          classMap.upperBounds[number1] - classMap.upperBounds[number2]
+          classMap.bounds[number1] - classMap.bounds[number2]
       )
     )[0];
     countyClass = this._getClassForValue(
