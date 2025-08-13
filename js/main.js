@@ -60,7 +60,7 @@ document
   );
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (window.matchMedia("(prefers-color-scheme: dark)"))
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches)
     switchColorTheme("dark");
   else switchColorTheme("light");
   document
