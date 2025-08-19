@@ -13,7 +13,7 @@
         <span lang="de"><b>2.</b>Wählen Sie einen Zeitraum:</span>
         <span lang="en"><b>2.</b>Please choose a time period:</span><br>
         {% for time in times %}
-          <button id={% if time == "Gegenwart" %} "current" {% elif time == "Zukunft" %} "future" {% else %} "change" {% endif %}  title={{ time }}></button>
+          <button id={% if time == "Vergangenheit" %} "past" {% elif time == "Zukunft" %} "future" {% else %} "change" {% endif %}  title={{ time }}></button>
         {% endfor %}
       </div>
       <span lang="de"><b>3.</b>Wählen Sie einen Kreis.</span>

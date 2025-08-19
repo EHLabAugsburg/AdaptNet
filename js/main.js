@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("div#risk-control button#Luftbelastung")
     .classList.add("current");
   document
-    .querySelector("div#time-control button#current")
+    .querySelector("div#time-control button#past")
     .classList.add("current");
-  updateDisplayedLayer("Luftbelastung", "current");
+  updateDisplayedLayer("Luftbelastung", "past");
   languageHandler.setLanguage(languageHandler.getLanguage());
 });
 

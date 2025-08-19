@@ -4,12 +4,12 @@
  */
 class LanguageHandler {
   static _BUTTON_TITLES = {
+    change: { de: "Veränderungen", en: "change" },
+    future: { de: "Zukunft", en: "future" },
     imprint: { de: "Impressum", en: "imprint" },
     language: { de: "Übersetzen", en: "Translate" },
+    past: { de: "Vergangenheit", en: "past" },
     websiteLink: { de: "Methodik und Quellen", en: "methods and sources" },
-    current: { de: "Gegenwart", en: "present" },
-    future: { de: "Zukunft", en: "future" },
-    change: { de: "Veränderungen", en: "change" },
   };
   static _SEARCH_TEXT_PLACEHOLDER = {
     de: "Kreis suchen...",
@@ -49,12 +49,10 @@ class LanguageHandler {
     document.querySelectorAll("div#risk-control button").forEach((button) => {
       button.title = DataProvider.getRiskName(button.id)[this.getLanguage()];
     });
-    document
-      .querySelectorAll("#current, #future, #change")
-      .forEach((button) => {
-        button.title =
-          LanguageHandler._BUTTON_TITLES[button.id][this.getLanguage()];
-      });
+    document.querySelectorAll("#past, #future, #change").forEach((button) => {
+      button.title =
+        LanguageHandler._BUTTON_TITLES[button.id][this.getLanguage()];
+    });
     const websiteLink = document.getElementById("website-link");
     websiteLink.title =
       LanguageHandler._BUTTON_TITLES.websiteLink[this.getLanguage()];

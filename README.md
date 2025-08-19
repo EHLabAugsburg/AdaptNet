@@ -1,5 +1,3 @@
-# AdaptNet-WebMap
-
 ## Instructions
 
  Here is the step-by-step guide to running a the script to create the map:

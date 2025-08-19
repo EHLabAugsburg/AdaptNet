@@ -13,7 +13,7 @@ from adaptnet_webmap.map_layer_creator import MapLayerCreator
 
 class MapBuilder:
 
-    __TIMES = ["Gegenwart", "Zukunft", "Veränderung"]
+    __TIMES = ["Vergangenheit", "Zukunft", "Veränderung"]
 
     def __init__(self, attribute_table_source_path: Path):
         self.__map_layers = MapLayerCreator(
@@ -41,10 +41,7 @@ class MapBuilder:
             script_code = folium.Element(script.read())
             self.__map.get_root().script.add_child(script_code)
         for stylesheet in Path("css").iterdir():
-            self.__map.add_css_link(
-                stylesheet.name,
-                f"css\\{stylesheet.name}",
-            )
+            self.__map.add_css_link(stylesheet.name, f"css\\{stylesheet.name}")
 
     def __add_layers_to_map(self) -> None:
         """

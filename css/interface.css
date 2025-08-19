@@ -62,7 +62,7 @@ div#interface {
         &#time-control {
           padding-top: 5px;
           button {
-            &#current {
+            &#past {
               background-image: url("../resources/today.png");
             }
             &#future {

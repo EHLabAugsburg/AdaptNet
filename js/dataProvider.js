@@ -21,7 +21,7 @@ class DataProvider {
         Children, older adults, people with chronic illnesses, and those who spend a lot of time outdoors are particularly susceptible.
         <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      current: {
+      past: {
         factorNameTranslations: {
           "Faktor 1 (PM2.5)": "factor 1 (PM2.5)",
           "Faktor 1 (PM10)": "factor 1 (PM10)",
@@ -142,7 +142,7 @@ class DataProvider {
       Children and adults with allergies or allergic asthma are especially affected.
       <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      current: {
+      past: {
         factorNameTranslations: {
           "Faktor 1 (Prozessionsspinner)": "factor 1 (processionary moth)",
           "Faktor 2 (Heuschnupfen)": "factor 2 (hay fever)",
@@ -223,7 +223,7 @@ class DataProvider {
       People with mobility or cognitive impairments, emergency responders, and individuals who come into direct contact with polluted water are particularly at risk.
       <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      current: {
+      past: {
         factorNameTranslations: {
           "Faktor 1 (Starkniederschlag)": "factor 1 (heavy precipitation)",
           "Faktor 2 (Hochwassergefahr)": "factor 2 (flooding risk)",
@@ -316,7 +316,7 @@ class DataProvider {
       Children, the elderly, pregnant individuals, people with limited mobility, and emergency personnel are especially at risk during wildfires.
       <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      current: {
+      past: {
         factorNameTranslations: {
           "Faktor 1 (FWI)": "factor 1 (FWI)",
           Summe: "sum",
@@ -377,7 +377,7 @@ class DataProvider {
       Everyone can be affected, but some groups are particularly vulnerable – including older adults, children, and people with certain chronic illnesses.
       <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      current: {
+      past: {
         factorNameTranslations: {
           "Faktor 1 (Hitzebelastung)": "factor 1 (heat exposure)",
           "Faktor 1 (Trop.Nächte)": "factor 1 (tropical nights)",
@@ -470,7 +470,7 @@ class DataProvider {
       People who spend a lot of time in nature (in meadows, forests, or gardens) are more likely to come into contact with ticks.
       <a href="${DataProvider._LINK_PAGE_BASE_URL.en}#gesundheit">more info</a>`,
       },
-      current: {
+      past: {
         factorNameTranslations: {
           "Faktor 1 (FSME)": "factor 1 (FSME)",
           "Faktor 2 (Aedes albopictus)": "factor 2 (Aedes albopictus)",
@@ -573,7 +573,7 @@ class DataProvider {
   };
   static _TIMES = {
     // mapping of time-flags on data time descriptors
-    current: "Gegenwart",
+    past: "Vergangenheit",
     future: "Zukunft",
     change: "Veränderung",
   };

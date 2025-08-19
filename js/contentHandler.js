@@ -26,7 +26,7 @@ class ContentHandler {
       de: "Veränderung des Risikos durch",
       en: "Change in risk through",
     },
-    currentTimeTitle: {
+    pastTimeTitle: {
       de: "in der jüngeren Vergangenheit",
       en: "in the recent past",
     },
@@ -132,18 +132,16 @@ class ContentHandler {
         }<br></span>
         <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
           DataProvider.getRiskName(riskPropertyName.split(" ")[0]).en
-        } ${this._time === "current" ? "currently" : this._time}:</b> ${
-          classForValue[1]
-        }<br></span>`;
+        } ${this._time}:</b> ${classForValue[1]}<br></span>`;
       }
     } else if (this._time === "change") {
       const riskScoreToday =
-        county.feature.properties[`${this._risk} Gegenwart`];
+        county.feature.properties[`${this._risk} Vergangenheit`];
       const riskScoreFuture =
         county.feature.properties[`${this._risk} Zukunft`];
       const classToday = this._getClassForValue(
         riskScoreToday,
-        DataProvider.getClassification(this._risk, "current")
+        DataProvider.getClassification(this._risk, "past")
       );
       const classFuture = this._getClassForValue(
         riskScoreFuture,
@@ -152,13 +150,13 @@ class ContentHandler {
       detailedHtml += `
       <span class='${this._risk}-${this._time}-detailed' lang="de"><b>${
         this._risk
-      } Gegenwart :</b> ${classToday[0]}<br></span>
+      } Vergangenheit :</b> ${classToday[0]}<br></span>
       <span class='${this._risk}-${this._time}-detailed' lang="de"><b>${
         this._risk
       } Zukunft :</b> ${classFuture[0]}<br></span>
       <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
         DataProvider.getRiskName(this._risk).en
-      } currently :</b> ${classToday[1]}<br></span>
+      } past :</b> ${classToday[1]}<br></span>
       <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
         DataProvider.getRiskName(this._risk).en
       } in future :</b> ${classFuture[1]}<br></span>`;
@@ -251,12 +249,10 @@ class ContentHandler {
       risk === "HotSpots"
         ? ContentHandler._TEXT_CONTENTS.hotSpotsLegendDescriber[language]
         : DataProvider.getRiskName(risk)[language];
-    if (time === "current")
+    if (time === "past")
       return `${
         language === "de" ? "Risiko durch" : "risk through"
-      } ${legendRisk} ${
-        ContentHandler._TEXT_CONTENTS.currentTimeTitle[language]
-      }`;
+      } ${legendRisk} ${ContentHandler._TEXT_CONTENTS.pastTimeTitle[language]}`;
     else if (time === "change")
       return `${ContentHandler._TEXT_CONTENTS.changeTimeTitle[language]} ${legendRisk}`;
     else
@@ -315,12 +311,12 @@ class ContentHandler {
     }-result" lang="de"><b>${
       this._time === "change"
         ? "Risiko-Trend: "
-        : `${this._time === "current" ? "aktuelles" : "projiziertes"} Risiko: `
+        : `${this._time === "past" ? "vergangenes" : "projiziertes"} Risiko: `
     }</b>${riskClassText[0]}</span>
     <span class="${this._risk}-${this._time}-result" lang="en"><b>${
       this._time === "change"
         ? "risk trend: "
-        : `${this._time === "current" ? this._time : "projected"} risk: `
+        : `${this._time === "past" ? this._time : "projected"} risk: `
     }</b>${riskClassText[1]}</span>`;
     let valueToDisplay =
       county.feature.properties[
