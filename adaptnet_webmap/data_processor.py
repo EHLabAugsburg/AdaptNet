@@ -129,7 +129,7 @@ class DataProcessor:
         Get attribute-tables from the source excel-file and store them into
         attribute_tables property.
         """
-        for sheet_name, metadata in utilities.LAYER_METADATA.items():
+        for sheet_name, column_names in utilities.LAYER_METADATA.items():
             attribute_table = pandas.read_excel(
                 self.__attribute_table_data_path,
                 sheet_name=sheet_name,
@@ -139,8 +139,8 @@ class DataProcessor:
             )
             attribute_table.columns = (
                 DataProcessor.__BASE_ATTRIBUTE_TABLE_COLUMNS
-                + list(metadata["Gegenwart"]["headers"])
-                + list(metadata["Zukunft"]["headers"])
+                + list(column_names["Vergangenheit"])
+                + list(column_names["Zukunft"])
                 + [f"{sheet_name} Veränderung"]
             )
             self.__attribute_tables.append(attribute_table)
