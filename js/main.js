@@ -10,7 +10,7 @@ document.querySelectorAll("div#risk-control button").forEach((button) => {
     let currentTime = getCurrentTime();
     if (currentTime) updateDisplayedLayer(button.id, currentTime);
     if (document.querySelector("div.leaflet-popup-content"))
-      // if a popup is opened curently, update its content
+      // if a popup is curently open, update its content
       languageHandler.setLanguage(languageHandler.getLanguage());
   });
 });
@@ -24,7 +24,7 @@ document.querySelectorAll("#time-control button").forEach((button) => {
     let currentRisk = getCurrentRisk();
     if (currentRisk) updateDisplayedLayer(currentRisk, button.id);
     if (document.querySelector("div.leaflet-popup-content"))
-      // if a popup is opened curently, update its content
+      // if a popup is curently open, update its content
       languageHandler.setLanguage(languageHandler.getLanguage());
   });
 });

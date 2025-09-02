@@ -709,15 +709,6 @@ class DataProvider {
   }
 
   /**
-   * Retrieve the URL of the project-page.
-   * @param {*} language the language of the URL-link to retrieve
-   * @returns The URL which leads to the appropriate project-website.
-   */
-  static getLinkPageUrl(language) {
-    return DataProvider._LINK_PAGE_BASE_URL[language];
-  }
-
-  /**
    * Get the risk-names in both featured languages.
    * @param {*} risk
    * @returns An object containing two entries:

@@ -148,18 +148,10 @@ class ContentHandler {
         DataProvider.getClassification(this._risk, "future")
       );
       detailedHtml += `
-      <span class='${this._risk}-${this._time}-detailed' lang="de"><b>${
-        this._risk
-      } Vergangenheit :</b> ${classToday[0]}<br></span>
-      <span class='${this._risk}-${this._time}-detailed' lang="de"><b>${
-        this._risk
-      } Zukunft :</b> ${classFuture[0]}<br></span>
-      <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
-        DataProvider.getRiskName(this._risk).en
-      } past :</b> ${classToday[1]}<br></span>
-      <span class='${this._risk}-${this._time}-detailed' lang="en"><b>${
-        DataProvider.getRiskName(this._risk).en
-      } in future :</b> ${classFuture[1]}<br></span>`;
+      <span class='${this._risk}-${this._time}-detailed' lang="de"><b>Risiko bisher :</b> ${classToday[0]}<br></span>
+      <span class='${this._risk}-${this._time}-detailed' lang="de"><b>projiziertes Risiko :</b> ${classFuture[0]}<br></span>
+      <span class='${this._risk}-${this._time}-detailed' lang="en"><b>risk to date: </b> ${classToday[1]}<br></span>
+      <span class='${this._risk}-${this._time}-detailed' lang="en"><b>projected risk :</b> ${classFuture[1]}<br></span>`;
     } else {
       Object.entries(
         DataProvider.getRiskFactors(this._risk, this._time)
@@ -289,34 +281,25 @@ class ContentHandler {
     let popupContentHtml = `<h4>${
       county.feature.properties[ContentHandler._COUNTY_NAME_PROPERTY_NAME]
     }</h4>`;
-    let countyClass, classSeperatorsAmount;
     const classMap = DataProvider.getClassification(this._risk, this._time);
-    let index = new Array(
-      classMap.bounds.sort(
-        (number1, number2) =>
-          classMap.bounds[number1] - classMap.bounds[number2]
-      )
-    )[0];
-    countyClass = this._getClassForValue(
+    const countyClass = this._getClassForValue(
       county.feature.properties[
         `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
       ],
       classMap
     );
-    const riskClassText = // alter risk-description for exact value 0 on change-layers
+    const riskClassText =
       county.feature.properties[
         `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
-      ] === 0 && this._time === "change"
+      ] === 0 && this._time === "change" // alter risk-description for exact value 0 on change-layers
         ? ["gleichbleibend", "constant"]
         : [countyClass[0], countyClass[1]];
-    popupContentHtml += `<span class="${this._risk}-${
-      this._time
-    }-result" lang="de"><b>${
+    popupContentHtml += `<span lang="de"><b>${
       this._time === "change"
         ? "Risiko-Trend: "
         : `${this._time === "past" ? "vergangenes" : "projiziertes"} Risiko: `
     }</b>${riskClassText[0]}</span>
-    <span class="${this._risk}-${this._time}-result" lang="en"><b>${
+    <span lang="en"><b>${
       this._time === "change"
         ? "risk trend: "
         : `${this._time === "past" ? this._time : "projected"} risk: `
@@ -325,43 +308,42 @@ class ContentHandler {
       county.feature.properties[
         `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
       ];
-    let left_property;
+    let leftProperty, classSeparatorsAmount;
     if (this._risk === "HotSpots" && this._time === "change") {
-      classSeperatorsAmount = 3;
+      classSeparatorsAmount = classMap.bounds.length;
       popupContentHtml += '<div id="hotspot-change" class="score-bar">';
-      left_property = Math.min(40 * valueToDisplay + 8, 188); // 8px from left end to middle of first bar, then +40px for each class
+      leftProperty = Math.min(40 * valueToDisplay + 8, 188); // 8px from left end to middle of first bar, then +40px for each class
     } else if (this._time === "change") {
-      classSeperatorsAmount = 6;
+      classSeparatorsAmount = classMap.bounds.length - 1;
       popupContentHtml += '<div id="change" class="score-bar">';
-      left_property =
+      leftProperty =
         valueToDisplay <= 0
-          ? Math.max(4 * valueToDisplay + 68, -12)
+          ? Math.max(4 * valueToDisplay + 68, -12) // 4px represent one score-point, 68px represents zero score-points
           : Math.min(4 * valueToDisplay + 68, 268); // 4px represent one score-point, 68px represents zero score-points
     } else {
-      classSeperatorsAmount = 5;
+      classSeparatorsAmount = classMap.bounds.length - 1;
       popupContentHtml += '<div id="at-time" class="score-bar">';
-      left_property = Math.min(2 * valueToDisplay - 12, 228); // 2px represent one score-point, minus offset 12px
+      leftProperty = Math.min(2 * valueToDisplay - 12, 228); // 2px represent one score-point, minus offset 12px
     }
-    for (let i = 1; i <= index.length; i++) {
+    for (let i = 1; i <= classMap.bounds.length; i++) {
       if (i === 1) {
         valueToDisplay =
           this._time === "change" && valueToDisplay >= 0.5
             ? `+${Number(valueToDisplay.toFixed())}`
             : `${Number(valueToDisplay.toFixed())}`;
-
         popupContentHtml += `
         <div class="class-${i}" style="background-color:${
           classMap.colors[i - 1]
         };">
           <div class="interval-border" ${
             this._risk === "HotSpots" && this._time === "change"
-              ? "style=left:8px;"
+              ? "style=left:8px;" // to ensure separators appear centered
               : ""
           }>
-            <span class="interval-bound">${index[i - 1]}</span>
-            <span class="interval-seperator">|</span>
+            <span class="interval-bound">${classMap.bounds[i - 1]}</span>
+            <span class="interval-separator">|</span>
           </div>
-          <div id="value-pointer" style="left:${left_property}px;">
+          <div id="value-pointer" style="left:${leftProperty}px;">
             <span id="pointer"></span>
             <span id="value">${valueToDisplay}</span>
           </div>
@@ -374,11 +356,11 @@ class ContentHandler {
           popupContentHtml += `
           <div class="interval-border" ${
             this._risk === "HotSpots" && this._time === "change"
-              ? "style=left:8px;"
+              ? "style=left:8px;" // to ensure separators appers centered
               : ""
           }>
-            <span class="interval-bound">${index[i - 1]}</span>
-            <span class="interval-seperator">|</span>
+            <span class="interval-bound">${classMap.bounds[i - 1]}</span>
+            <span class="interval-separator">|</span>
           </div>
         </div>`;
         } else {
