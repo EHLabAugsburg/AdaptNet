@@ -92,60 +92,6 @@ div.leaflet-popup-content-wrapper {
             }
           }
         }
-        &#at-time {
-          .class-1 {
-            background-color: #fef0d9;
-          }
-          .class-2 {
-            background-color: #fdd49e;
-          }
-          .class-3 {
-            background-color: #fdbb84;
-          }
-          .class-4 {
-            background-color: #fc8d59;
-          }
-          .class-5 {
-            background-color: #e34a33;
-          }
-          .class-6 {
-            background-color: #b30000;
-          }
-        }
-        &#change {
-          .class-1 {
-            background-color: #4575b4;
-          }
-          .class-2 {
-            background-color: #91bfdb;
-          }
-          .class-3 {
-            background-color: #ffffb2;
-          }
-          .class-4 {
-            background-color: #fecc5c;
-          }
-          .class-5 {
-            background-color: #fd8d3c;
-          }
-          .class-6 {
-            background-color: #f03b20;
-          }
-          .class-7 {
-            background-color: #bd0026;
-          }
-        }
-        &#hotspot-change {
-          .class-1 {
-            background-color: #eaeaea;
-          }
-          .class-2 {
-            background-color: #feb24c;
-          }
-          .class-3 {
-            background-color: #f03b20;
-          }
-        }
       }
     }
   }

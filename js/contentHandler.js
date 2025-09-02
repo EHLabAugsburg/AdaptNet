@@ -350,7 +350,9 @@ class ContentHandler {
             : `${Number(valueToDisplay.toFixed())}`;
 
         popupContentHtml += `
-        <div class="class-${i}">
+        <div class="class-${i}" style="background-color:${
+          classMap.colors[i - 1]
+        };">
           <div class="interval-border" ${
             this._risk === "HotSpots" && this._time === "change"
               ? "style=left:8px;"
@@ -365,8 +367,10 @@ class ContentHandler {
           </div>
         </div>`;
       } else {
-        popupContentHtml += `<div class="class-${i}">`;
-        if (i <= classSeperatorsAmount) {
+        popupContentHtml += `<div class="class-${i}" style="background-color:${
+          classMap.colors[i - 1]
+        };">`;
+        if (i <= classSeparatorsAmount) {
           popupContentHtml += `
           <div class="interval-border" ${
             this._risk === "HotSpots" && this._time === "change"
