@@ -98,4 +98,7 @@ body.dark {
     border: 1px solid var(--dark-mode-border-color);
     color: var(--dark-mode-font-color);
   }
+  div.leaflet-popup-tip {
+    background: var(--dark-mode-background-color);
+  }
 }
