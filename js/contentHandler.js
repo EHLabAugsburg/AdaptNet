@@ -31,8 +31,8 @@ class ContentHandler {
       en: "in the recent past",
     },
     futureTimeTitle: {
-      de: "Künftiges Risiko durch",
-      en: "Projected risk through",
+      de: "Künftiges Risiko durch RISK (ca. 2050)",
+      en: "Projected risk through RISK (about 2050)",
     },
     hotSpotsLegendDescriber: {
       de: "Gesundheits&shy;gefahren",
@@ -256,7 +256,10 @@ class ContentHandler {
     else if (time === "change")
       return `${ContentHandler._TEXT_CONTENTS.changeTimeTitle[language]} ${legendRisk}`;
     else
-      return `${ContentHandler._TEXT_CONTENTS.futureTimeTitle[language]} ${legendRisk}`;
+      return `${ContentHandler._TEXT_CONTENTS.futureTimeTitle[language].replace(
+        "RISK",
+        legendRisk
+      )}`;
   }
 
   /**
