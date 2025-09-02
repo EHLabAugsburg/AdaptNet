@@ -297,12 +297,16 @@ class ContentHandler {
     popupContentHtml += `<span lang="de"><b>${
       this._time === "change"
         ? "Risiko-Trend: "
-        : `${this._time === "past" ? "vergangenes" : "projiziertes"} Risiko: `
+        : this._time === "past"
+        ? "Risiko bisher: "
+        : "projiziertes Risiko: "
     }</b>${riskClassText[0]}</span>
     <span lang="en"><b>${
       this._time === "change"
         ? "risk trend: "
-        : `${this._time === "past" ? this._time : "projected"} risk: `
+        : this._time === "past"
+        ? "risk to date: "
+        : "projected risk: "
     }</b>${riskClassText[1]}</span>`;
     let valueToDisplay =
       county.feature.properties[
