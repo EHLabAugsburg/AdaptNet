@@ -2,8 +2,7 @@ div.leaflet-control-container {
   div.leaflet-control-search {
     border: 1px solid black;
     a.search-button {
-      background-image: url("../resources/search.png");
-      background-position: center;
+      background: center url("../resources/search.png");
     }
   }
 }

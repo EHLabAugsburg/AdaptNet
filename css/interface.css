@@ -98,11 +98,10 @@ div#interface {
     }
     #risk-information {
       all: unset;
-      width: 24px;
+      background: cover url("../resources/info.png");
       float: right;
       height: 24px;
-      background-size: cover;
-      background-image: url("../resources/info.png");
+      width: 24px;
       #risk-explanation {
         background-color: white;
         border: 1px solid black;

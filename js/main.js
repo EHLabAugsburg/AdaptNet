@@ -65,5 +65,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const languageHandler = new LanguageHandler(
-  navigator.language === "de" ? "de" : "en"
+  navigator.language === "de" ? "de" : "en",
 );

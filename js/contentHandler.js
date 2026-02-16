@@ -78,7 +78,7 @@ class ContentHandler {
           if (classMap === DataProvider.getClassification("HotSpots", "change"))
             return bound >= value; //using greater than in this case because values are discrete
           return bound > value;
-        })
+        }),
       );
       const upperBoundIndex = classMap.bounds.indexOf(upperBound);
       const classNameDe = classMap.classLabels.de[upperBoundIndex];
@@ -90,7 +90,7 @@ class ContentHandler {
           const factorClasses = DataProvider.getFactorClasses(
             this._risk,
             this._time,
-            detailedRisk
+            detailedRisk,
           );
           return [
             classNameDe,
@@ -112,7 +112,7 @@ class ContentHandler {
     detailedHtml += `<div id="${this._risk}-${this._time}" class="explanation">`;
     if (this._risk === "HotSpots" && this._time !== "change") {
       const riskPropertiesToDisplay = Object.keys(
-        county.feature.properties
+        county.feature.properties,
       ).filter((property) => {
         return (
           property.endsWith(DataProvider.getTimeDescriptor(this._time)) &&
@@ -122,7 +122,7 @@ class ContentHandler {
       for (const riskPropertyName of riskPropertiesToDisplay) {
         let classForValue = this._getClassForValue(
           county.feature.properties[riskPropertyName],
-          DataProvider.getClassification(this._risk, this._time)
+          DataProvider.getClassification(this._risk, this._time),
         );
         detailedHtml += `
         <span class='${this._risk}-${
@@ -141,11 +141,11 @@ class ContentHandler {
         county.feature.properties[`${this._risk} Zukunft`];
       const classToday = this._getClassForValue(
         riskScoreToday,
-        DataProvider.getClassification(this._risk, "past")
+        DataProvider.getClassification(this._risk, "past"),
       );
       const classFuture = this._getClassForValue(
         riskScoreFuture,
-        DataProvider.getClassification(this._risk, "future")
+        DataProvider.getClassification(this._risk, "future"),
       );
       detailedHtml += `
       <span class='${this._risk}-${this._time}-detailed' lang="de"><b>Risiko bisher :</b> ${classToday[0]}<br></span>
@@ -154,13 +154,13 @@ class ContentHandler {
       <span class='${this._risk}-${this._time}-detailed' lang="en"><b>projected risk :</b> ${classFuture[1]}<br></span>`;
     } else {
       Object.entries(
-        DataProvider.getRiskFactors(this._risk, this._time)
+        DataProvider.getRiskFactors(this._risk, this._time),
       ).forEach(([riskName, riskClasses]) => {
         if (riskName === "Summe") {
           const riskFactorValue = DataProvider.getFactorClasses(
             this._risk,
             this._time,
-            riskName
+            riskName,
           ).Maximum;
           detailedHtml += `<span class='${this._risk}-${
             this._time
@@ -176,12 +176,12 @@ class ContentHandler {
           const factorName = DataProvider.getFactorNames(
             this._risk,
             this._time,
-            riskName
+            riskName,
           );
           let detailedRiskValue =
             county.feature.properties[
               `${this._risk} ${DataProvider.getTimeDescriptor(
-                this._time
+                this._time,
               )} ${riskName}`
             ];
           let classForValue = this._getClassForValue(
@@ -190,21 +190,21 @@ class ContentHandler {
               riskClasses.de.map((element, index) => [
                 element,
                 riskClasses.values[index],
-              ])
+              ]),
             ),
-            riskName
+            riskName,
           );
           detailedHtml += `<span class='${this._risk}-${
             this._time
           }-detailed' lang="de"><b>${riskName.substring(
             riskName.indexOf("(") + 1,
-            riskName.indexOf(")")
+            riskName.indexOf(")"),
           )}:</b> ${classForValue[0]}<br></span>
           <span class='${this._risk}-${
             this._time
           }-detailed' lang="en"><b>${factorName.substring(
             factorName.indexOf("(") + 1,
-            factorName.indexOf(")")
+            factorName.indexOf(")"),
           )}:</b> ${classForValue[1]}<br></span>`;
         }
       });
@@ -250,7 +250,7 @@ class ContentHandler {
     else
       return `${ContentHandler._TEXT_CONTENTS.futureTimeTitle[language].replace(
         "RISK",
-        legendRisk
+        legendRisk,
       )}`;
   }
 
@@ -286,7 +286,7 @@ class ContentHandler {
       county.feature.properties[
         `${this._risk} ${DataProvider.getTimeDescriptor(this._time)}`
       ],
-      classMap
+      classMap,
     );
     const riskClassText =
       county.feature.properties[
@@ -392,9 +392,9 @@ class ContentHandler {
     }</span><br><span class="value" style="color: ${StyleManager.getHexColor(
       symbolizingValue,
       this._risk,
-      this._time
+      this._time,
     )}">${symbolizingValue > 0 && this._time === "change" ? "+" : ""}${Number(
-      symbolizingValue
+      symbolizingValue,
     ).toFixed()}</span>`;
   }
 }
