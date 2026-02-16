@@ -4,7 +4,18 @@
  */
 class ContentHandler {
   static _COUNTY_NAME_PROPERTY_NAME = "gen";
-  static _IMPRINT = `
+  static _IMPRINT = {
+    de: `<div id="imprint-content" class="subframe">
+    <b>Impressum:</b> <br />
+    Regionaler Klimawandel und Gesundheit<br />
+    Medizinische Fakultät<br />
+    Universität Augsburg<br />
+    Gutenbergstr. 7<br />
+    86356 Neusäß<br />
+    Kontakt: <a href="mailto:ehs@med.uni-augsburg.de"> ehs@med.uni-augsburg.de </a><br />
+    <button></button>
+  </div>`,
+    en: `
   <div id="imprint-content" class="subframe">
     <b>Impressum:</b> <br />
     Regional Climate Change and Health<br />
@@ -14,12 +25,8 @@ class ContentHandler {
     86356 Neusäß<br />
     Contact: <a href="mailto:ehs@med.uni-augsburg.de"> ehs@med.uni-augsburg.de </a><br />
     <button></button>
-  </div>`;
-  static _METHODS = `
-  <div id="methods-content" class="subframe">
-    Will be available after publication.<br />
-    <button></button>
-  </div>`;
+  </div>`,
+  };
 
   static _TEXT_CONTENTS = {
     changeTimeTitle: {
@@ -51,6 +58,16 @@ class ContentHandler {
       de: "Wählen Sie einen Zeitraum",
       en: "Please choose a time period:",
     },
+  };
+  static _WEBSITE_LINK = {
+    de: `<div class='subframe'>
+      Weiterführende Infos finden Sie <a href='https://www.uni-augsburg.de/de/fakultaet/med/profs/klimawandel-gesundheit/forschung/adaptnet/risikokarten/'>hier</a>.<br />
+      <button></button>
+      </div>`,
+    en: `<div class='subframe'>
+      Further information available <a href='https://www.uni-augsburg.de/en/fakultaet/med/profs/klimawandel-gesundheit/forschung/adaptnet/risikokarten/'>here</a>.<br />
+      <button></button>
+      </div>`,
   };
 
   /**
@@ -221,8 +238,8 @@ class ContentHandler {
     closeCurrentSubframe(subframeHtmlContainer);
     const subframeHtml =
       clickedButton.id === "imprint"
-        ? ContentHandler._IMPRINT
-        : ContentHandler._METHODS;
+        ? ContentHandler._IMPRINT[languageHandler.getLanguage()]
+        : ContentHandler._WEBSITE_LINK[languageHandler.getLanguage()];
     subframeHtmlContainer.insertAdjacentHTML("afterbegin", subframeHtml);
     clickedButton.classList.add("current");
     document.querySelector(".subframe button").onclick = () =>
@@ -298,15 +315,15 @@ class ContentHandler {
       this._time === "change"
         ? "Risiko-Trend: "
         : this._time === "past"
-        ? "Risiko bisher: "
-        : "projiziertes Risiko: "
+          ? "Risiko bisher: "
+          : "projiziertes Risiko: "
     }</b>${riskClassText[0]}</span>
     <span lang="en"><b>${
       this._time === "change"
         ? "risk trend: "
         : this._time === "past"
-        ? "risk to date: "
-        : "projected risk: "
+          ? "risk to date: "
+          : "projected risk: "
     }</b>${riskClassText[1]}</span>`;
     let valueToDisplay =
       county.feature.properties[

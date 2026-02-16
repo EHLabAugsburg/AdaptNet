@@ -40,7 +40,7 @@ function getCurrentTime() {
 function switchColorTheme(colorTheme) {
   document.querySelectorAll("body, button#theme-control").forEach((element) => {
     element.classList.forEach((elementClass) =>
-      element.classList.remove(elementClass)
+      element.classList.remove(elementClass),
     );
   });
   if (colorTheme === "light") {

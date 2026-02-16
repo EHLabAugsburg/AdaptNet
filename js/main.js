@@ -41,14 +41,14 @@ document.getElementById("theme-control").addEventListener("click", (event) => {
   else switchColorTheme("light");
 });
 
-document
-  .getElementById("imprint")
-  .addEventListener("click", (element) =>
+document.querySelectorAll("#imprint, #website-link").forEach((button) => {
+  button.addEventListener("click", (element) =>
     ContentHandler.showSubframe(
       document.getElementById("interface"),
-      element.target
-    )
+      element.target,
+    ),
   );
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.matchMedia("(prefers-color-scheme: dark)").matches)
