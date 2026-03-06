@@ -25,7 +25,10 @@ div#interface {
     #map-title {
       color: black;
       padding: 5px;
-      text-shadow: 1px 1px white, -1px -1px white, 1px -1px white,
+      text-shadow:
+        1px 1px white,
+        -1px -1px white,
+        1px -1px white,
         -1px 1px white;
     }
     #layer-control {
@@ -98,7 +101,8 @@ div#interface {
     }
     #risk-information {
       all: unset;
-      background: cover url("../resources/info.png");
+      background-image: url("../resources/info.png");
+      background-size: cover;
       float: right;
       height: 24px;
       width: 24px;

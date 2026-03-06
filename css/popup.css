@@ -20,7 +20,8 @@ div.leaflet-popup-content-wrapper {
     }
     div {
       &#detailed {
-        background: no-repeat cover url("../resources/info.png");
+        background-image: url("../resources/info.png");
+        background-size: cover;
         grid-area: info;
         height: 24px;
         margin: 0px 10px;
