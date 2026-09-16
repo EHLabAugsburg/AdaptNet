@@ -17,5 +17,11 @@ class BaseLayerSwitcher {
         layer.setUrl(BaseLayerSwitcher._BASE_LAYER_URL[theme]);
       }
     });
+
+    if (map_adaptNet.attributionControl) {
+      map_adaptNet.attributionControl.addAttribution(
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
+      );
+    }
   }
 }
