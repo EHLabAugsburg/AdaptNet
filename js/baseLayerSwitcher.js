@@ -6,8 +6,9 @@
 class BaseLayerSwitcher {
   static _BASE_LAYER_URL = {
     light:
-      "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
-    dark: "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
+      "https://{s}.basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}{r}.png?key=cb1_3muf_1_e9354f73c1e3ce5762a507cd",
+    dark:
+      "https://{s}.basemaps.cartocdn.com/rastertiles/dark_nolabels/{z}/{x}/{y}{r}.png?key=cb1_3muf_1_e9354f73c1e3ce5762a507cd",
   };
 
   static setBaseLayer(theme) {
